@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-    include "./PHPFunctions/db.php";
+    include "./PHPFunctions/db.php"; //Inkluderer databasekoblingsfil fra PHPFunctions
     ?>
 </body>
 </html>
