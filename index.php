@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php
+    include "db.php";
+    ?>
 </body>
 </html>
