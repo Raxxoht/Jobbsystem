@@ -6,8 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-    include "./PHPFunctions/db.php"; //Inkluderer databasekoblingsfil fra PHPFunctions
-    ?>
+    <h1>Velkommen til vår hovedside</h1>
 </body>
 </html>
