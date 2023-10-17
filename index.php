@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-    include "db.php";
+    include "./PHPFunctions/db.php";
     ?>
 </body>
 </html>
