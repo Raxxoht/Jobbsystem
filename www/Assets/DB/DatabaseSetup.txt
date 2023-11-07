@@ -2,9 +2,57 @@ CREATE DATABASE jobbsystem;
 
 USE jobbsystem;
 
-CREATE TABLE USERS(
-    PersonID PRIMARY KEY AUTO_INCREMENT INT,
-    NAVN VARCHAR(255),
-    ALDER INT(100)
-)
+CREATE TABLE `Profil` (
+  `ProfilID` INT AUTO_INCREMENT PRIMARY KEY,
+  `BrukerID` INT,
+  `Beskrivelse` VARCHAR(255),
+  `Sokbar` BOOLEAN
+);
+
+CREATE TABLE `Arbeidstaker` (
+  `ArbeidstakerID` INT AUTO_INCREMENT PRIMARY KEY,
+  `BrukerID` INT,
+  `Navn` VARCHAR(255),
+  `Epost` VARCHAR(255),
+  `Tlf` VARCHAR(10),
+  `CV` BLOB
+);
+
+CREATE TABLE `Arbeidsgiver` (
+  `ArbeidsgiverID` INT AUTO_INCREMENT PRIMARY KEY,
+  `BrukerID` INT,
+  `FirmaNavn` VARCHAR(255),
+  `LederNavn` VARCHAR(255),
+  `Epost` VARCHAR(255),
+  `Tlf` VARCHAR(10)
+);
+
+CREATE TABLE `JobbAnnonse` (
+  `JobbannonseID` INT AUTO_INCREMENT PRIMARY KEY,
+  `ArbeidsgiverID` INT,
+  `Beskrivelse` VARCHAR(255),
+  `KravTekst` BOOLEAN,
+  `KravCV` BOOLEAN,
+  `KravDoc` BOOLEAN,
+  `Tidsfrist` DATETIME,
+  FOREIGN KEY (`ArbeidsgiverID`) REFERENCES `Arbeidsgiver`(`ArbeidsgiverID`)
+);
+
+CREATE TABLE `Soknad` (
+  `SoknadID` INT AUTO_INCREMENT PRIMARY KEY,
+  `JobbannonseID` INT,
+  `ArbeidstakerID` INT,
+  `Soknadtekst` TEXT,
+  `Dato` DATETIME,
+  `Status` VARCHAR(255),
+  FOREIGN KEY (`ArbeidstakerID`) REFERENCES `Arbeidstaker`(`ArbeidstakerID`),
+  FOREIGN KEY (`JobbannonseID`) REFERENCES `JobbAnnonse`(`JobbannonseID`)
+);
+
+CREATE TABLE `Bruker` (
+  `BrukerID` INT AUTO_INCREMENT PRIMARY KEY,
+  `Brukernavn` VARCHAR(255),
+  `Passord` VARCHAR(255),
+  `Rolle` VARCHAR(255)
+);
 
