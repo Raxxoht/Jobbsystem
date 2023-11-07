@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS jobbsystem;
 CREATE DATABASE jobbsystem;
 
 USE jobbsystem;
