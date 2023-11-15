@@ -7,17 +7,18 @@
     <link rel="stylesheet" href="./Assets./Css/style.css">
 </head>
 <body id="startBody">
-    <div id="NavBar">
-        <a class="NavItems" href="./index.php">Start</a>
-        <a class="NavItems" href="./Pages/Hovedside/Hovedside.php">Hovedside</a>
-        <a class="NavItems" href="./Pages/Soknadside/Soknad.php">Søknader</a>
-        <a class="NavItems" href="./Pages/Profilside/Profil.php">Profil</a>
-    </div>
-    <div id="Main_Content">
-        <h1>Velkommen til Jobbsøkesystemet vårt!</h1>
-    </div>
-    <!--<section id="Footer">
+    <?php
+    include "./Assets/Html/navbar.php";
+    ?>
+    <div id="loginBox">
+        <h1>Login</h1>
+        <form action="" method="POST">
+            Brukernavn <input placeholder="Skriv inn brukernavn her" type="text">
+            Passord <input placeholder="Skriv inn passord her" type="text">
+            <button type="submit">Send inn</button>
+        </form>
 
-    </section> Mulig Footer-->
+        <a href="">registrer ny bruker her</a>
+    </div>
 </body>
 </html>
