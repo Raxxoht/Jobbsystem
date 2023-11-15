@@ -16,9 +16,9 @@
         <h1>Login</h1>
         <form action="" method="POST">
 
-            Brukernavn <input placeholder="Skriv inn brukernavn her" type="text">
-            
-            Passord <input placeholder="Skriv inn passord her" type="text">
+            Brukernavn <input placeholder="Skriv inn brukernavn her" name="logBNavn" type="text">
+
+            Passord <input placeholder="Skriv inn passord her" name="logPass" type="text">
 
             <button type="submit">Send inn</button>
         </form>
