@@ -1,3 +1,4 @@
+<!--Denne siden vil fungere som en loginside -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +11,9 @@
 <body id="startBody">
 
     <?php
-    include "./Assets/Html/navbar.php";
+    include "./Assets/Html/navbar.php"; ##Denne includen fjernes etterhvert som vi får ting til å go smud
     ?>
+
     <div id="loginBox">
         <h1>Login</h1>
         <form action="" method="POST">
