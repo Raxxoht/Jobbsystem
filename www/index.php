@@ -12,19 +12,25 @@
 
     <?php
     include "./Assets/Html/navbar.php"; ##Denne includen fjernes etterhvert som vi får ting til å go smud
+
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+        if(isset($_GET["LoginSuccess"])){
+            $LoginSuccess = $_GET["LoginSuccess"];
+        }
+    }
     ?>
 
     <div id="loginBox">
         <h1>Login</h1>
-        <form action="" method="POST">
+        <form action="./Assets/Lib/PHPFunctions/LoginProsess.php" method="POST">
 
             Brukernavn <input placeholder="Skriv inn brukernavn her" name="logBNavn" type="text">
 
-            Passord <input placeholder="Skriv inn passord her" name="logPass" type="text">
+            Passord <input placeholder="Skriv inn passord her" name="logPass" type="password">
 
             <button type="submit">Send inn</button>
         </form>
-
+        <?php if(isset($LoginSuccess)){echo "<h3 style='color:red;'>Brukernavn eller passord var feil</h3>";}?>
         <a href="./Pages/Registrer/Registrer.php">registrer ny bruker her</a>
     </div>
 </body>
