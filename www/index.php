@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start</title>
-    <link rel="stylesheet" href="./Assets./Css/style.css">
+    <link rel="stylesheet" href="./Assets/Css/style.css">
+    <link rel="stylesheet" href="./Assets/Css/popupmagic.css">
 </head>
 
 <body id="startBody">
-
     <?php
     include "./Assets/Html/navbar.php"; ##Denne includen fjernes etterhvert som vi får ting til å go smud
 
@@ -30,8 +30,19 @@
 
             <button type="submit">Send inn</button>
         </form>
-        <?php if(isset($LoginSuccess)){echo "<h3 style='color:red;'>Brukernavn eller passord var feil</h3>";}?>
-        <a href="./Pages/Registrer/Registrer.php">registrer ny bruker her</a>
+        <?php if(isset($LoginSuccess)) {if($LoginSuccess==0){echo "<h3 style='color:red;'>Brukernavn eller passord var feil</h3>";}} ?>
+        <a href="#Popupbox">registrer ny bruker her</a>
+
+        <div id="Popupbox" class="Modal">
+            <div class="Content">
+                <h1>Hva skal du gjøre?</h1>
+                <a href="#" class="Box-close">
+                    x
+                </a>
+                <a class="Videre" href="./Pages/Registrer/Registrer.php?Type=arbeidssoker">Er du arbeidssøker?</a>
+                <a class="Videre" href="./Pages/Registrer/Registrer.php?Type=arbeidsgiver">Eller er du arbeidsgiver?</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

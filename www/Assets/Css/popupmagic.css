@@ -1,0 +1,51 @@
+.Modal {
+    align-items: center;
+    display: flex;
+    justify-content: center; 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(143, 195, 193, 0.7);
+    transition: all 0.4s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.Modal:target{
+    visibility: visible;
+    opacity: 1;
+}
+.Box-close {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    color: #fe0606;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.Content {
+    position: absolute;
+    background: white;
+    width: 400px;
+    padding: 1em 2em;
+    border-radius: 4px;
+}
+
+.Videre {
+    background-color: green;
+    text-decoration: none;
+    border: 4px grey solid;
+    color: yellow;
+    display: inline-block;
+    margin-left: 10px;
+    padding: 15px;
+}
+
+.Videre:hover {
+    background-color:rgb(174, 30, 210);
+    transition: .4s ease-in-out;
+    color: rgb(195, 255, 0);
+}

@@ -12,7 +12,9 @@
             Brukernavn <input placeholder="Skriv inn brukernavn" name="regBNavn" type="text"> <br>
             Passord <input placeholder="Skriv inn passord" name="regPass"  type="text"> <br>
             Fornavn <input placeholder="Skriv inn fornavn" type="text" name="regFNavn"> <br>
-            Etternavn <input placeholder="Skriv inn etternavn" type="text" name="regENavn">
+            Etternavn <input placeholder="Skriv inn etternavn" type="text" name="regENavn"> <br>
+            Fødselsdato <input type="date" name="regFDato"> <br>
+            Telefonummer <input type="tel" name="regTlf"> <br>
             <button type="submit">Send inn</button>
         </form>
     </div>
