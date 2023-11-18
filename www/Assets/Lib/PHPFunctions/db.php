@@ -26,6 +26,33 @@ function CloseDBConnection($conn) {
     $conn->close(); // Close the connection to prevent memory leaks
 }
 
+function QuerySelectAllBruker($conn) {
+    // SQL query
+    $sql = "SELECT * FROM Bruker";
+
+    // Execute the query
+    $result = $conn->query($sql);
+        if ($result) {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Access individual fields using $row['ColumnName']
+                    $BrukerID = $row['BrukerID'];
+                    $Brukernavn = $row['Brukernavn'];
+                    $Passord = $row['Passord'];
+                    $Rolle = $row['Rolle'];
+    
+                    // Do something with the retrieved data
+                    echo "BrukerID: $BrukerID, Brukernavn: $Brukernavn, Passord: $Passord, Rolle: $Rolle<br>";
+            }}
+            else {
+                echo "No users found.";
+            }
+          }
+        else {
+            echo "Big Fail" . $conn->error;
+        } 
+}
+
 function QuerySelectSpesBruker($conn) { //Fetch SpesifikkBruker for sjekk om Verdien finnes fra før i Tabell-Bruker
     $brukerNavn = 'X'; 
     // SQL query
@@ -64,6 +91,60 @@ function QuerySelectRolleFromBruker($conn) { //Fetch Rolle i Bruker-Tabellen
         }
 }
 
+function QueryInsertBruker($conn){
+    $Brukernavn = "";
+    $Passord = ""; 
+    $Rolle = ""; 
+
+    // SQL query
+    $sql = "INSERT INTO Bruker (Brukernavn, Passord, Rolle) Values ('$Brukernavn', '$Passord', '$Rolle')";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        echo "Goood";
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
+function QueryInsertArbeidstaker($conn) {
+    $BrukerID = "";
+    $Navn = ""; 
+    $Epost = ""; 
+    $Tlf = "";
+    $CV = "";
+
+    // SQL query
+    $sql = "INSERT INTO Arbeidstaker (BrukerID, Navn, Epost, Tlf, CV) Values ('$BrukerID', '$Navn', '$Epost', '$Tlf', '$CV')";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        echo "Goood";
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
+function QueryInsertArbeidsgiver($conn) {
+    $BrukerID = "";
+    $FirmaNavn = ""; 
+    $LederNavn = ""; 
+    $Epost = "";
+    $Tlf = "";
+    
+    // SQL query
+    $sql = "INSERT INTO Arbeidstaker (BrukerID, FirmaNavn, LederNavn, Epost, Tlf) Values ('$BrukerID', '$FirmaNavn', '$LederNavn', '$Epost', '$Tlf')";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        echo "Goood";
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
     ?>  
 </body>
 </html>
