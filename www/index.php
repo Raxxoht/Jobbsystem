@@ -12,6 +12,14 @@
 <body id="startBody">
     <?php
     include "./Assets/Html/navbar.php"; ##Denne includen fjernes etterhvert som vi får ting til å go smud
+    include "./Assets/Lib/PHPFunctions/db.php"; // Include DB Funksjoner
+
+            //Åpner DBCon, Setup, TestData og closer connection - FORELØPIG ER DETTE BARE TESTING
+            //Funker for Sander, uvisst om det funker for OSKAR!!! (VIKTIG)
+            $conn = OpenDBConnection();
+            SetupDB($conn);
+            TestData($conn);
+            CloseDBConnection($conn);
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if(isset($_GET["LoginSuccess"])){
