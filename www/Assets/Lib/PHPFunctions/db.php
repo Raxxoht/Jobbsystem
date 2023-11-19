@@ -52,23 +52,49 @@ function QuerySelectAllBruker($conn) { //Fetch for Alle I tabellen Bruker
         } 
 }
 
-function QuerySelectSpesBruker($conn) { //Fetch SpesifikkBruker for sjekk om Verdien finnes fra før i Tabell-Bruker
-    $brukerNavn = 'X'; 
+function QuerySelectSpesBruker($conn, $brukerNavn) { //Fetch SpesifikkBruker for sjekk om Verdien finnes fra før i Tabell-Bruker
     // SQL query
     $sql = "SELECT * FROM Bruker WHERE Brukernavn = '$brukerNavn'";
 
     // Execute the query
     $result = $conn->query($sql);
-        if ($result) {
-            if ($result->num_rows > 0) {
-                echo "Brukernavnet '$brukerNavn' finnes allerede!";
-            } else {
-                echo "Ingen brukere med '$brukerNavn' veldig bra! WIP";
-            }
-          }
-        else {
-            echo "Big Fail" . $conn->error;
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+             return false;
         }
+}
+
+function QuerySelectBrukerPass($conn, $brukerNavn, $passord){
+    $conn->select_db("jobbsystem");
+    $brukerSjekk = QuerySelectSpesBruker($conn, $brukerNavn);
+    $query = "SELECT Passord from Bruker WHERE Brukernavn = '$brukerNavn'";
+    if($brukerSjekk==1){
+        $result = $conn->query($query);
+        $assoc = $result->fetch_assoc();
+        if($passord == $assoc["Passord"]){
+            return 1;
+        } else {
+            return 0;
+        } 
+    } else {
+        echo "Det oppsto en feil";
+    }
+    unset($result);
+}
+
+function QuerySelectAllBrukerInfo($conn, $brukernavn, $passord){
+    $sql = "Select * from bruker where brukernavn = '$brukernavn' and passord = '$passord'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_assoc();
+    return $assoc;
+}
+
+function QuerySelectAllArbeidstakerInfo($conn, $brukerId){
+    $sql = "Select * from arbeidstaker where BrukerID = '$brukerId'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_assoc();
+    return $assoc;
 }
 
 function QuerySelectRolleFromBruker($conn) { //Fetch Rolle i Bruker-Tabellen

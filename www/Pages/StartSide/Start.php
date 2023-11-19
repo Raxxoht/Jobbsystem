@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,12 @@
 <body id="startBody">
 <?php
     include "../../Assets/Html/navbar.php";
+    include "../../Assets/Lib/Klasser/arbeidstaker.php";
+    $object = unserialize($_SESSION["Bruker"]);
+
+    $infoList = $object->printInfo();
+
+    print_r($infoList);
 ?>
     <div id="Main_Content">
         <h1>Velkommen til Jobbsøkesystemet vårt!</h1>
