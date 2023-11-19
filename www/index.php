@@ -38,8 +38,8 @@
 
             <button type="submit">Send inn</button>
         </form>
-        <?php if(isset($LoginSuccess)) {if($LoginSuccess==0){echo "<h3 style='color:red;'>Brukernavn eller passord var feil</h3>";}} ?>
-        <a href="#Popupbox">registrer ny bruker her</a>
+        <?php if(isset($LoginSuccess)) {if($LoginSuccess==0){echo "<h3 style='color:crimson;'>Brukernavn eller passord var feil</h3>";}} ?>
+        <a id="regKnapp" href="#Popupbox">Registrer ny bruker her</a>
 
         <div id="Popupbox" class="Modal">
             <div class="Content">

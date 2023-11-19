@@ -4,15 +4,17 @@
     column-gap:10px;
     padding: 20px;
     border-bottom: 2px black solid;
-    border-left: 1px aqua solid;
-    border-right: 1px aqua solid;
-    border-top: 2px black solid ;
+    border-left: 1px rgb(0, 0, 0) solid;
+    border-right: 1.5px rgb(0, 0, 0) solid;
+    border-top: 1px rgb(84, 84, 84) solid ;
+    box-shadow: 2px 1px 3px 1px rgb(26, 25, 25);
 }
 
 .NavItems {
     text-align: center;
     justify-content: center;
-    background-color: cyan;
+    background-color: rgb(224, 251, 252);
+    border-radius: 10px;
     border-right:black solid 2px;
     border-left: black solid 2px;
     transition: .3s ease-in-out;
@@ -22,8 +24,28 @@
     background-color: rgb(83, 181, 247);
 }
 
+#loginBox>form>input, #loginBox>form>button {
+    border-radius:10px;
+    padding:2px;
+}
+
+#regKnapp {
+    text-decoration:none;
+    position: relative;
+}
+
+#regKnapp:hover {
+    text-decoration: underline;
+}
+
+#loginBox>form>button:hover {
+    background-color: rgb(83, 181, 247);
+    cursor: pointer;
+    transition: .4s ease-in-out;
+}
+
 #startBody {
-    background-color: cornflowerblue;
+    background-color: rgb(152, 193, 217);
 }
 
 #Main_Content {

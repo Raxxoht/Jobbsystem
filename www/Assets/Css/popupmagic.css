@@ -7,7 +7,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(143, 195, 193, 0.7);
+    background: rgba(61, 90, 128, 0.7);
     transition: all 0.4s;
     visibility: hidden;
     opacity: 0;
@@ -35,17 +35,17 @@
 }
 
 .Videre {
-    background-color: green;
+    background-color: rgb(238, 108, 77);
     text-decoration: none;
     border: 4px grey solid;
-    color: yellow;
+    color: rgb(224, 251, 252);
     display: inline-block;
     margin-left: 10px;
     padding: 15px;
 }
 
 .Videre:hover {
-    background-color:rgb(174, 30, 210);
+    background-color:rgb(61, 90, 128);
     transition: .4s ease-in-out;
     color: rgb(195, 255, 0);
 }
