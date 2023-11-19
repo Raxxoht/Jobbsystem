@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +12,19 @@
 <body id="startBody">
 <?php
     include "../../Assets/Html/navbar.php";
+    include "../../Assets/Lib/Klasser/arbeidstaker.php";
+    include "../../Assets/Lib/Klasser/arbeidsgiver.php";
+    $object = unserialize($_SESSION["Bruker"]);
+
+    $infoList = $object->printInfo();
+
+    foreach($infoList as $x => $y){
+        echo "$x = $y" . ",  ";
+    }
 ?>
     <div id="Main_Content">
         <h1>Velkommen til Jobbsøkesystemet vårt!</h1>
+        <a href="./Pages/StartSide/logout.php">Logg ut</a>
     </div>
     <!--<section id="Footer">
         

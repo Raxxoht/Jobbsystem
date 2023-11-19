@@ -1,9 +1,7 @@
 <?php
+
+
     Class Bruker{
-
-        protected $Fornavn;
-
-        protected $Etternavn;
 
         protected $Brukernavn;
 
@@ -11,9 +9,7 @@
 
         protected $regDato;
 
-        function __construct($Fornavn, $Etternavn, $Brukernavn, $Passord){
-            $this->Fornavn = $Fornavn;
-            $this->Etternavn = $Etternavn;
+        function __construct($Brukernavn, $Passord){
             $this->Brukernavn = $Brukernavn;
             $this->Passord = $Passord;
             $this->regDato = date("d/M/Y");

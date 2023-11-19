@@ -1,4 +1,7 @@
 <!--Denne siden vil fungere som en loginside -->
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +29,10 @@
             $LoginSuccess = $_GET["LoginSuccess"];
         }
     }
+    if(isset($_SESSION["Bruker"])){
+        header("Location: ./Pages/StartSide/Start.php");
+    }
     ?>
-
     <div id="loginBox">
         <h1>Login</h1>
         <form action="./Assets/Lib/PHPFunctions/LoginProsess.php" method="POST">
@@ -38,8 +43,8 @@
 
             <button type="submit">Send inn</button>
         </form>
-        <?php if(isset($LoginSuccess)) {if($LoginSuccess==0){echo "<h3 style='color:red;'>Brukernavn eller passord var feil</h3>";}} ?>
-        <a href="#Popupbox">registrer ny bruker her</a>
+        <?php if(isset($LoginSuccess)) {if($LoginSuccess==0){echo "<h3 style='color:crimson;'>Brukernavn eller passord var feil</h3>";}} ?>
+        <a id="regKnapp" href="#Popupbox">Registrer ny bruker her</a>
 
         <div id="Popupbox" class="Modal">
             <div class="Content">
