@@ -97,6 +97,13 @@ function QuerySelectAllArbeidstakerInfo($conn, $brukerId){
     return $assoc;
 }
 
+function QuerySelectAllArbeidsgiverInfo($conn, $brukerId){
+    $sql = "Select * from arbeidsgiver where BrukerID = '$brukerId'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_assoc();
+    return $assoc;
+}
+
 function QuerySelectRolleFromBruker($conn) { //Fetch Rolle i Bruker-Tabellen
     $brukerNavn = 'X'; 
     // SQL query

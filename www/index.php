@@ -20,7 +20,6 @@
             SetupDB($conn);
             TestData($conn);
             CloseDBConnection($conn);
-            echo __DIR__;
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
         if(isset($_GET["LoginSuccess"])){

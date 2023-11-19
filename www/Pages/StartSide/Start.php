@@ -13,11 +13,14 @@ session_start();
 <?php
     include "../../Assets/Html/navbar.php";
     include "../../Assets/Lib/Klasser/arbeidstaker.php";
+    include "../../Assets/Lib/Klasser/arbeidsgiver.php";
     $object = unserialize($_SESSION["Bruker"]);
 
     $infoList = $object->printInfo();
 
-    print_r($infoList);
+    foreach($infoList as $x => $y){
+        echo "$x = $y" . ",  ";
+    }
 ?>
     <div id="Main_Content">
         <h1>Velkommen til Jobbsøkesystemet vårt!</h1>
