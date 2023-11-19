@@ -1,4 +1,7 @@
 <!--Denne siden vil fungere som en loginside -->
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +29,10 @@
             $LoginSuccess = $_GET["LoginSuccess"];
         }
     }
+    if(isset($_SESSION["Bruker"])){
+        header("Location: ./Pages/StartSide/Start.php");
+    }
     ?>
-
     <div id="loginBox">
         <h1>Login</h1>
         <form action="./Assets/Lib/PHPFunctions/LoginProsess.php" method="POST">

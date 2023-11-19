@@ -24,6 +24,7 @@ session_start();
 ?>
     <div id="Main_Content">
         <h1>Velkommen til Jobbsøkesystemet vårt!</h1>
+        <a href="./Pages/StartSide/logout.php">Logg ut</a>
     </div>
     <!--<section id="Footer">
         
