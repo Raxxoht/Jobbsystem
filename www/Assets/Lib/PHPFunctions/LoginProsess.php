@@ -14,12 +14,12 @@
         $brukerInfo = QuerySelectAllBrukerInfo($conn, $inputBrukernavn, $inputPassord);
         if($brukerInfo["Rolle"] == "Arbeidstaker"){
             $arbeidstakerInfo = QuerySelectAllArbeidstakerInfo($conn, $brukerInfo["BrukerID"]);
-            $bruker = new arbeidstaker($brukerInfo["Brukernavn"], $brukerInfo["Passord"], "15. Desember 2022", $arbeidstakerInfo["Navn"], $arbeidstakerInfo["Epost"], $arbeidstakerInfo["Tlf"]);
+            $bruker = new arbeidstaker($brukerInfo["Brukernavn"], $brukerInfo["Passord"], $brukerInfo["RegDato"], $arbeidstakerInfo["Navn"], $arbeidstakerInfo["Epost"], $arbeidstakerInfo["Tlf"], $arbeidstakerInfo["Fodselsdato"]);
             $_SESSION["Bruker"] = serialize($bruker);
 
         } elseif($brukerInfo["Rolle"] == "Arbeidsgiver"){
             $arbeidsgiverInfo = QuerySelectAllArbeidsgiverInfo($conn, $brukerInfo["BrukerID"]);
-            $bruker = new arbeidsgiver($brukerInfo["Brukernavn"], $brukerInfo["Passord"], "30 . Januar 2023", $arbeidsgiverInfo["FirmaNavn"], $arbeidsgiverInfo["LederNavn"], $arbeidsgiverInfo["Epost"], $arbeidsgiverInfo["Tlf"]);
+            $bruker = new arbeidsgiver($brukerInfo["Brukernavn"], $brukerInfo["Passord"], $brukerInfo["RegDato"], $arbeidsgiverInfo["FirmaNavn"], $arbeidsgiverInfo["LederNavn"], $arbeidsgiverInfo["Epost"], $arbeidsgiverInfo["Tlf"]);
             $_SESSION["Bruker"] = serialize($bruker);
         }
         header("Location: ../../../Pages/StartSide/Start.php");
