@@ -212,6 +212,7 @@ function SetupDB($conn) { //Script for DB-setup
       `ArbeidstakerID` INT AUTO_INCREMENT PRIMARY KEY,
       `BrukerID` INT,
       `Navn` VARCHAR(255),
+      `Fodselsdato` DATE,
       `Epost` VARCHAR(255),
       `Tlf` VARCHAR(10),
       `CV` BLOB
@@ -272,7 +273,8 @@ function SetupDB($conn) { //Script for DB-setup
       `BrukerID` INT AUTO_INCREMENT PRIMARY KEY,
       `Brukernavn` VARCHAR(255),
       `Passord` VARCHAR(255),
-      `Rolle` VARCHAR(255)
+      `Rolle` VARCHAR(255),
+      `Regdato` DATETIME 
     )";
 
     $result = $conn->query($sql);
@@ -282,11 +284,11 @@ function SetupDB($conn) { //Script for DB-setup
 }
 
 function TestData($conn){ //Funksjon for å legge inn testdata
-    $sql = "INSERT INTO Bruker (Brukernavn, Passord, Rolle) VALUES
-    ('user1', 'password1', 'Arbeidstaker'),
-    ('user2', 'password2', 'Arbeidsgiver'),
-    ('user3', 'password3', 'Arbeidsgiver'),
-    ('user4', 'password4', 'Arbeidstaker')";
+    $sql = "INSERT INTO Bruker (Brukernavn, Passord, Rolle, Regdato) VALUES
+    ('user1', 'password1', 'Arbeidstaker', '2000-01-25 01:59:59'),
+    ('user2', 'password2', 'Arbeidsgiver', '1950-02-25 02:59:59'),
+    ('user3', 'password3', 'Arbeidsgiver', '2012-03-25 05:59:59'),
+    ('user4', 'password4', 'Arbeidstaker', '1000-04-25 08:59:59')";
     
     $result = $conn->query($sql);
     if (!$result) {
@@ -306,9 +308,9 @@ function TestData($conn){ //Funksjon for å legge inn testdata
     }
     
     // Insert test data for the Arbeidstaker table
-    $sql = "INSERT INTO Arbeidstaker (BrukerID, Navn, Epost, Tlf, CV) VALUES
-    (1, 'Arbeidstaker Navn 1', 'arbeidstaker1@example.com', '1234567890', 'Arbeidstaker CV 1'),
-    (4, 'Arbeidstaker Navn 2', 'arbeidstaker2@example.com', '9876543210', 'Arbeidstaker CV 2')";
+    $sql = "INSERT INTO Arbeidstaker (BrukerID, Navn, Fodselsdato, Epost, Tlf, CV) VALUES
+    (1, 'Arbeidstaker Navn 1', 'arbeidstaker1@example.com', '1001-01-01', '1234567890', 'Arbeidstaker CV 1'),
+    (4, 'Arbeidstaker Navn 2', 'arbeidstaker2@example.com', '1001-01-01', '9876543210', 'Arbeidstaker CV 2')";
     
     $result = $conn->query($sql);
     if (!$result) {
