@@ -14,12 +14,17 @@ session_start();
     include "../../Assets/Html/navbar.php";
     include "../../Assets/Lib/Klasser/arbeidstaker.php";
     include "../../Assets/Lib/Klasser/arbeidsgiver.php";
-    $object = unserialize($_SESSION["Bruker"]);
+    if(isset($_SESSION["Bruker"])){    
+        
+        $object = unserialize($_SESSION["Bruker"]);
 
-    $infoList = $object->printInfo();
-
-    foreach($infoList as $x => $y){
-        echo "$x = $y" . ",  ";
+        $infoList = $object->printInfo();
+    
+        foreach($infoList as $x => $y){
+            echo "$x = $y" . ",  ";
+        }
+    } else {
+        header("Location: /Jobbsystem/www/index.php");
     }
 ?>
     <div id="Main_Content">
