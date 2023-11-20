@@ -55,3 +55,36 @@
 #Main_Content > h1 {
     text-decoration: underline;
 }
+
+#regFormBox {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.inputBox{
+    border-radius: 10px;
+    padding: 1em;
+    margin: 1em;
+}
+
+.inputBox:hover {
+    background-color: rgb(123, 199, 250);
+    transition: ease-in-out .4s;
+}
+
+.inputBox:focus{
+    background-color: rgb(83, 181, 247);
+    transition: .4s ease-in-out;
+}
+
+#regForm>button {
+    border-radius:10px;
+    padding: 1em;
+}
+
+#regForm>button:hover {
+    cursor: pointer;
+    background-color: rgb(83, 181, 247);
+    transition: ease-in-out .4s;
+}
