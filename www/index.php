@@ -20,8 +20,8 @@
             //Åpner DBCon, Setup, TestData og closer connection - FORELØPIG ER DETTE BARE TESTING
             //Funker for Sander, uvisst om det funker for OSKAR!!! (VIKTIG)
             $conn = OpenDBConnection();
-            SetupDB($conn);
-            TestData($conn);
+            //SetupDB($conn);
+            //TestData($conn);
             CloseDBConnection($conn);
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
@@ -52,8 +52,8 @@
                 <a href="#" class="Box-close">
                     x
                 </a>
-                <a class="Videre" href="./Pages/Registrer/Registrer.php?Type=arbeidssoker">Er du arbeidssøker?</a>
-                <a class="Videre" href="./Pages/Registrer/Registrer.php?Type=arbeidsgiver">Eller er du arbeidsgiver?</a>
+                <a class="Videre" href="./Pages/Registrer/Registrer.php?Type=Arbeidstaker">Er du arbeidstaker?</a>
+                <a class="Videre" href="./Pages/Registrer/Registrer.php?Type=Arbeidsgiver">Eller er du arbeidsgiver?</a>
             </div>
         </div>
     </div>

@@ -84,6 +84,7 @@ function QuerySelectBrukerPass($conn, $brukerNavn, $passord){
 }
 
 function QuerySelectAllBrukerInfo($conn, $brukernavn, $passord){
+    $conn->select_db("jobbsystem");
     $sql = "Select * from bruker where brukernavn = '$brukernavn' and passord = '$passord'";
     $result = $conn->query($sql);
     $assoc = $result->fetch_assoc();
@@ -91,6 +92,7 @@ function QuerySelectAllBrukerInfo($conn, $brukernavn, $passord){
 }
 
 function QuerySelectAllArbeidstakerInfo($conn, $brukerId){
+    $conn->select_db("jobbsystem");
     $sql = "Select * from arbeidstaker where BrukerID = '$brukerId'";
     $result = $conn->query($sql);
     $assoc = $result->fetch_assoc();
@@ -98,6 +100,7 @@ function QuerySelectAllArbeidstakerInfo($conn, $brukerId){
 }
 
 function QuerySelectAllArbeidsgiverInfo($conn, $brukerId){
+    $conn->select_db("jobbsystem");
     $sql = "Select * from arbeidsgiver where BrukerID = '$brukerId'";
     $result = $conn->query($sql);
     $assoc = $result->fetch_assoc();
@@ -123,13 +126,24 @@ function QuerySelectRolleFromBruker($conn) { //Fetch Rolle i Bruker-Tabellen
         }
 }
 
-function QueryInsertBruker($conn){ //Insert into tabell Bruker
-    $Brukernavn = "";
-    $Passord = ""; 
-    $Rolle = ""; 
+function QueryInsertBruker($conn, $Brukernavn, $Passord, $Rolle, $Regdato){ //Insert into tabell Bruker
+    // SQL query
+    $conn->select_db("jobbsystem");
+    $sql = "INSERT INTO Bruker (Brukernavn, Passord, Rolle, Regdato) Values ('$Brukernavn', '$Passord', '$Rolle', '$Regdato')";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
+function QueryInsertArbeidstaker($conn, $BrukerID, $Navn, $Epost, $Fodselsdato, $Tlf) { //Insert into tabell Arbeidstaker
 
     // SQL query
-    $sql = "INSERT INTO Bruker (Brukernavn, Passord, Rolle) Values ('$Brukernavn', '$Passord', '$Rolle')";
+    $conn->select_db("jobbsystem");
+    $sql = "INSERT INTO Arbeidstaker (BrukerID, Navn, Epost,Fodselsdato, Tlf) Values ('$BrukerID', '$Navn', '$Epost', '$Fodselsdato','$Tlf')"; #CV MÅ LEGGES INN SENERE I THINK
 
     $result = $conn->query($sql);
     if ($result) {
@@ -140,38 +154,14 @@ function QueryInsertBruker($conn){ //Insert into tabell Bruker
     }
 }
 
-function QueryInsertArbeidstaker($conn) { //Insert into tabell Arbeidstaker
-    $BrukerID = "";
-    $Navn = ""; 
-    $Epost = ""; 
-    $Tlf = "";
-    $CV = "";
-
-    // SQL query
-    $sql = "INSERT INTO Arbeidstaker (BrukerID, Navn, Epost, Tlf, CV) Values ('$BrukerID', '$Navn', '$Epost', '$Tlf', '$CV')";
-
-    $result = $conn->query($sql);
-    if ($result) {
-        echo "Goood";
-        }
-    else {
-        echo "Big Fail" . $conn->error;
-    }
-}
-
-function QueryInsertArbeidsgiver($conn) { //Insert into Tabell Arbeidsgiver
-    $BrukerID = "";
-    $FirmaNavn = ""; 
-    $LederNavn = ""; 
-    $Epost = "";
-    $Tlf = "";
+function QueryInsertArbeidsgiver($conn, $BrukerID, $FirmaNavn, $LederNavn, $Epost, $Tlf) { //Insert into Tabell Arbeidsgiver
     
     // SQL query
-    $sql = "INSERT INTO Arbeidstaker (BrukerID, FirmaNavn, LederNavn, Epost, Tlf) Values ('$BrukerID', '$FirmaNavn', '$LederNavn', '$Epost', '$Tlf')";
+    $conn->select_db("jobbsystem");
+    $sql = "INSERT INTO Arbeidsgiver (BrukerID, FirmaNavn, LederNavn, Epost, Tlf) Values ('$BrukerID', '$FirmaNavn', '$LederNavn', '$Epost', '$Tlf')";
 
     $result = $conn->query($sql);
     if ($result) {
-        echo "Goood";
         }
     else {
         echo "Big Fail" . $conn->error;

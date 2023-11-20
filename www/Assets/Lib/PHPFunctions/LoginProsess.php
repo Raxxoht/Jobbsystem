@@ -22,9 +22,9 @@
             $bruker = new arbeidsgiver($brukerInfo["Brukernavn"], $brukerInfo["Passord"], $brukerInfo["Regdato"], $arbeidsgiverInfo["FirmaNavn"], $arbeidsgiverInfo["LederNavn"], $arbeidsgiverInfo["Epost"], $arbeidsgiverInfo["Tlf"]);
             $_SESSION["Bruker"] = serialize($bruker);
         }
+        CloseDBConnection($conn);
         header("Location: ../../../Pages/StartSide/Start.php");
     } else {
         header("Location: ../../../index.php?LoginSuccess=0");
     }
-    CloseDBConnection($conn);
 ?>
