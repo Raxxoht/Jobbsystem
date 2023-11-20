@@ -212,8 +212,8 @@ function SetupDB($conn) { //Script for DB-setup
       `ArbeidstakerID` INT AUTO_INCREMENT PRIMARY KEY,
       `BrukerID` INT,
       `Navn` VARCHAR(255),
-      `Fodselsdato` DATE,
       `Epost` VARCHAR(255),
+      `Fodselsdato` DATE,
       `Tlf` VARCHAR(10),
       `CV` BLOB
     )";
@@ -308,7 +308,7 @@ function TestData($conn){ //Funksjon for å legge inn testdata
     }
     
     // Insert test data for the Arbeidstaker table
-    $sql = "INSERT INTO Arbeidstaker (BrukerID, Navn, Fodselsdato, Epost, Tlf, CV) VALUES
+    $sql = "INSERT INTO Arbeidstaker (BrukerID, Navn, Epost, Fodselsdato, Tlf, CV) VALUES
     (1, 'Arbeidstaker Navn 1', 'arbeidstaker1@example.com', '1001-01-01', '1234567890', 'Arbeidstaker CV 1'),
     (4, 'Arbeidstaker Navn 2', 'arbeidstaker2@example.com', '1001-01-01', '9876543210', 'Arbeidstaker CV 2')";
     
