@@ -10,7 +10,7 @@
     <div id="regFormBox">
         <form action="/Jobbsystem/www/Assets/Lib/PHPFunctions/RegistrerProsess.php?Type=<?php echo $_GET["Type"]?>" method="POST" id="regForm">
             <?php 
-                if($_GET["Type"]=="arbeidssoker"){
+                if($_GET["Type"]=="Arbeidstaker"){
                     echo 'Brukernavn <input required class="inputBox" placeholder="Skriv inn brukernavn" name="regBNavn" type="text"> <br>
                     Passord <input required class="inputBox" placeholder="Skriv inn passord" name="regPass"  type="password"> <br>
                     Fornavn <input required class="inputBox" placeholder="Skriv inn fornavn" type="text" name="regFNavn"> <br>
@@ -18,7 +18,7 @@
                     E-post <input required class="inputBox" placeholder="Skriv inn epost" type="email" name="regEpost"> <br>
                     Fødselsdato <input required class="inputBox" type="date" name="regFDato"> <br>
                     Telefonummer <input required class="inputBox" placeholder="Skriv inn telefonummer" type="tel" name="regTlf"> <br>';
-                } elseif($_GET["Type"]=="arbeidsgiver"){
+                } elseif($_GET["Type"]=="Arbeidsgiver"){
                     echo 'Brukernavn <input required class="inputBox" placeholder="Skriv inn brukernavn" name="regBNavn" type="text"> <br>
                     Passord <input required class="inputBox" placeholder="Skriv inn passord" name="regPass"  type="password"> <br>
                     Firmanavn <input required class="inputBox" placeholder="Skriv inn firmanavn" type="text" name="regFirmaNavn"> <br>
