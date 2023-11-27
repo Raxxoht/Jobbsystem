@@ -9,9 +9,10 @@ class arbeidsgiver extends Bruker{
     private $Epost;
     private $Tlf;
 
-    function __construct($Brukernavn, $Passord, $regDato, $FirmaNavn, $LederNavn, $Epost, $Tlf){
+    function __construct($Brukernavn, $Passord, $rolle, $regDato, $FirmaNavn, $LederNavn, $Epost, $Tlf){
         $this->Brukernavn = $Brukernavn;
         $this->Passord = $Passord;
+        $this->rolle = $rolle;
         $this->regDato = $regDato;
         $this->FirmaNavn = $FirmaNavn;
         $this->LederNavn = $LederNavn;

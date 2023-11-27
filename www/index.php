@@ -14,7 +14,6 @@
 
 <body id="startBody">
     <?php
-    include "./Assets/Html/navbar.php"; ##Denne includen fjernes etterhvert som vi får ting til å go smud
     include "./Assets/Lib/PHPFunctions/db.php"; // Include DB Funksjoner
 
             //Åpner DBCon, Setup, TestData og closer connection - FORELØPIG ER DETTE BARE TESTING

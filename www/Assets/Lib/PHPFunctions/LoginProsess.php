@@ -14,12 +14,12 @@
         $brukerInfo = QuerySelectAllBrukerInfo($conn, $inputBrukernavn, $inputPassord);
         if($brukerInfo["Rolle"] == "Arbeidstaker"){
             $arbeidstakerInfo = QuerySelectAllArbeidstakerInfo($conn, $brukerInfo["BrukerID"]);
-            $bruker = new arbeidstaker($brukerInfo["Brukernavn"], $brukerInfo["Passord"], $brukerInfo["Regdato"], $arbeidstakerInfo["Navn"], $arbeidstakerInfo["Epost"], $arbeidstakerInfo["Tlf"], $arbeidstakerInfo["Fodselsdato"]);
+            $bruker = new arbeidstaker($brukerInfo["Brukernavn"], $brukerInfo["Passord"], $brukerInfo["Rolle"], $brukerInfo["Regdato"], $arbeidstakerInfo["Navn"], $arbeidstakerInfo["Epost"], $arbeidstakerInfo["Tlf"], $arbeidstakerInfo["Fodselsdato"]);
             $_SESSION["Bruker"] = serialize($bruker);
 
         } elseif($brukerInfo["Rolle"] == "Arbeidsgiver"){
             $arbeidsgiverInfo = QuerySelectAllArbeidsgiverInfo($conn, $brukerInfo["BrukerID"]);
-            $bruker = new arbeidsgiver($brukerInfo["Brukernavn"], $brukerInfo["Passord"], $brukerInfo["Regdato"], $arbeidsgiverInfo["FirmaNavn"], $arbeidsgiverInfo["LederNavn"], $arbeidsgiverInfo["Epost"], $arbeidsgiverInfo["Tlf"]);
+            $bruker = new arbeidsgiver($brukerInfo["Brukernavn"], $brukerInfo["Passord"], $brukerInfo["Rolle"], $brukerInfo["Regdato"], $arbeidsgiverInfo["FirmaNavn"], $arbeidsgiverInfo["LederNavn"], $arbeidsgiverInfo["Epost"], $arbeidsgiverInfo["Tlf"]);
             $_SESSION["Bruker"] = serialize($bruker);
         }
         CloseDBConnection($conn);
