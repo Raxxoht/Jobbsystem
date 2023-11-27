@@ -26,17 +26,21 @@ if(isset($_SESSION["Bruker"])){
     }
 }
 
-$conn = OpenDBConnection();
-$SoknadListe = QuerySelectAllSoknad($conn);
-CloseDBConnection($conn); 
+if (isset($_GET['SoknadID'])) {
+    $SoknadID = $_GET['SoknadID'];
+}
+    $conn = OpenDBConnection();
+    $SpesSoknadListe = QuerySelectSpesSoknad($conn, $SoknadID);
+    CloseDBConnection($conn); 
 
-?>
-
-<?php foreach ($SoknadListe as $Soknad): ?>
-    <a href="Pages/Hovedside/VisStilling/SpesifikkStilling.php?SoknadID=<?= $Soknad['SoknadID'] ?>">
+    if (!empty($SpesSoknadListe)) {
+        ?>
         <table border="1">
             <thead>
                 <tr>
+                    <th>SoknadID</th>
+                    <th>JobbannonseID</th>
+                    <th>ArbeidstakerID</th>
                     <th>Tittel</th>
                     <th>Soknadtekst</th>
                     <th>Dato</th>
@@ -45,15 +49,19 @@ CloseDBConnection($conn);
             </thead>
             <tbody>
                 <tr>
-                    <td><?= $Soknad['Tittel'] ?></td>
-                    <td><?= $Soknad['Soknadtekst'] ?></td>
-                    <td><?= $Soknad['Dato'] ?></td>
-                    <td><?= $Soknad['Status'] ?></td>
+                    <td><?= $SpesSoknadListe['SoknadID'] ?></td>
+                    <td><?= $SpesSoknadListe['JobbannonseID'] ?></td>
+                    <td><?= $SpesSoknadListe['ArbeidstakerID'] ?></td>
+                    <td><?= $SpesSoknadListe['Tittel'] ?></td>
+                    <td><?= $SpesSoknadListe['Soknadtekst'] ?></td>
+                    <td><?= $SpesSoknadListe['Dato'] ?></td>
+                    <td><?= $SpesSoknadListe['Status'] ?></td>
                 </tr>
             </tbody>
         </table>
-    </a>
-<?php endforeach; ?>
-
-</body>
-</html>
+        <a href="http://localhost/Jobbsystem/www/Pages/Hovedside/VisStilling/Stilling.php">
+            <button>Tilbake</button>
+        </a>
+        <?php
+    } 
+?>
