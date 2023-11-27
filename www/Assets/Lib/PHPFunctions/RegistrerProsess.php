@@ -7,9 +7,10 @@ if(isset($_GET["Type"]) && isset($_POST["regBNavn"])){
     $type = $_GET["Type"];
     $conn = OpenDBConnection();
     $curDate = date("Y-m-d H:i:s");
+    
     if(QuerySelectSpesBruker($conn, $_POST["regBNavn"])==1){
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?BNavn=Tatt&Type=$type");
-    } elseif(1==0){
+    } elseif(){
         echo "1 = 0";
     } else {
         QueryInsertBruker($conn,$_POST["regBNavn"], $_POST["regPass"], $_GET["Type"], $curDate);
