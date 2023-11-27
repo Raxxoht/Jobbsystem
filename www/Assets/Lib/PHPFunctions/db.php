@@ -230,6 +230,7 @@ function SetupDB($conn) { //Script for DB-setup
     $sql = "CREATE TABLE `JobbAnnonse` (
       `JobbannonseID` INT AUTO_INCREMENT PRIMARY KEY,
       `ArbeidsgiverID` INT,
+      `Tittel` VARCHAR(255),      
       `Beskrivelse` VARCHAR(255),
       `KravTekst` BOOLEAN,
       `KravCV` BOOLEAN,
@@ -247,6 +248,7 @@ function SetupDB($conn) { //Script for DB-setup
       `SoknadID` INT AUTO_INCREMENT PRIMARY KEY,
       `JobbannonseID` INT,
       `ArbeidstakerID` INT,
+      `Tittel` VARCHAR(255),   
       `Soknadtekst` TEXT,
       `Dato` DATETIME,
       `Status` VARCHAR(255),
@@ -318,9 +320,9 @@ function TestData($conn){ //Funksjon for å legge inn testdata
     }
     
     // Insert test data for the JobbAnnonse table
-    $sql = "INSERT INTO JobbAnnonse (ArbeidsgiverID, Beskrivelse, KravTekst, KravCV, KravDoc, Tidsfrist) VALUES
-    (1, 'Jobb Annonse 1', true, false, true, '2023-12-01 12:00:00'),
-    (2, 'Jobb Annonse 2', false, true, false, '2023-12-15 18:00:00')";
+    $sql = "INSERT INTO JobbAnnonse (ArbeidsgiverID, Tittel, Beskrivelse, KravTekst, KravCV, KravDoc, Tidsfrist) VALUES
+    (1, 'Stilig Stilling', 'Jobb Annonse 1', true, false, true, '2023-12-01 12:00:00'),
+    (2, 'TungtArbeid', 'Jobb Annonse 2', false, true, false, '2023-12-15 18:00:00')";
     
     $result = $conn->query($sql);
     if (!$result) {
@@ -328,9 +330,9 @@ function TestData($conn){ //Funksjon for å legge inn testdata
     }
     
     // Insert test data for the Soknad table
-    $sql = "INSERT INTO Soknad (JobbannonseID, ArbeidstakerID, Soknadtekst, Dato, Status) VALUES
-    (1, 1, 'Søknadstekst for jobb 1', '2023-11-18 09:00:00', 'Under vurdering'),
-    (2, 2, 'Søknadstekst for jobb 2', '2023-11-20 15:30:00', 'Sendt')";
+    $sql = "INSERT INTO Soknad (JobbannonseID, ArbeidstakerID, Tittel, Soknadtekst, Dato, Status) VALUES
+    (1, 1, 'MrBean', 'Søknadstekst for jobb 1', '2023-11-18 09:00:00', 'Under vurdering'),
+    (2, 2, 'BOBtheBUILDER', 'Søknadstekst for jobb 2', '2023-11-20 15:30:00', 'Sendt')";
     
     $result = $conn->query($sql);
     if (!$result) {

@@ -19,8 +19,8 @@
             //Åpner DBCon, Setup, TestData og closer connection - FORELØPIG ER DETTE BARE TESTING
             //Funker for Sander, uvisst om det funker for OSKAR!!! (VIKTIG)
             $conn = OpenDBConnection();
-            //SetupDB($conn);
-            //TestData($conn);
+            SetupDB($conn);
+            TestData($conn);
             CloseDBConnection($conn);
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
