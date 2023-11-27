@@ -8,9 +8,10 @@ class arbeidstaker extends bruker{
     private $Tlf;
     private $Fodselsdato;
 
-    function __construct($Brukernavn, $Passord, $regDato, $Navn, $Epost, $Tlf, $Fodselsdato){
+    function __construct($Brukernavn, $Passord, $rolle, $regDato, $Navn, $Epost, $Tlf, $Fodselsdato){
         $this->Brukernavn = $Brukernavn;
         $this->Passord = $Passord;
+        $this->rolle = $rolle;
         $this->regDato = $regDato;
         $this->Navn = $Navn;
         $this->Epost = $Epost;
