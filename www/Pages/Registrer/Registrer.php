@@ -26,6 +26,11 @@
                     E-post <input required class="inputBox" placeholder="Skriv inn epost" type="email" name="regEpost"> <br>
                     Telefonummer <input required class="inputBox" placeholder="Skriv inn telefonummer" type="tel" name="regTlf"> <br>';
                 }
+                if(isset($_GET["BNavn"])){
+                    if($_GET["BNavn"]=="Tatt"){
+                        echo "<h2 style='color:red;'>Brukernavnet er tatt</h2>";
+                    }
+                }
             ?>
             <button>Send inn</button>
         </form>

@@ -27,6 +27,7 @@ function CloseDBConnection($conn) { //Lukker DB Connection
 
 function QuerySelectAllBruker($conn) { //Fetch for Alle I tabellen Bruker
     // SQL query
+    $conn->select_db("jobbsystem");
     $sql = "SELECT * FROM Bruker";
 
     // Execute the query
@@ -54,6 +55,7 @@ function QuerySelectAllBruker($conn) { //Fetch for Alle I tabellen Bruker
 
 function QuerySelectSpesBruker($conn, $brukerNavn) { //Fetch SpesifikkBruker for sjekk om Verdien finnes fra før i Tabell-Bruker
     // SQL query
+    $conn->select_db("jobbsystem");
     $sql = "SELECT * FROM Bruker WHERE Brukernavn = '$brukerNavn'";
 
     // Execute the query

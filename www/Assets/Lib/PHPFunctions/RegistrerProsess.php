@@ -3,9 +3,10 @@ include "./db.php";
 
 
 if(isset($_GET["Type"]) && isset($_POST["regBNavn"])){
+    $type = $_GET["Type"];
     $conn = OpenDBConnection();
     $curDate = date("Y-m-d H:i:s");
-    if(QuerySelectSpesBruker($conn, $_POST["regBNavn"])==true){
+    if(QuerySelectSpesBruker($conn, $_POST["regBNavn"])==0){
         QueryInsertBruker($conn,$_POST["regBNavn"], $_POST["regPass"], $_GET["Type"], $curDate);
 
         $assoc = QuerySelectAllBrukerInfo($conn, $_POST["regBNavn"], $_POST["regPass"]);
@@ -24,7 +25,7 @@ if(isset($_GET["Type"]) && isset($_POST["regBNavn"])){
         }
         CloseDBConnection($conn);
     } else {
-        header("Location: /Jobbsystem/www/index.php?BNavn=Tatt");
+        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?BNavn=Tatt&Type=$type");
     }
 } else {
     header("Location: /Jobbsystem/www/index.php");
