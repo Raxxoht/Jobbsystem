@@ -28,7 +28,7 @@ if(isset($_SESSION["Bruker"])){
 
 $conn = OpenDBConnection();
 $SoknadListe = QuerySelectAllSoknad($conn);
-CloseDBConnection($conn); 
+CloseDBConnection($conn); //Easter Egg
 
 ?>
 <?php foreach ($SoknadListe as $Soknad): ?>
