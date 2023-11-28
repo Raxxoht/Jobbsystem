@@ -158,6 +158,22 @@ function QuerySelectProfilforAG($conn, $BnavnAG){
     return [$assoc1, $assoc2];
 }
 
+function QuerySelectProfilforAT($conn, $BnavnAG){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT BrukerID FROM Bruker WHERE Brukernavn = '$BnavnAG'";
+    $result = $conn->query($sql);
+    $BrukerID = $result->fetch_row();
+
+    $sql = "SELECT * FROM Arbeidstaker WHERE BrukerID ='$BrukerID[0]'";
+    $result = $conn->query($sql);
+    $assoc1 = $result->fetch_assoc();
+
+    $sql = "SELECT Sokbar, Avatar, Beskrivelse FROM Profil WHERE BrukerID ='$BrukerID[0]'";
+    $result = $conn->query($sql);
+    $assoc2 = $result->fetch_assoc();
+    return [$assoc1, $assoc2];
+}
+
 function QueryInsertBruker($conn, $Brukernavn, $Passord, $Rolle, $Regdato){ //Insert into tabell Bruker
     // SQL query
     $conn->select_db("jobbsystem");
@@ -234,6 +250,25 @@ function UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $Ko
     }
 }
 
+function UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, $Tlf){
+    $conn->select_db("jobbsystem");
+
+    $sql = "UPDATE Arbeidstaker SET Navn = '$Navn', Epost ='$Epost', Tlf='$Tlf' WHERE BrukerID ='$BrukerID'";
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+
+    $sql = "UPDATE Profil SET Beskrivelse = '$Beskrivelse', Sokbar = $Sokbar, Avatar='' WHERE BrukerID ='$BrukerID'";
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
 function SetupDB($conn) { //Script for DB-setup
     $sql = "DROP DATABASE IF EXISTS jobbsystem";
     $result = $conn->query($sql);
