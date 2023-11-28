@@ -49,21 +49,35 @@ if (!empty($avatarData)) {
 }
 ?>
 
-<h1><?php echo $ArbeidsGiverInfo['FirmaNavn']; ?></h1>
 
-<h2>Profil</h2>
-<img src="<?php echo $avatarSrc; ?>" alt="Avatar" style="width: 100px; height: 100px;">
-<p><strong>Søkbar:</strong> <?php echo $Profil['Sokbar'] ? 'Yes' : 'No'; ?></p>
-<p><strong>Beskrivelse:</strong> <?php echo $Profil['Beskrivelse']; ?></p>
+<form method="post" action="Assets\Lib\PHPFunctions\UpdateProfilAg.php?BrukerID=<?= $ArbeidsGiverInfo['BrukerID']?>">
+<h1>Firmanavn</h1>
+<input type="text" name="Firmanavn" value="<?php echo $ArbeidsGiverInfo['FirmaNavn']; ?>" required><br> 
 
+        <h2>Profil</h2><br>
+        <img src="<?php echo $avatarSrc; ?>" alt="Avatar" style="width: 100px; height: 100px;"><br>
 
-<h2>KontaktInformasjon</h2>
-<p><strong>KontaktPerson:</strong> <?php echo $ArbeidsGiverInfo['LederNavn']; ?></p>
-<p><strong>Epost:</strong> <?php echo $ArbeidsGiverInfo['Epost']; ?></p>
-<p><strong>Tlf:</strong> <?php echo $ArbeidsGiverInfo['Tlf']; ?></p>
+        <label for="fornavn"><strong>Søkbar:</strong></label><br>
+        <input type="text" name="Sokbar" value="<?php echo $Profil['Sokbar'] ? 'Ja' : 'Nei'; ?>" required><br> 
 
-<a href="http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAg-edit.php">
-<button>Rediger</button>
+        <label for="etternavn"><strong>Beskrivelse:</strong></label><br>
+        <input type="text" name="Beskrivelse" value="<?php echo $Profil['Beskrivelse']; ?>" required><br> 
+
+        <h2>KontaktInformasjon</h2>
+        <label for="tlf"><strong>KontaktPerson:</strong></label><br>
+        <input type="text" name="KontaktPerson" value="<?php echo $ArbeidsGiverInfo['LederNavn']; ?>" required><br> 
+
+        <label for="epost"><strong>Epost:</strong></label><br>
+        <input type="text" name="Epost" value="<?php echo $ArbeidsGiverInfo['Epost']; ?>" required><br> 
+
+        <label for="epost"><strong>Tlf:</strong></label><br>
+        <input type="text" name="Tlf" value="<?php echo $ArbeidsGiverInfo['Tlf']; ?>" required><br> 
+
+        <input type="submit" value="Oppdater">
+ </form>
+
+<a href="http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAg.php">
+    <button>Tilbake</button>
 </a>
 
 </body>

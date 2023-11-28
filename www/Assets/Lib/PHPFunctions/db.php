@@ -214,6 +214,26 @@ function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
 
 }
 
+function UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $KontaktPerson, $Epost, $Tlf){
+    $conn->select_db("jobbsystem");
+
+    $sql = "UPDATE Arbeidsgiver SET FirmaNavn = '$Firmanavn', LederNavn ='$KontaktPerson', Epost ='$Epost', Tlf='$Tlf' WHERE BrukerID ='$BrukerID'";
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+
+    $sql = "UPDATE Profil SET Beskrivelse = '$Beskrivelse', Sokbar ='$Sokbar', Avatar='' WHERE BrukerID ='$BrukerID'";
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
 function SetupDB($conn) { //Script for DB-setup
     $sql = "DROP DATABASE IF EXISTS jobbsystem";
     $result = $conn->query($sql);
