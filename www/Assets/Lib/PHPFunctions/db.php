@@ -126,6 +126,22 @@ function QuerySelectRolleFromBruker($conn) { //Fetch Rolle i Bruker-Tabellen
         }
 }
 
+function QuerySelectAllSoknad($conn){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM soknad";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
+function QuerySelectSpesSoknad($conn, $SoknadID){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM soknad WHERE SoknadID = '$SoknadID'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_assoc();
+    return $assoc;
+}
+
 function QueryInsertBruker($conn, $Brukernavn, $Passord, $Rolle, $Regdato){ //Insert into tabell Bruker
     // SQL query
     $conn->select_db("jobbsystem");
@@ -166,6 +182,20 @@ function QueryInsertArbeidsgiver($conn, $BrukerID, $FirmaNavn, $LederNavn, $Epos
     else {
         echo "Big Fail" . $conn->error;
     }
+}
+
+function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
+    $conn->select_db("jobbsystem");
+    $sql = "UPDATE Soknad SET Status = '$Status', Kommentar = '$kommentar'
+    WHERE SoknadID = '$SoknadID'";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+
 }
 
 function SetupDB($conn) { //Script for DB-setup
@@ -252,6 +282,7 @@ function SetupDB($conn) { //Script for DB-setup
       `Soknadtekst` TEXT,
       `Dato` DATETIME,
       `Status` VARCHAR(255),
+      `Kommentar` VARCHAR(255),      
       FOREIGN KEY (`ArbeidstakerID`) REFERENCES `Arbeidstaker`(`ArbeidstakerID`),
       FOREIGN KEY (`JobbannonseID`) REFERENCES `JobbAnnonse`(`JobbannonseID`)
     )";
