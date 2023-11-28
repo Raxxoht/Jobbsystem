@@ -33,35 +33,49 @@ if (isset($_GET['SoknadID'])) {
     $SpesSoknadListe = QuerySelectSpesSoknad($conn, $SoknadID);
     CloseDBConnection($conn); 
 
-    if (!empty($SpesSoknadListe)) {
         ?>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>SoknadID</th>
-                    <th>JobbannonseID</th>
-                    <th>ArbeidstakerID</th>
-                    <th>Tittel</th>
-                    <th>Soknadtekst</th>
-                    <th>Dato</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><?= $SpesSoknadListe['SoknadID'] ?></td>
-                    <td><?= $SpesSoknadListe['JobbannonseID'] ?></td>
-                    <td><?= $SpesSoknadListe['ArbeidstakerID'] ?></td>
-                    <td><?= $SpesSoknadListe['Tittel'] ?></td>
-                    <td><?= $SpesSoknadListe['Soknadtekst'] ?></td>
-                    <td><?= $SpesSoknadListe['Dato'] ?></td>
-                    <td><?= $SpesSoknadListe['Status'] ?></td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="http://localhost/Jobbsystem/www/Pages/Soknadside/Soknad.php">
-            <button>Tilbake</button>
-        </a>
-        <?php
-    } 
-?>
+<form action="Assets\Lib\PHPFunctions\UpdateSoknad.php" method="post">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>SoknadID</th>
+                <th>JobbannonseID</th>
+                <th>ArbeidstakerID</th>
+                <th>Tittel</th>
+                <th>Soknadtekst</th>
+                <th>Dato</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?= $SpesSoknadListe['SoknadID'] ?></td>
+                <td><?= $SpesSoknadListe['JobbannonseID'] ?></td>
+                <td><?= $SpesSoknadListe['ArbeidstakerID'] ?></td>
+                <td><?= $SpesSoknadListe['Tittel'] ?></td>
+                <td><?= $SpesSoknadListe['Soknadtekst'] ?></td>
+                <td><?= $SpesSoknadListe['Dato'] ?></td>
+                <td><?= $SpesSoknadListe['Status'] ?></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <label for="kommentar">Kommentar:</label>
+    <textarea name="kommentar" id="kommentar" rows="4" cols="50"><?= $SpesSoknadListe['Kommentar'] ?></textarea>
+
+    <!-- Status Change Dropdown -->
+    <label for="status">Change Status:</label>
+    <select name="status" id="status">
+        <option value="Avventer">Avventer</option>
+        <option value="Godkjent">Godkjent</option>
+        <option value="Avvist">Avvist</option>
+    </select>
+
+    <input type="submit" value="Update Status">
+
+    <input type="hidden" name="soknadID" value="<?= $SpesSoknadListe['SoknadID'] ?>">
+</form>
+
+<a href="http://localhost/Jobbsystem/www/Pages/Soknadside/Soknad.php">
+    <button>Tilbake</button>
+</a>

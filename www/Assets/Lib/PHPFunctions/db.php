@@ -184,6 +184,20 @@ function QueryInsertArbeidsgiver($conn, $BrukerID, $FirmaNavn, $LederNavn, $Epos
     }
 }
 
+function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
+    $conn->select_db("jobbsystem");
+    $sql = "UPDATE Soknad SET Status = '$Status', Kommentar = '$kommentar'
+    WHERE SoknadID = '$SoknadID'";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+
+}
+
 function SetupDB($conn) { //Script for DB-setup
     $sql = "DROP DATABASE IF EXISTS jobbsystem";
     $result = $conn->query($sql);
@@ -268,6 +282,7 @@ function SetupDB($conn) { //Script for DB-setup
       `Soknadtekst` TEXT,
       `Dato` DATETIME,
       `Status` VARCHAR(255),
+      `Kommentar` VARCHAR(255),      
       FOREIGN KEY (`ArbeidstakerID`) REFERENCES `Arbeidstaker`(`ArbeidstakerID`),
       FOREIGN KEY (`JobbannonseID`) REFERENCES `JobbAnnonse`(`JobbannonseID`)
     )";

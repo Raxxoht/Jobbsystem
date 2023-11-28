@@ -31,28 +31,26 @@ $SoknadListe = QuerySelectAllSoknad($conn);
 CloseDBConnection($conn); 
 
 ?>
-
 <?php foreach ($SoknadListe as $Soknad): ?>
     <a href="Pages/Soknadside/SpesifikkSoknad.php?SoknadID=<?= $Soknad['SoknadID'] ?>">
         <table border="1">
             <thead>
                 <tr>
                     <th>Tittel</th>
-                    <th>Soknadtekst</th>
                     <th>Dato</th>
-                    <th>Status</th>
+                    <th>Status</th>                   
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><?= $Soknad['Tittel'] ?></td>
-                    <td><?= $Soknad['Soknadtekst'] ?></td>
                     <td><?= $Soknad['Dato'] ?></td>
                     <td><?= $Soknad['Status'] ?></td>
+
                 </tr>
             </tbody>
         </table>
-    </a>
+        </a>
 <?php endforeach; ?>
 
 </body>
