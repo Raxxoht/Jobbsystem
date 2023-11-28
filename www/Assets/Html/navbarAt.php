@@ -5,5 +5,5 @@
         <a class="NavItems" href="./Pages/StartSide/Start.php">Start</a>
         <a class="NavItems" href="./Pages/Hovedside/Hovedside.php">Hovedside</a>
         <a class="NavItems" href="./Pages/Hovedside/VisStilling/Stilling.php">Stillinger</a>
-        <a class="NavItems" href="./Pages/Profilside/Profil.php">Profil</a>
+        <a class="NavItems" href="./Pages/Profilside/ProfilAT.php">Profil</a>
     </div>
