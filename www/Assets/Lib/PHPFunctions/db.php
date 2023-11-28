@@ -142,6 +142,22 @@ function QuerySelectSpesSoknad($conn, $SoknadID){
     return $assoc;
 }
 
+function QuerySelectProfilforAG($conn, $BnavnAG){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT BrukerID FROM Bruker WHERE Brukernavn = '$BnavnAG'";
+    $result = $conn->query($sql);
+    $BrukerID = $result->fetch_row();
+
+    $sql = "SELECT * FROM Arbeidsgiver WHERE BrukerID ='$BrukerID[0]'";
+    $result = $conn->query($sql);
+    $assoc1 = $result->fetch_assoc();
+
+    $sql = "SELECT Sokbar, Avatar, Beskrivelse FROM Profil WHERE BrukerID ='$BrukerID[0]'";
+    $result = $conn->query($sql);
+    $assoc2 = $result->fetch_assoc();
+    return [$assoc1, $assoc2];
+}
+
 function QueryInsertBruker($conn, $Brukernavn, $Passord, $Rolle, $Regdato){ //Insert into tabell Bruker
     // SQL query
     $conn->select_db("jobbsystem");
@@ -220,6 +236,7 @@ function SetupDB($conn) { //Script for DB-setup
       `ProfilID` INT AUTO_INCREMENT PRIMARY KEY,
       `BrukerID` INT,
       `Beskrivelse` VARCHAR(255),
+      `Avatar` BLOB,
       `Sokbar` BOOLEAN
     )";
     
