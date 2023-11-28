@@ -3,7 +3,7 @@
 
     Class Bruker{
 
-        protected $Brukernavn;
+        public $Brukernavn;
 
         protected $Passord;
 
