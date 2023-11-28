@@ -53,7 +53,7 @@ if (!empty($avatarData)) {
 
 <h2>Profil</h2>
 <img src="<?php echo $avatarSrc; ?>" alt="Avatar" style="width: 100px; height: 100px;">
-<p><strong>Søkbar:</strong> <?php echo $Profil['Sokbar'] ? 'Yes' : 'No'; ?></p>
+<p><strong>Søkbar:</strong> <?php echo $Profil['Sokbar'] ? 'Ja' : 'Nei'; ?></p>
 <p><strong>Beskrivelse:</strong> <?php echo $Profil['Beskrivelse']; ?></p>
 
 

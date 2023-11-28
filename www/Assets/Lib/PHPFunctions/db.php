@@ -225,7 +225,7 @@ function UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $Ko
         echo "Big Fail" . $conn->error;
     }
 
-    $sql = "UPDATE Profil SET Beskrivelse = '$Beskrivelse', Sokbar ='$Sokbar', Avatar='' WHERE BrukerID ='$BrukerID'";
+    $sql = "UPDATE Profil SET Beskrivelse = '$Beskrivelse', Sokbar = $Sokbar, Avatar='' WHERE BrukerID ='$BrukerID'";
     $result = $conn->query($sql);
     if ($result) {
         }
