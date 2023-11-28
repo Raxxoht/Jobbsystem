@@ -1,17 +1,18 @@
 <?php
-include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
-include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/Validation.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/Validation.php";
 
 
-if(isset($_GET["Type"]) && isset($_POST["regBNavn"])){
+if(isset($_GET["Type"]) && isset($_POST["regBNavn"]) && isset($_POST["regPass"])){
     $type = $_GET["Type"];
     $conn = OpenDBConnection();
     $curDate = date("Y-m-d H:i:s");
     
     if(QuerySelectSpesBruker($conn, $_POST["regBNavn"])==1){
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?BNavn=Tatt&Type=$type");
-    } elseif(){
-        echo "1 = 0";
+    } elseif(passordVal($_POST["regPass"])!="Bra"){
+        $passMelding = passordVal($_POST["regPass"]);
+        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&passMelding=$passMelding");
     } else {
         QueryInsertBruker($conn,$_POST["regBNavn"], $_POST["regPass"], $_GET["Type"], $curDate);
 
