@@ -234,6 +234,19 @@ function QueryInsertArbeidsgiver($conn, $BrukerID, $FirmaNavn, $LederNavn, $Epos
     }
 }
 
+function QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID){
+    $conn->select_db("jobbsystem");
+    $sql = "INSERT INTO soknad (JobbAnnonseID, ArbeidstakerID, Tittel, soknadtekst, Dato, Status) VALUES ('$JobbannonseID', '$BrukerID', '$Tittel', '$Soknadtekst', '$DateTime', 'Avventer')";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
+
 function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
     $conn->select_db("jobbsystem");
     $sql = "UPDATE Soknad SET Status = '$Status', Kommentar = '$kommentar'
