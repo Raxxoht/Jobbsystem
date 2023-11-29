@@ -142,6 +142,22 @@ function QuerySelectSpesSoknad($conn, $SoknadID){
     return $assoc;
 }
 
+function QuerySelectAllAnnonser($conn){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM jobbannonse";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
+function QuerySelectSpesAnnonse($conn, $jobbannonseID){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM jobbannonse WHERE jobbannonseID = '$jobbannonseID'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_assoc();
+    return $assoc;
+}
+
 function QuerySelectProfilforAG($conn, $BnavnAG){
     $conn->select_db("jobbsystem");
     $sql = "SELECT BrukerID FROM Bruker WHERE Brukernavn = '$BnavnAG'";
@@ -277,6 +293,7 @@ function UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, 
     $updateArbeidstaker->close();
     $updateProfil->close();
 }
+
 function SetupDB($conn) { //Script for DB-setup
     $sql = "DROP DATABASE IF EXISTS jobbsystem";
     $result = $conn->query($sql);
