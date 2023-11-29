@@ -60,12 +60,12 @@ if (isset($_GET['JobbannonseID'])) {
         </tbody>
     </table>
     
-    <label for="kommentar">Kommentar:</label>
-    <textarea name="kommentar" id="kommentar" rows="4" cols="50"><?= $SpesSoknadListe['Kommentar'] ?></textarea>
+    <label for="SoknadTekst">SøknadTekst</label>
+    <textarea name="SoknadTekst" id="SoknadTekst" rows="4" cols="50"> </textarea>
 
-    <input type="submit" value="Update Status">
+    <input type="submit" value="Send Inn">
 
-    <input type="hidden" name="soknadID" value="<?= $SpesSoknadListe['SoknadID'] ?>">
+    <input type="hidden" name="JobbannonseID" value="<?= $Annonse['JobbannonseID'] ?>">
 </form>
 
 <a href="http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php">
