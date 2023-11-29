@@ -27,16 +27,16 @@ if(isset($_SESSION["Bruker"])){
         include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Html/navbarAt.php";
     }
 
-    $BnavnAG = $object->Brukernavn;
-    $conn=OpenDBConnection();
-    $assocs = QuerySelectProfilforAT($conn, $BnavnAG);
+    $BnavnAG = $object->Brukernavn; //Henter BrukerNavn fra SESSION
+    $conn=OpenDBConnection(); //Åpner DBConnection
+    $assocs = QuerySelectProfilforAT($conn, $BnavnAG); //Henter Info fra Tabellen AT og Profil
 
-    $ArbeidsInfo = $assocs[0];
-    $Profil = $assocs[1];
+    $ArbeidsInfo = $assocs[0]; //AT Tabell
+    $Profil = $assocs[1]; //Profil Tabell
 
-    CloseDBConnection($conn);
+    CloseDBConnection($conn); //Lukker DB Connection
 
-    $avatarData = $Profil['Avatar'];
+    $avatarData = $Profil['Avatar']; 
 
 // Check if avatar data is available
 if (!empty($avatarData)) {
@@ -62,7 +62,7 @@ if (!empty($avatarData)) {
 <p><strong>Navn:</strong> <?php echo $ArbeidsInfo['Navn']; ?></p>
 <p><strong>Epost:</strong> <?php echo $ArbeidsInfo['Epost']; ?></p>
 <p><strong>Tlf:</strong> <?php echo $ArbeidsInfo['Tlf']; ?></p>
-<p><strong>CV: (WIP)</strong> <?php echo $ArbeidsInfo['CV']; ?></p>
+
 
 <a href="http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAt-edit.php">
 <button>Rediger</button>
