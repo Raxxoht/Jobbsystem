@@ -51,13 +51,15 @@ if (!empty($avatarData)) {
 ?>
 
 
-<form method="post" action="Assets\Lib\PHPFunctions\UpdateProfilAg.php?BrukerID=<?= $ArbeidsGiverInfo['BrukerID']?>">
+<form method="post" action="Assets\Lib\PHPFunctions\UpdateProfilAg.php?BrukerID=<?= $ArbeidsGiverInfo['BrukerID']?>" enctype="multipart/form-data">
 <h1>Firmanavn</h1>
 <input type="text" name="Firmanavn" value="<?php echo $ArbeidsGiverInfo['FirmaNavn']; ?>" required><br> 
 
         <h2>Profil</h2><br>
         <img src="<?php echo $avatarSrc; ?>" alt="Avatar" style="width: 100px; height: 100px;"><br>
 
+        <label for="Avatar"><strong>Avatar:</strong></label><br>
+        <input type="file" name="Avatar" accept="image/*"><br>
 
         <strong>Søkbar:</strong><br>
         <input type="radio" id="Sokbar1" name="Sokbar" value="true" required />

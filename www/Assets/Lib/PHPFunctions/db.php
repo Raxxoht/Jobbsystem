@@ -230,44 +230,52 @@ function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
 
 }
 
-function UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $KontaktPerson, $Epost, $Tlf){
+function UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $KontaktPerson, $Epost, $Tlf, $AvatarContent){
     $conn->select_db("jobbsystem");
 
-    $sql = "UPDATE Arbeidsgiver SET FirmaNavn = '$Firmanavn', LederNavn ='$KontaktPerson', Epost ='$Epost', Tlf='$Tlf' WHERE BrukerID ='$BrukerID'";
-    $result = $conn->query($sql);
-    if ($result) {
-        }
-    else {
-        echo "Big Fail" . $conn->error;
+    // Use prepared statement for the UPDATE query
+    $updateArbeidstaker = $conn->prepare("UPDATE Arbeidsgiver SET FirmaNavn=?, LederNavn=?, Epost=?, Tlf=? WHERE BrukerID=?");
+    $updateArbeidstaker->bind_param("ssssd", $Firmanavn, $KontaktPerson, $Epost, $Tlf, $BrukerID);
+    $updateArbeidstaker->execute();
+
+    if ($updateArbeidstaker->errno) {
+        echo "Update Arbeidstaker failed: " . $updateArbeidstaker->error;
     }
 
-    $sql = "UPDATE Profil SET Beskrivelse = '$Beskrivelse', Sokbar = $Sokbar, Avatar='' WHERE BrukerID ='$BrukerID'";
-    $result = $conn->query($sql);
-    if ($result) {
-        }
-    else {
-        echo "Big Fail" . $conn->error;
+    $updateProfil = $conn->prepare("UPDATE Profil SET Beskrivelse=?, Sokbar=?, Avatar=? WHERE BrukerID=?");
+    $updateProfil->bind_param("sdsd", $Beskrivelse, $Sokbar, $AvatarContent, $BrukerID);
+    $updateProfil->execute();
+
+    if ($updateProfil->errno) {
+        echo "Update Profil failed: " . $updateProfil->error;
     }
+
+    $updateArbeidstaker->close();
+    $updateProfil->close();
 }
 
-function UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, $Tlf){
+function UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, $Tlf, $CVContent, $AvatarContent) {
     $conn->select_db("jobbsystem");
 
-    $sql = "UPDATE Arbeidstaker SET Navn = '$Navn', Epost ='$Epost', Tlf='$Tlf' WHERE BrukerID ='$BrukerID'";
-    $result = $conn->query($sql);
-    if ($result) {
-        }
-    else {
-        echo "Big Fail" . $conn->error;
+    // Use prepared statement for the UPDATE query
+    $updateArbeidstaker = $conn->prepare("UPDATE Arbeidstaker SET Navn=?, Epost=?, Tlf=?, CV=? WHERE BrukerID=?");
+    $updateArbeidstaker->bind_param("ssssd", $Navn, $Epost, $Tlf, $CVContent, $BrukerID);
+    $updateArbeidstaker->execute();
+
+    if ($updateArbeidstaker->errno) {
+        echo "Update Arbeidstaker failed: " . $updateArbeidstaker->error;
     }
 
-    $sql = "UPDATE Profil SET Beskrivelse = '$Beskrivelse', Sokbar = $Sokbar, Avatar='' WHERE BrukerID ='$BrukerID'";
-    $result = $conn->query($sql);
-    if ($result) {
-        }
-    else {
-        echo "Big Fail" . $conn->error;
+    $updateProfil = $conn->prepare("UPDATE Profil SET Beskrivelse=?, Sokbar=?, Avatar=? WHERE BrukerID=?");
+    $updateProfil->bind_param("sdsd", $Beskrivelse, $Sokbar, $AvatarContent, $BrukerID);
+    $updateProfil->execute();
+
+    if ($updateProfil->errno) {
+        echo "Update Profil failed: " . $updateProfil->error;
     }
+
+    $updateArbeidstaker->close();
+    $updateProfil->close();
 }
 function SetupDB($conn) { //Script for DB-setup
     $sql = "DROP DATABASE IF EXISTS jobbsystem";

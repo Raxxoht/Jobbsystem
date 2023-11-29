@@ -50,10 +50,13 @@ if (!empty($avatarData)) {
 }
 ?>
 
-<form method="post" action="Assets\Lib\PHPFunctions\UpdateProfilAt.php?BrukerID=<?= $ArbeidsInfo['BrukerID']?>">
+<form method="post" action="Assets\Lib\PHPFunctions\UpdateProfilAt.php?BrukerID=<?= $ArbeidsInfo['BrukerID']?>" enctype="multipart/form-data">
+
         <h2>Profil</h2><br>
         <img src="<?php echo $avatarSrc; ?>" alt="Avatar" style="width: 100px; height: 100px;"><br>
 
+        <label for="Avatar"><strong>Avatar:</strong></label><br>
+        <input type="file" name="Avatar" accept="image/*"><br>
 
         <strong>Søkbar:</strong><br>
         <input type="radio" id="Sokbar1" name="Sokbar" value="true" required />
@@ -75,8 +78,8 @@ if (!empty($avatarData)) {
         <label for="Tlf"><strong>Tlf:</strong></label><br>
         <input type="text" name="Tlf" value="<?php echo $ArbeidsInfo['Tlf']; ?>" required><br> 
 
-        <label for="CV"><strong>CV: (WIP):</strong></label><br>
-        <input type="text" name="CV" value="<?php echo $ArbeidsInfo['CV']; ?>" required><br> 
+        <label for="CV"><strong>CV:</strong></label><br>
+        <input type="file" name="CV" accept=".pdf, .doc, .docx"><br>
 
         <input type="submit" value="Oppdater">
  </form>
