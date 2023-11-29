@@ -56,10 +56,30 @@
     }
 
     function navnVal($navn){
-        
+        if(preg_match("@[a-zA-Z]@", $navn)==false){
+            return "Du må ha bokstaver i navnet ditt";
+        } elseif(preg_match("@[0-9]@", $navn)==true){
+            return "Du kan ikke ha tall i navnet ditt";
+        } elseif(strlen($navn)<2){
+            return "Navnet ditt må være minst 2 karakterer langt";
+        } else {
+            return "Bra";
+        }
     }
 
+    function fDatoVal($dato){
+        $Stempel = strtotime($dato);
 
-    echo (passordVal("SKOOO11"));
-    echo tlfVal(45321212);
+        if($Stempel===false){
+            return "Dette er feil format";
+        }
+        $sanntid = time();
+        if(date("Y", $Stempel) >= date("Y", $sanntid)){
+            return "Du kan ikke være født i år eller etter i år";
+        } elseif(date("Y", $sanntid) - date("Y", $Stempel) >=150){
+            return "Du må være mindre enn 150 for å bruke nettsiden vår";
+        } else {
+            return "Bra";
+        }
+    }
 ?>

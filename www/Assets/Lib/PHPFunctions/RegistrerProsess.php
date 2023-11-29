@@ -10,12 +10,23 @@ if(isset($_GET["Type"]) && isset($_POST["regBNavn"]) && isset($_POST["regPass"])
     
     if(QuerySelectSpesBruker($conn, $_POST["regBNavn"])==1){
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?BNavn=Tatt&Type=$type");
+
     } elseif(passordVal($_POST["regPass"])!="Bra"){
         $passMelding = passordVal($_POST["regPass"]);
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&passMelding=$passMelding");
+
     } elseif(tlfVal($_POST["regTlf"])!="Bra"){
         $tlfMelding = tlfVal($_POST["regTlf"]);
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&tlfMelding=$tlfMelding");
+        
+    } elseif(navnVal($_POST["regFNavn"])!="Bra" OR navnVal($_POST["regENavn"])!="Bra"){
+        if(navnVal($_POST["regFNavn"])!="Bra"){$navnMelding = navnVal($_POST["regFNavn"]);}
+        elseif(navnVal($_POST["regENavn"])!="Bra"){$navnMelding = navnVal($_POST["regENavn"]);}
+        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&navnMelding=$navnMelding");
+
+    } elseif(fDatoVal($_POST["regFDato"])!="Bra"){
+        $datoMelding = fDatoVal($_POST["regFDato"]);
+        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&datoMelding=$datoMelding");
     } else {
         QueryInsertBruker($conn,$_POST["regBNavn"], $_POST["regPass"], $_GET["Type"], $curDate);
 

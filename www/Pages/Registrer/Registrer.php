@@ -19,6 +19,12 @@
     if(isset($_GET["tlfMelding"])){
         echo "<h3 style='color:red;'>" . $_GET["tlfMelding"] . "</h3>";
     }
+    if(isset($_GET["navnMelding"])){
+        echo "<h3 style='color:red;'>" . $_GET["navnMelding"] . "</h3>";
+    }
+    if(isset($_GET["datoMelding"])){
+        echo "<h3 style='color:red;'>" . $_GET["datoMelding"] . "</h3>";
+    }
     ?>
     <div id="regFormBox">
         <form action="/Jobbsystem/www/Assets/Lib/PHPFunctions/RegistrerProsess.php?Type=<?php echo $_GET["Type"]?>" method="POST" id="regForm">
