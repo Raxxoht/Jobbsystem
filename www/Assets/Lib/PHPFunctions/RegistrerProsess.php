@@ -13,6 +13,9 @@ if(isset($_GET["Type"]) && isset($_POST["regBNavn"]) && isset($_POST["regPass"])
     } elseif(passordVal($_POST["regPass"])!="Bra"){
         $passMelding = passordVal($_POST["regPass"]);
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&passMelding=$passMelding");
+    } elseif(tlfVal($_POST["regTlf"])!="Bra"){
+        $tlfMelding = tlfVal($_POST["regTlf"]);
+        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&tlfMelding=$tlfMelding");
     } else {
         QueryInsertBruker($conn,$_POST["regBNavn"], $_POST["regPass"], $_GET["Type"], $curDate);
 

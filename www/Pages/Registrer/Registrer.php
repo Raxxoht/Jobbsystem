@@ -16,7 +16,9 @@
     if(isset($_GET["passMelding"])){
         echo "<h3 style='color:red;'>" . $_GET["passMelding"] . "</h3>";
     }
-
+    if(isset($_GET["tlfMelding"])){
+        echo "<h3 style='color:red;'>" . $_GET["tlfMelding"] . "</h3>";
+    }
     ?>
     <div id="regFormBox">
         <form action="/Jobbsystem/www/Assets/Lib/PHPFunctions/RegistrerProsess.php?Type=<?php echo $_GET["Type"]?>" method="POST" id="regForm">

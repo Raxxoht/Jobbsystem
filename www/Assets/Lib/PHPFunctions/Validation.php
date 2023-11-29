@@ -44,5 +44,22 @@
         }
         return $melding; // Returnere til slutt meldingen til brukern
     }
+
+    function tlfVal($tlf){
+        if(strlen((string)$tlf)<8){ // Sjekker om nummeret er for langt eller for kort
+            return "Telefonnummeret er for kort";
+        } elseif (strlen((string)$tlf)>8){
+            return "Telefonnummeret er for langt";
+        } else {
+            return "Bra";
+        }
+    }
+
+    function navnVal($navn){
+        
+    }
+
+
     echo (passordVal("SKOOO11"));
+    echo tlfVal(45321212);
 ?>
