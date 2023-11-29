@@ -61,5 +61,18 @@ CloseDBConnection($conn); //Easter Egg
         </a>
 <?php endforeach; ?>
 
+
+<!-- JEG BRUKER DET UNDER OMRÅDET TIL Å SKETCHE ANNONSER OG HVORDAN DE KOMMER TIL Å SE UT, TRENGER SIKKERT LITT FEEDBACK FRA MR SANDERSON PÅ DENNE -->
+    <div class="annonseBoks">
+        <div class="annonseHeader">
+
+        </div>
+        <div class="Hovedinnhold">
+
+        </div>
+        <div class="Footer">
+
+        </div>
+    </div>
 </body>
 </html>
