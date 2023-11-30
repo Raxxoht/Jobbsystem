@@ -135,8 +135,9 @@
 }
 
 .Hovedinnhold{
-    border-bottom: 2px black solid;
     background-color:aliceblue;
+    margin-bottom: 1%;
+    padding-bottom: 1%;
 }
 
 .annonseBeskrivelse{
@@ -146,12 +147,15 @@
 .Footer{
     display:flex;
     justify-content: space-between;
+    border-top: 2px black solid;
     margin-top:auto;
     border-bottom: 1px solid black;
 }
 
 .annonsekravBoks{
-    padding:20px;
+    padding:10px;
+    margin-bottom: 2%;
+    margin-top: 1%;
 }
 
 .annonseknappBoks {
@@ -168,8 +172,11 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 2%;
-    margin-right:2%;
+}
+
+.aknapp {
+    margin-left:5%;
+    margin-right: 5%;
 }
 
 .annonseknapp:hover{

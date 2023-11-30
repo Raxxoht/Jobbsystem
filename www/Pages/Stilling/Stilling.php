@@ -60,8 +60,8 @@ function sjekkKrav($krav){
                     <div style="background-color:<?=sjekkKrav($Annonse["KravTekst"])?>;" class="annonsekravBoks">TEKST</div>
                 </div>
                 <div class="annonseknappBoks">
-                    <a href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?"><button class="annonseknapp">Se stilling</button></a>
-                    <button class="annonseknapp">Søk på stilling</button>
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Se stilling</button></a>
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Søk på stilling</button></a>
                 </div>
             </div>
         </div>
