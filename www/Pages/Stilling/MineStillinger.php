@@ -39,7 +39,7 @@ $AgStillinger=QuerySelectSpesAnnonsetilAg($conn, $AgID);
 
 ?>
 <?php foreach ($AgStillinger as $Stilling): ?>
-    <a href="Pages/Stilling/MineStillinger-edit.php?JobbannonseID=<?= $Stilling['JobbannonseID'] ?>">
+    <a href="Pages/Stilling/MineStillinger-edit.php?JobbannonseID=<?= $Stilling['JobbannonseID'] ?>&BrukerID=<?=$ArbeidsGiverInfo["BrukerID"]?>">
         <table border="1">
             <thead>
                 <tr>

@@ -316,6 +316,19 @@ function UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, 
     $updateProfil->close();
 }
 
+Function QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $KravTekst, $Tidsfrist, $JobbannonseID){
+    $conn->select_db("jobbsystem");
+    $sql = "UPDATE Jobbannonse SET Tittel = '$Tittel', Beskrivelse = '$Beskrivelse', KravCV = '$KravCV', KravDoc = '$KravDoc', KravTekst = '$KravTekst', Tidsfrist = '$Tidsfrist'
+    WHERE JobbannonseID = '$JobbannonseID'";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
 function SetupDB($conn) { //Script for DB-setup
     $sql = "DROP DATABASE IF EXISTS jobbsystem";
     $result = $conn->query($sql);
