@@ -51,14 +51,6 @@ function sjekkKrav($krav){
                     <h2 class="annonseTittel"><?=$Annonse["Tittel"]?></h2>
                     <h2 class="annonseLeder"><?=$Navn?></h2>
                 </div>
-                <div class="Hovedinnhold">
-                    <p class="annonseBeskrivelse"><?=$Annonse["Beskrivelse"]?></p>
-                </div>
-                <div class="Footer">
-                    <div style="background-color:<?=sjekkKrav($Annonse["KravCV"])?>;" class="annonsekravBoks">CV</div>
-                    <div style="background-color:<?=sjekkKrav($Annonse["KravDoc"])?>;" class="annonsekravBoks">DOC</div>
-                    <div style="background-color:<?=sjekkKrav($Annonse["KravTekst"])?>;" class="annonsekravBoks">TEKST</div>
-                </div>
                 <div class="annonseknappBoks">
                     <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Se stilling</button></a>
                     <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Søk på stilling</button></a>
