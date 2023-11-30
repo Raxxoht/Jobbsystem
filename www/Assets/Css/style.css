@@ -247,13 +247,42 @@
 
 .sokHeader{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    border-bottom: 2px black solid;
 }
 
 .sokHeader>h2{
     font-size: 1em;
+    background-color: rgb(224, 251, 252);
+    padding: 1em;
 }
+
+.sokHeaderHeader{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: -3%;
+}
+
+.sokHeaderHeader>h2{
+    font-size: 1em;
+    text-decoration: underline;
+}
+
 .sokFooter{
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 4em;
+}
+
+.sokKnapp {
+    padding:10px; 
+    border-radius: 10px;
+    background-color: rgb(224, 251, 252);
+    transition: .4s ease-in-out;
+}
+.sokKnapp:hover {
+    background-color: rgb(83, 181, 247);
+    color: rgb(224, 251, 252);
+    cursor: pointer;
 }
