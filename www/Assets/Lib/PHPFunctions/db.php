@@ -144,6 +144,14 @@ function QuerySelectSpesSoknad($conn, $SoknadID){
     return $assoc;
 }
 
+function QuerySelectSpesSoknadtilAt($conn, $AtID){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM soknad WHERE ArbeidstakerID = '$AtID'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
 function QuerySelectAllAnnonser($conn){
     $conn->select_db("jobbsystem");
     $sql = "SELECT * FROM jobbannonse";
@@ -320,6 +328,18 @@ Function QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $K
     $conn->select_db("jobbsystem");
     $sql = "UPDATE Jobbannonse SET Tittel = '$Tittel', Beskrivelse = '$Beskrivelse', KravCV = '$KravCV', KravDoc = '$KravDoc', KravTekst = '$KravTekst', Tidsfrist = '$Tidsfrist'
     WHERE JobbannonseID = '$JobbannonseID'";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
+function QueryDeleteSpesSoknad($conn, $SoknadID){
+    $conn->select_db("jobbsystem");
+    $sql = "DELETE FROM soknad WHERE SoknadID = '$SoknadID'";
 
     $result = $conn->query($sql);
     if ($result) {

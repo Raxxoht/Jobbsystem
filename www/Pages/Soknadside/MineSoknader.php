@@ -25,3 +25,49 @@ if(isset($_SESSION["Bruker"])){
         include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Html/navbarAt.php";
     }
 }
+
+$BnavnAT = $object->Brukernavn;
+$conn=OpenDBConnection();
+$assocs = QuerySelectProfilforAT($conn, $BnavnAT);
+
+$ArbeidsTakerInfo = $assocs[0];
+$Profil = $assocs[1];
+
+$AtID=$ArbeidsTakerInfo["ArbeidstakerID"];
+
+$AtStoknader=QuerySelectSpesSoknadtilAt($conn, $AtID);
+
+?>
+<?php foreach ($AtStoknader as $Soknader): ?>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>SoknadID</th>
+                    <th>ArbeidstakerID</th>   
+                    <th>Tittel</th> 
+                    <th>SoknadTekst</th>   
+                    <th>Dato</th>   
+                    <th>Status</th>     
+                    <th>Kommentar</th>
+                    <th></th>                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?= $Soknader['SoknadID'] ?></td>
+                    <td><?= $Soknader['ArbeidstakerID'] ?></td>
+                    <td><?= $Soknader['Tittel'] ?></td>
+                    <td><?= $Soknader['Soknadtekst'] ?></td>
+                    <td><?= $Soknader['Dato'] ?></td>
+                    <td><?= $Soknader['Status'] ?></td>
+                    <td><?= $Soknader['Kommentar'] ?></td>
+                    <td>
+                    <form action="Assets\Lib\PHPFunctions\DeleteSoknad.php?SoknadID=<?= $Soknader['SoknadID'] ?>" method="post"> 
+                        <input type="hidden" name="SoknadID" value="<?= $Soknader['SoknadID'] ?>">
+                        <button type="submit">Slett Søknad</button>
+                    </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+<?php endforeach; ?>
