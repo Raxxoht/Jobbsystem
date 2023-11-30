@@ -32,25 +32,21 @@ CloseDBConnection($conn); //Easter Egg
 
 ?>
 <?php foreach ($SoknadListe as $Soknad): ?>
-    <a href="Pages/Soknadside/SpesifikkSoknad.php?SoknadID=<?= $Soknad['SoknadID'] ?>">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Tittel</th>
-                    <th>Dato</th>
-                    <th>Status</th>                   
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><?= $Soknad['Tittel'] ?></td>
-                    <td><?= $Soknad['Dato'] ?></td>
-                    <td><?= $Soknad['Status'] ?></td>
-
-                </tr>
-            </tbody>
-        </table>
-        </a>
+    <div class="senterBoks">
+        <div class="annonseBoks">
+            <div class="spaceBoks">
+                <div class="annonseHeader">
+                    <h2 class="annonseTittel">"<?=$Soknad["Tittel"]?>"</h2>
+                    <h2 class="annonseLeder"><?=$Soknad["Dato"]?></h2>
+                    <h2 class="annonseLeder"><?=$Soknad["Status"]?></h2>
+                </div>
+                <div class="annonseknappBoks">
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Se stilling</button></a>
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Søk på stilling</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php endforeach; ?>
 
 </body>
