@@ -32,17 +32,7 @@ CloseDBConnection($conn); //Easter Egg
 
 ?>
 <?php foreach ($SoknadListe as $Soknad): ?>
-    <div class="senterBoks">
-        <div id="sokBoks" class="annonseBoks">
-                <h2 class="sokItems">Tittel:</h2>
-                <h2 class="sokItems">Sendt inn:</h2>
-                <h2 class="sokItems">Status:</h2>
-                <h2 class="sokItems">"<?=$Soknad["Tittel"]?>"</h2>
-                <h2 class="sokItems"><?=$Soknad["Dato"]?></h2>
-                <h2 class="sokItems"><?=$Soknad["Status"]?></h2>
-                <a id="sokKnapp" class="sokItems" href="Pages/Soknadside/SpesifikkSoknad.php?SoknadID=<?= $Soknad['SoknadID'] ?>"><button class="annonseknapp">Se søknad</button></a>
-        </div>
-    </div>
+    
 <?php endforeach; ?>
 
 </body>
