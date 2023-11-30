@@ -27,19 +27,37 @@ session_start();
 
         $infoList = $object->printInfo();
     
-        foreach($infoList as $x => $y){
-            echo "$x = $y" . ",  ";
-        }
     } else {
         header("Location: /Jobbsystem/www/index.php");
     }
 ?>
+    <div class="mini-profil">
+    <a id="loggutKnapp" href="/Jobbsystem/www/Pages/StartSide/logout.php">Logg ut</a>
+        <h2>Profil</h2>
+        <a id="utProfil" href="#innhold">Utvid profil</a>
+        <div id="innhold">
+            <ul>
+                <?php
+                unset($infoList["Passord"]);
+                foreach($infoList as $x => $y){
+                    echo "<li>$x: $y</li>";
+                }
+                ?>
+        </div>
+        </ul>
+    </div>
     <div id="Main_Content">
         <h1>Velkommen til Jobbsøkesystemet vårt!</h1>
-        <a href="/Jobbsystem/www/Pages/StartSide/logout.php">Logg ut</a>
     </div>
-    <!--<section id="Footer">
-        
-    </section> Mulig Footer-->
+    <script>
+        document.addEventListener('click', function(event) { //Legger til javascript, css magic er ikke sterkt nok for dette
+            var innhold = document.getElementById('innhold');
+            var target = event.target;
+
+            if (!innhold.contains(target)) {
+                window.location.href = '#';
+            }
+        });
+    </script>
 </body>
 </html>

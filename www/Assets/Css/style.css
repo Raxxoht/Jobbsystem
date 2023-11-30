@@ -183,3 +183,58 @@
     background-color: #2077b3;
     transition: .4s;
 }
+
+#innhold {
+    display: flex;
+    margin-top: 2%;
+    border:2px double rgb(83, 181, 247);
+    max-height: 0;
+    transform: scaleX(0);
+    overflow: hidden;
+    transition: .4s ease-in-out;
+}
+
+#innhold:target {
+    transform: scaleX(1);
+    max-height: 100%;
+    overflow: visible;
+    transition: .4s ease-in-out;
+}
+
+.mini-profil {
+    position: absolute;
+    border-radius:40px;
+    padding:1.5em;
+    background-color: rgb(224, 251, 252);
+    right: 0;
+    top: 12%;
+    max-width: 20vw;
+}
+
+#utProfil {
+    display: flex;
+    border: rgb(83, 181, 247) solid 10px;
+    border-radius: 10px;
+    padding: 1%;   
+    transition: .4s ease-in-out;
+}
+
+#utProfil:hover {
+    border: rgb(152, 193, 217) solid 10px;
+    background-color: rgb(123, 199, 250);
+    color: rgb(224, 251, 252);
+}
+
+#loggutKnapp{
+    float: right;
+    display: flex;
+    background-color: rgb(83, 181, 247);
+    border-radius: 10px;
+    padding: 1em;
+    transition: .4s ease-in-out;
+}
+
+#loggutKnapp:hover {
+    background-color: rgb(139, 0, 0);
+    color: rgb(83, 181, 247);
+}
