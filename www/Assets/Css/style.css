@@ -88,3 +88,42 @@
     background-color: rgb(83, 181, 247);
     transition: ease-in-out .4s;
 }
+
+.annonseBoks{
+    border: lightblue 2px solid;
+    display:flex;
+    flex-direction: column;
+}
+
+.annonseHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.annonseTittel{
+    order:1;
+}
+
+.annonseLeder{
+    order:2;
+}
+
+.Hovedinnhold{
+
+}
+
+.annonseBeskrivelse{
+
+}
+
+.Footer{
+    display:flex;
+    justify-content: space-between;
+    margin-top:auto;
+}
+
+.annonsekravBoks{
+
+}
