@@ -62,7 +62,7 @@ $AtStoknader=QuerySelectSpesSoknadtilAt($conn, $AtID);
                     <td><?= $Soknader['Status'] ?></td>
                     <td><?= $Soknader['Kommentar'] ?></td>
                     <td>
-                    <form action="" method="post"> 
+                    <form action="Assets\Lib\PHPFunctions\DeleteSoknad.php?SoknadID=<?= $Soknader['SoknadID'] ?>" method="post"> 
                         <input type="hidden" name="SoknadID" value="<?= $Soknader['SoknadID'] ?>">
                         <button type="submit">Slett Søknad</button>
                     </form>
