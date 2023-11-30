@@ -90,11 +90,17 @@
 }
 
 .annonseBoks{
-    border: lightblue 2px solid;
+    border: rgb(139, 0, 0) 4px solid;
     display:flex;
     flex-direction: column;
     min-height: 20vh;
     max-width: 50vw;
+    background-color: rgb(102, 153, 102);
+}
+
+.spaceBoks {
+    padding:5px;
+    border: 2px rgb(245, 245, 220) solid;
 }
 
 .annonseHeader{
@@ -106,10 +112,17 @@
 
 .annonseTittel{
     order:1;
+    background-color: aliceblue;
+    border-radius: 100px;
+    padding:5px;
+    margin-left:5%;
 }
 
 .annonseLeder{
     order:2;
+    border: 3px rgb(139, 0, 0) solid;
+    background: rgb(245, 245, 220);
+    margin-right:5%;
 }
 
 .Hovedinnhold{
@@ -118,7 +131,6 @@
 }
 
 .annonseBeskrivelse{
-    padding:5px;
     font-size: 1em;
 }
 
@@ -126,8 +138,32 @@
     display:flex;
     justify-content: space-between;
     margin-top:auto;
+    border-bottom: 1px solid black;
 }
 
 .annonsekravBoks{
     padding:20px;
+}
+
+.annonseknappBoks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:2%;
+}
+
+.annonseknapp {
+    padding: 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 2%;
+    margin-right:2%;
+}
+
+.annonseknapp:hover{
+    background-color: #2077b3;
+    transition: .4s;
 }
