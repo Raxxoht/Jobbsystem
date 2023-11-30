@@ -238,3 +238,11 @@
     background-color: rgb(139, 0, 0);
     color: rgb(83, 181, 247);
 }
+
+.sokBoks {
+    background-color: #3498db;
+}
+
+.sokHeader{
+    background-color: aliceblue;
+}

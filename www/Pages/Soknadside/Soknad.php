@@ -32,7 +32,18 @@ CloseDBConnection($conn); //Easter Egg
 
 ?>
 <?php foreach ($SoknadListe as $Soknad): ?>
-    
+    <div class="senterBoks">
+        <div class="sokBoks">
+            <div class="sokHeader">
+                <h2><?= $Soknad["Status"] ?></h2>
+                <h2><?= $Soknad["Tittel"] ?></h2>
+                <h2><?= $Soknad["Dato"] ?></h2>
+            </div>
+        </div>
+        <div class="sokFooter">
+            <a href=""><button></button></a>
+        </div>
+    </div>
 <?php endforeach; ?>
 
 </body>
