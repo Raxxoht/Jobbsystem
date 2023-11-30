@@ -160,6 +160,14 @@ function QuerySelectSpesAnnonse($conn, $jobbannonseID){
     return $assoc;
 }
 
+function QuerySelectSpesAnnonsetilAg($conn, $AgID){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM jobbannonse WHERE ArbeidsgiverID = '$AgID'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
 function QuerySelectProfilforAG($conn, $BnavnAG){
     $conn->select_db("jobbsystem");
     $sql = "SELECT BrukerID FROM Bruker WHERE Brukernavn = '$BnavnAG'";
@@ -246,7 +254,6 @@ function QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $
     }
 }
 
-
 function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
     $conn->select_db("jobbsystem");
     $sql = "UPDATE Soknad SET Status = '$Status', Kommentar = '$kommentar'
@@ -307,6 +314,19 @@ function UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, 
 
     $updateArbeidstaker->close();
     $updateProfil->close();
+}
+
+Function QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $KravTekst, $Tidsfrist, $JobbannonseID){
+    $conn->select_db("jobbsystem");
+    $sql = "UPDATE Jobbannonse SET Tittel = '$Tittel', Beskrivelse = '$Beskrivelse', KravCV = '$KravCV', KravDoc = '$KravDoc', KravTekst = '$KravTekst', Tidsfrist = '$Tidsfrist'
+    WHERE JobbannonseID = '$JobbannonseID'";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
 }
 
 function SetupDB($conn) { //Script for DB-setup
