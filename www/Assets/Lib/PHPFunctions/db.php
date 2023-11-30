@@ -160,6 +160,14 @@ function QuerySelectSpesAnnonse($conn, $jobbannonseID){
     return $assoc;
 }
 
+function QuerySelectSpesAnnonsetilAg($conn, $AgID){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM jobbannonse WHERE ArbeidsgiverID = '$AgID'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
 function QuerySelectProfilforAG($conn, $BnavnAG){
     $conn->select_db("jobbsystem");
     $sql = "SELECT BrukerID FROM Bruker WHERE Brukernavn = '$BnavnAG'";
@@ -245,7 +253,6 @@ function QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $
         echo "Big Fail" . $conn->error;
     }
 }
-
 
 function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
     $conn->select_db("jobbsystem");

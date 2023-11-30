@@ -11,10 +11,12 @@
 <?php 
 session_start();
 
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/login-sjekk.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
 
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidstaker.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidsgiver.php";
+
 if(isset($_SESSION["Bruker"])){    
     
     $object = unserialize($_SESSION["Bruker"]);
@@ -24,4 +26,14 @@ if(isset($_SESSION["Bruker"])){
     } elseif ($object->rolle=="Arbeidstaker") {
         include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Html/navbarAt.php";
     }
+
+    $BnavnAG = $object->Brukernavn;
+    $conn=OpenDBConnection();
+    $assocs = QuerySelectProfilforAT($conn, $BnavnAG);
+
+    $ArbeidsInfo = $assocs[0];
+    $Profil = $assocs[1];
+
+    CloseDBConnection($conn);
+
 }
