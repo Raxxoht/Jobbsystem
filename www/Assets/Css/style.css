@@ -89,11 +89,20 @@
     transition: ease-in-out .4s;
 }
 
+.senterBoks {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:0;
+    margin-top: 2%;
+}
+
 .annonseBoks{
     border: rgb(139, 0, 0) 4px solid;
     display:flex;
     flex-direction: column;
     min-height: 20vh;
+    min-width: 50vw;
     max-width: 50vw;
     background-color: rgb(102, 153, 102);
 }
