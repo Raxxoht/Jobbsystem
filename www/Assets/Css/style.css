@@ -243,6 +243,7 @@
     background-color: #3498db;
     min-width: 50vw;
     min-height: 20vh;
+    border: rgb(84, 84, 84) 10px solid;
 }
 
 .sokHeader{
