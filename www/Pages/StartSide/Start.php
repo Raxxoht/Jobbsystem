@@ -27,9 +27,6 @@ session_start();
 
         $infoList = $object->printInfo();
     
-        foreach($infoList as $x => $y){
-            echo "$x = $y" . ",  ";
-        }
     } else {
         header("Location: /Jobbsystem/www/index.php");
     }
@@ -37,6 +34,14 @@ session_start();
     <div id="Main_Content">
         <h1>Velkommen til Jobbsøkesystemet vårt!</h1>
         <a href="/Jobbsystem/www/Pages/StartSide/logout.php">Logg ut</a>
+    </div>
+    <div class="mini-profil">
+        <h2>Mini Profil</h2>
+        <ul>
+            <?php
+            
+            ?>
+        </ul>
     </div>
     <!--<section id="Footer">
         
