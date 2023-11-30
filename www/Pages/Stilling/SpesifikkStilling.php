@@ -37,46 +37,41 @@ if (isset($_GET['JobbannonseID'])) {
     $ArbeidsInfo = $assocs[0];
     $Profil = $assocs[1];
     $Annonse = QuerySelectSpesAnnonse($conn, $JobbannonseID);
+    $sql = "Select LederNavn from arbeidsgiver where ArbeidsGiverID =" . $Annonse["ArbeidsgiverID"];
+    $giverInfo = $conn->query($sql);
+    $row = $giverInfo->fetch_assoc();
+    $Navn = $row["LederNavn"];
     CloseDBConnection($conn); 
-
+    function sjekkKrav($krav){
+        if($krav==1){
+            return "Green";
+        } elseif($krav==0){
+            return "Red";
+        }
+    }
         ?>
-<form action="Assets\Lib\PHPFunctions\SokPaStilling.php?BrukerID=<?= $ArbeidsInfo['BrukerID']?>&JobbannonseID=<?= $JobbannonseID?>" method="post">
-    <table border="1">
-        <thead>
-            <tr>
-                    <th>Tittel</th>
-                    <th>ArbeidsgiverID</th>   
-                    <th>Beskrivelse</th> 
-                    <th>KravCV</th>   
-                    <th>KravDoc</th>   
-                    <th>KravTekst</th>     
-                    <th>Tidsfrist</th>      
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                    <td><?= $Annonse['Tittel'] ?></td>
-                    <td><?= $Annonse['ArbeidsgiverID'] ?></td>
-                    <td><?= $Annonse['Beskrivelse'] ?></td>
-                    <td><?= $Annonse['KravCV'] ?></td>
-                    <td><?= $Annonse['KravDoc'] ?></td>
-                    <td><?= $Annonse['KravTekst'] ?></td>
-                    <td><?= $Annonse['Tidsfrist'] ?></td>
-            </tr>
-        </tbody>
-    </table>
 
-    <label for="Tittel">Tittel</label>
-    <textarea name="Tittel" id="Tittel" rows="1" cols="50"> </textarea> <br>
-    
-    <label for="SoknadTekst">SøknadTekst</label>
-    <textarea name="SoknadTekst" id="SoknadTekst" rows="4" cols="50"> </textarea>
-
-    <input type="submit" value="Send Inn">
-
-    <input type="hidden" name="JobbannonseID" value="<?= $Annonse['JobbannonseID'] ?>">
-</form>
-
-<a href="http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php">
-    <button>Tilbake</button>
-</a>
+<div class="senterBoks">
+        <div class="annonseBoks">
+            <div class="spaceBoks">
+                <div class="annonseHeader">
+                    <h2 class="annonseTittel"><?=$Annonse["Tittel"]?></h2>
+                    <h2 class="annonseLeder"><?=$Navn?></h2>
+                </div>
+                <div class="Hovedinnhold">
+                    <p class="annonseBeskrivelse"><?=$Annonse["Beskrivelse"]?></p>
+                </div>
+                <div class="Footer">
+                    <div style="background-color:<?=sjekkKrav($Annonse["KravCV"])?>;" class="annonsekravBoks">CV</div>
+                    <div style="background-color:<?=sjekkKrav($Annonse["KravDoc"])?>;" class="annonsekravBoks">DOC</div>
+                    <div style="background-color:<?=sjekkKrav($Annonse["KravTekst"])?>;" class="annonsekravBoks">TEKST</div>
+                </div>
+                <div class="annonseknappBoks">
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/Stilling.php"><button class="annonseknapp">Gå tilbake</button></a>
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Søk på stilling</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
+</body>
