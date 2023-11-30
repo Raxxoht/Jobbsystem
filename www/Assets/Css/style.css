@@ -241,8 +241,19 @@
 
 .sokBoks {
     background-color: #3498db;
+    min-width: 50vw;
+    min-height: 20vh;
 }
 
 .sokHeader{
-    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sokHeader>h2{
+    font-size: 1em;
+}
+.sokFooter{
+    display: flex;
+    justify-content: center;
 }

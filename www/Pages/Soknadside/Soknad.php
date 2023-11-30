@@ -39,9 +39,9 @@ CloseDBConnection($conn); //Easter Egg
                 <h2><?= $Soknad["Tittel"] ?></h2>
                 <h2><?= $Soknad["Dato"] ?></h2>
             </div>
+            <div class="sokFooter">
+            <a href="Pages/Soknadside/SpesifikkSoknad.php?SoknadID=<?= $Soknad['SoknadID'] ?>"><button>Se søknad</button></a>
         </div>
-        <div class="sokFooter">
-            <a href=""><button></button></a>
         </div>
     </div>
 <?php endforeach; ?>
