@@ -144,6 +144,14 @@ function QuerySelectSpesSoknad($conn, $SoknadID){
     return $assoc;
 }
 
+function QuerySelectSpesSoknadtilAt($conn, $AtID){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM soknad WHERE ArbeidstakerID = '$AtID'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
 function QuerySelectAllAnnonser($conn){
     $conn->select_db("jobbsystem");
     $sql = "SELECT * FROM jobbannonse";
