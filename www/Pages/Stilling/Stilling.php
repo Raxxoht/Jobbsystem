@@ -65,11 +65,11 @@ CloseDBConnection($conn); //Easter Egg
 <!-- JEG BRUKER DET UNDER OMRÅDET TIL Å SKETCHE ANNONSER OG HVORDAN DE KOMMER TIL Å SE UT, TRENGER SIKKERT LITT FEEDBACK FRA MR SANDERSON PÅ DENNE -->
     <div class="annonseBoks">
         <div class="annonseHeader">
-            <h2 class="annonseTittel">Vaktmester</h2>
+            <h2 class="annonseTittel">"Vaktmester"</h2>
             <h2 class="annonseLeder">Jordan Blaben</h2>
         </div>
         <div class="Hovedinnhold">
-            <p class="annonseBeskrivelse">Dette er en beskrivelse av annonsen</p>
+            <p class="annonseBeskrivelse">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec cursus felis. Maecenas vitae augue a odio dictum accumsan ac in nulla. Maecenas malesuada elit et nisi posuere ullamcorper. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce aliquet magna eu mauris sollicitudin, quis varius risus facilisis. Phasellus volutpat commodo leo et porta. Pellentesque facilisis mauris eget pulvinar placerat. Pellentesque ornare elementum venenatis. In eget urna tempor, malesuada nunc a, convallis odio. Nunc quis ante ut nunc sollicitudin mattis vel maximus magna. Pellentesque suscipit in justo a dictum. Maecenas eget nulla velit.</p>
         </div>
         <div class="Footer">
             <div class="annonsekravBoks">CV</div>
