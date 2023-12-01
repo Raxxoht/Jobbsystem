@@ -152,6 +152,22 @@ function QuerySelectSpesSoknadtilAt($conn, $AtID){
     return $assoc;
 }
 
+function QuerySelectSpesSoknadtilAg($conn, $AnnonseIDList){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM soknad WHERE JobbannonseID = '$AnnonseIDList'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
+function QuerySelectJobbAnnonseIDtilAg($conn, $AgID){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT JobbannonseID FROM Jobbannonse WHERE ArbeidsgiverID = '$AgID'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
 function QuerySelectAllAnnonser($conn){
     $conn->select_db("jobbsystem");
     $sql = "SELECT * FROM jobbannonse";
@@ -262,6 +278,18 @@ function QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $
     }
 }
 
+function QueryInsertAnnonse($conn, $Tittel, $Beskrivelse, $KravCV, $KravTekst, $Tidsfrist, $BrukerID){
+    $conn->select_db("jobbsystem");
+    $sql = "INSERT INTO jobbannonse (ArbeidsgiverID, Tittel, Beskrivelse, KravCV, KravTekst, Tidsfrist) VALUES ('$BrukerID', '$Tittel', '$Beskrivelse', '$KravCV', '$KravTekst', '$Tidsfrist')";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
 function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
     $conn->select_db("jobbsystem");
     $sql = "UPDATE Soknad SET Status = '$Status', Kommentar = '$kommentar'
@@ -340,6 +368,18 @@ Function QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $K
 function QueryDeleteSpesSoknad($conn, $SoknadID){
     $conn->select_db("jobbsystem");
     $sql = "DELETE FROM soknad WHERE SoknadID = '$SoknadID'";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
+function QueryDeleteSpesStilling($conn, $JobbannonseID){
+    $conn->select_db("jobbsystem");
+    $sql = "DELETE FROM jobbannonse WHERE jobbannonseID = '$JobbannonseID'";
 
     $result = $conn->query($sql);
     if ($result) {
@@ -436,7 +476,7 @@ function SetupDB($conn) { //Script for DB-setup
       `Status` VARCHAR(255),
       `Kommentar` VARCHAR(255),      
       FOREIGN KEY (`ArbeidstakerID`) REFERENCES `Arbeidstaker`(`ArbeidstakerID`),
-      FOREIGN KEY (`JobbannonseID`) REFERENCES `JobbAnnonse`(`JobbannonseID`)
+      FOREIGN KEY (`JobbannonseID`) REFERENCES `JobbAnnonse`(`JobbannonseID`) ON DELETE CASCADE
     )";
     
     $result = $conn->query($sql);

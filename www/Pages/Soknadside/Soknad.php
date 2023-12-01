@@ -27,7 +27,24 @@ if(isset($_SESSION["Bruker"])){
 }
 
 $conn = OpenDBConnection();
-$SoknadListe = QuerySelectAllSoknad($conn);
+
+$BnavnAG = $object->Brukernavn;
+$conn=OpenDBConnection();
+$assocs = QuerySelectProfilforAG($conn, $BnavnAG);
+
+$ArbeidsGiverInfo = $assocs[0];
+$Profil = $assocs[1];
+
+$AgID=$ArbeidsGiverInfo["ArbeidsgiverID"];
+
+$JobbAnnonseIDListe = QuerySelectJobbAnnonseIDtilAg($conn, $AgID);
+$JobbannonseIDs = array_column($JobbAnnonseIDListe, 'JobbannonseID');
+
+// Create a comma-separated list for use in the SQL query
+$AnnonseIDList = implode(',', $JobbannonseIDs);
+
+$SoknadListe = QuerySelectSpesSoknadtilAg($conn, $AnnonseIDList);
+
 CloseDBConnection($conn); //Easter Egg
 
 ?>

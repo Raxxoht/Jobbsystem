@@ -38,8 +38,9 @@ $AgID=$ArbeidsGiverInfo["ArbeidsgiverID"];
 $AgStillinger=QuerySelectSpesAnnonsetilAg($conn, $AgID);
 
 ?>
+<a href="Pages/Stilling/LagStilling.php?AgID=<?=$AgID?>"><button>Lag NY Stilling</button></a>
+
 <?php foreach ($AgStillinger as $Stilling): ?>
-    <a href="Pages/Stilling/MineStillinger-edit.php?JobbannonseID=<?= $Stilling['JobbannonseID'] ?>&BrukerID=<?=$ArbeidsGiverInfo["BrukerID"]?>">
         <table border="1">
             <thead>
                 <tr>
@@ -49,7 +50,9 @@ $AgStillinger=QuerySelectSpesAnnonsetilAg($conn, $AgID);
                     <th>KravCV</th>   
                     <th>KravDoc</th>   
                     <th>KravTekst</th>     
-                    <th>Tidsfrist</th>                  
+                    <th>Tidsfrist</th>      
+                    <th>Rediger</th>     
+                    <th>Slett</th>        
                 </tr>
             </thead>
             <tbody>
@@ -61,9 +64,9 @@ $AgStillinger=QuerySelectSpesAnnonsetilAg($conn, $AgID);
                     <td><?= $Stilling['KravDoc'] ?></td>
                     <td><?= $Stilling['KravTekst'] ?></td>
                     <td><?= $Stilling['Tidsfrist'] ?></td>
-
+                    <td><a href="Pages/Stilling/MineStillinger-edit.php?JobbannonseID=<?= $Stilling['JobbannonseID'] ?>&BrukerID=<?=$ArbeidsGiverInfo["BrukerID"]?>"><button>Rediger</button></a></td>
+                    <td><a href="Assets/Lib/PHPFunctions/DeleteStilling.php?JobbannonseID=<?= $Stilling['JobbannonseID'] ?>"><button>DELETE</button></a></td>
                 </tr>
             </tbody>
         </table>
-    </a>
 <?php endforeach; ?>
