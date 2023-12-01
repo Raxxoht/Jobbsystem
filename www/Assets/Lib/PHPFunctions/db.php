@@ -262,6 +262,18 @@ function QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $
     }
 }
 
+function QueryInsertAnnonse($conn, $Tittel, $Beskrivelse, $KravCV, $KravTekst, $Tidsfrist, $BrukerID){
+    $conn->select_db("jobbsystem");
+    $sql = "INSERT INTO jobbannonse (ArbeidsgiverID, Tittel, Beskrivelse, KravCV, KravTekst, Tidsfrist) VALUES ('$BrukerID', '$Tittel', '$Beskrivelse', '$KravCV', '$KravTekst', '$Tidsfrist')";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
 function QueryUpdateSoknad($conn, $SoknadID, $Status, $kommentar){
     $conn->select_db("jobbsystem");
     $sql = "UPDATE Soknad SET Status = '$Status', Kommentar = '$kommentar'

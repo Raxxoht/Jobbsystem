@@ -38,6 +38,8 @@ $AgID=$ArbeidsGiverInfo["ArbeidsgiverID"];
 $AgStillinger=QuerySelectSpesAnnonsetilAg($conn, $AgID);
 
 ?>
+<a href="Pages/Stilling/LagStilling.php?AgID=<?=$AgID?>"><button>Lag NY Stilling</button></a>
+
 <?php foreach ($AgStillinger as $Stilling): ?>
     <a href="Pages/Stilling/MineStillinger-edit.php?JobbannonseID=<?= $Stilling['JobbannonseID'] ?>&BrukerID=<?=$ArbeidsGiverInfo["BrukerID"]?>">
         <table border="1">
@@ -61,7 +63,6 @@ $AgStillinger=QuerySelectSpesAnnonsetilAg($conn, $AgID);
                     <td><?= $Stilling['KravDoc'] ?></td>
                     <td><?= $Stilling['KravTekst'] ?></td>
                     <td><?= $Stilling['Tidsfrist'] ?></td>
-
                 </tr>
             </tbody>
         </table>
