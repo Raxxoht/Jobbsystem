@@ -65,7 +65,7 @@ $AgStillinger=QuerySelectSpesAnnonsetilAg($conn, $AgID);
                     <td><?= $Stilling['KravTekst'] ?></td>
                     <td><?= $Stilling['Tidsfrist'] ?></td>
                     <td><a href="Pages/Stilling/MineStillinger-edit.php?JobbannonseID=<?= $Stilling['JobbannonseID'] ?>&BrukerID=<?=$ArbeidsGiverInfo["BrukerID"]?>"><button>Rediger</button></a></td>
-                    <td><button>DELETE</button></td>
+                    <td><a href="Assets/Lib/PHPFunctions/DeleteStilling.php?JobbannonseID=<?= $Stilling['JobbannonseID'] ?>"><button>DELETE</button></a></td>
                 </tr>
             </tbody>
         </table>

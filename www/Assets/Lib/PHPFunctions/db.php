@@ -377,6 +377,18 @@ function QueryDeleteSpesSoknad($conn, $SoknadID){
     }
 }
 
+function QueryDeleteSpesStilling($conn, $JobbannonseID){
+    $conn->select_db("jobbsystem");
+    $sql = "DELETE FROM jobbannonse WHERE jobbannonseID = '$JobbannonseID'";
+
+    $result = $conn->query($sql);
+    if ($result) {
+        }
+    else {
+        echo "Big Fail" . $conn->error;
+    }
+}
+
 function SetupDB($conn) { //Script for DB-setup
     $sql = "DROP DATABASE IF EXISTS jobbsystem";
     $result = $conn->query($sql);
@@ -464,7 +476,7 @@ function SetupDB($conn) { //Script for DB-setup
       `Status` VARCHAR(255),
       `Kommentar` VARCHAR(255),      
       FOREIGN KEY (`ArbeidstakerID`) REFERENCES `Arbeidstaker`(`ArbeidstakerID`),
-      FOREIGN KEY (`JobbannonseID`) REFERENCES `JobbAnnonse`(`JobbannonseID`)
+      FOREIGN KEY (`JobbannonseID`) REFERENCES `JobbAnnonse`(`JobbannonseID`) ON DELETE CASCADE
     )";
     
     $result = $conn->query($sql);
