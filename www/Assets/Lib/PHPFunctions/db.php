@@ -152,6 +152,22 @@ function QuerySelectSpesSoknadtilAt($conn, $AtID){
     return $assoc;
 }
 
+function QuerySelectSpesSoknadtilAg($conn, $AnnonseIDList){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM soknad WHERE JobbannonseID = '$AnnonseIDList'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
+function QuerySelectJobbAnnonseIDtilAg($conn, $AgID){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT JobbannonseID FROM Jobbannonse WHERE ArbeidsgiverID = '$AgID'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
 function QuerySelectAllAnnonser($conn){
     $conn->select_db("jobbsystem");
     $sql = "SELECT * FROM jobbannonse";
