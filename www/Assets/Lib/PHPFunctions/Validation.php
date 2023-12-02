@@ -84,7 +84,7 @@
 
     function KravVal($Krav){
         if($Krav!=true && $Krav !=false){
-            "Feil Verdi";
+            return "Feil Verdi";
         }
         else {
             return "Bra";
