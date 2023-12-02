@@ -9,7 +9,6 @@
         }
     }
     
-    
     function passordVal($Pass){
         $returnMelding = []; //Definerer en liste for å inneholde alle returnermeldingene
         $noCap = "Passordet må inneholde 1 stor bokstav";  //Spesifike strenger for hver eneste konflikt
@@ -89,5 +88,11 @@
         else {
             return "Bra";
         }
+    }
+
+    function TekstVal(){
+        //Sjekk også at "Tekst" er som forventet verdi
+
+        //Sjekk at ikke passordet til brukeren blir "printet ut i teksten"
     }
 ?>
