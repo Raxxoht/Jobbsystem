@@ -33,7 +33,6 @@
             array_push($returnMelding, $noLen); //Push riktig melding inn i returnmelding lista
         }
 
-
         if(empty($returnMelding)){
             $melding = "Bra"; //returverdien sier at passordet er good to go
         } else {
@@ -79,6 +78,15 @@
         } elseif(date("Y", $sanntid) - date("Y", $Stempel) >=150){
             return "Du må være mindre enn 150 for å bruke nettsiden vår";
         } else {
+            return "Bra";
+        }
+    }
+
+    function KravVal($Krav){
+        if($Krav!=true && $Krav !=false){
+            "Feil Verdi";
+        }
+        else {
             return "Bra";
         }
     }

@@ -1,5 +1,8 @@
 <?php 
-include "db.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/login-sjekk.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/Validation.php";
+
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $soknadID = $_POST['soknadID'];
