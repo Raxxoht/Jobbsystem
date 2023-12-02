@@ -6,6 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kommentar = $_POST['kommentar'];
     $status = $_POST['status'];
 
+//Validering 
+"TBD";
+
+//DB
 $conn = OpenDBConnection();
 QueryUpdateSoknad($conn, $soknadID, $status, $kommentar);
 CloseDBConnection($conn);

@@ -28,11 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ArbeidsInfo = $assocs[0];
         $Profil = $assocs[1];
     }
-
     $DateTime = date('Y-m-d H:i:s');
-
     $SpesAnnonse = QuerySelectSpesAnnonse($conn, $JobbannonseID);
 
+    //Validering av Data
+    "TBD";
+
+    //CV Sjekk Knyttet til Profil
     if ($SpesAnnonse["KravCV"] == 1 && $ArbeidsInfo["CV"] !== NULL) {
         QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID);
         CloseDBConnection($conn);

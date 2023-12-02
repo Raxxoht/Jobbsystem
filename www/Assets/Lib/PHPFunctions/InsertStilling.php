@@ -19,6 +19,10 @@ if (isset($_GET['AgID'])) {
     $AgID = $_GET['AgID'];
 }
 
+//Validering 
+"TBD";
+
+//DB
 $conn = OpenDBConnection();
 QueryInsertAnnonse($conn, $Tittel, $Beskrivelse, $KravCV, $KravTekst, $Tidsfrist, $AgID);
 CloseDBConnection($conn);

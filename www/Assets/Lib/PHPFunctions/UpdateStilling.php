@@ -17,8 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_GET['JobbannonseID'])) {
         $JobbannonseID = $_GET['JobbannonseID'];
     }
+    
+//Validering 
+"TBD";
 
-
+//DB
 $conn = OpenDBConnection();
 QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $KravTekst, $Tidsfrist, $JobbannonseID);
 CloseDBConnection($conn);

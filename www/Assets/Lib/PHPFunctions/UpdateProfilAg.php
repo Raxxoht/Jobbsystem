@@ -39,6 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $BrukerID = $_GET['BrukerID'];
     }
 
+    //Validering 
+    "TBD";
+
+    //DB
     $conn = OpenDBConnection();
     UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $KontaktPerson, $Epost, $Tlf, $AvatarContent);
     CloseDBConnection($conn);

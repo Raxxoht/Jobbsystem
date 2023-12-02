@@ -45,7 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_GET['BrukerID'])) {
         $BrukerID = $_GET['BrukerID'];
     }
+    
+    //Validering 
+    "TBD";
 
+    //DB
     $conn = OpenDBConnection();
     UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, $Tlf, $CVContent, $AvatarContent);
     CloseDBConnection($conn);
