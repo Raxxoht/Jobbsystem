@@ -40,12 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //Validering 
-    //Validering av $Firmanavn
+    FirmaNavnVal($Firmanavn);
     KravVal($Sokbar);
     TekstVal($Beskrivelse);
-    //Validering av $KontaktPerson
+    NavnVal1($KontaktPerson);
     EpostVal($Epost);
-    //Validering av $Tlf
+    tlfnrval($Tlf);
     //Validering av $Avatar
     IDval($BrukerID);
 
