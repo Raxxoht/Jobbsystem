@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $JobbannonseID = $_GET['JobbannonseID'];
     }
     
-    $KravCV="123";
     //Validering 
     TekstVal($Tittel);
     TekstVal($Beskrivelse);

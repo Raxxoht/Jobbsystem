@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAt.php");
         exit();
     } else {
-        header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAt.php");
+        header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAt-edit.php");
         exit();  
     }
 } else {

@@ -35,7 +35,7 @@ if (isset($_GET['AgID'])) {
         header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
         exit();
     } else {
-        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
+        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/LagStilling.php?AgID=$AgID");
         exit(); 
     }
 } else {

@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAg.php");
         exit();
     } else {
-        header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAg.php");
+        header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAg-edit.php");
         exit();        
     }
 } else {
