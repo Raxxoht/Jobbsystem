@@ -82,4 +82,22 @@
             return "Bra";
         }
     }
+
+    function KravVal($Krav){
+        session_start(); // Start the session
+    
+        if ($Krav !== true && $Krav !== false) {
+            $errorMessage = "Feil Verdi KravVal: $Krav";
+    
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+    
+            return false; // Return a boolean indicating validation failure
+        } else {
+            return true; // Return a boolean indicating validation success
+        }
+    }
 ?>
