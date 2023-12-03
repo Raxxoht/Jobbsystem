@@ -126,6 +126,8 @@
 
     //Noe som ikke funker helt her 
     function IDval($ID){
+        session_start(); // Start the session
+
         if (empty($ID) || !is_numeric($ID)){
             $errorMessage = "Feil med IDval: $ID";
             if (isset($_SESSION['error_message'])) {
