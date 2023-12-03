@@ -53,7 +53,7 @@ function sjekkKrav($krav){
                 </div>
                 <div class="annonseknappBoks">
                     <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Se stilling</button></a>
-                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Søk på stilling</button></a>
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SokStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Søk på stilling</button></a>
                 </div>
             </div>
         </div>

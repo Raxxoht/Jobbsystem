@@ -2,7 +2,9 @@
     session_start();
     if(isset($_SESSION["kvitteringInfo"])){
         $kvitteringInfo = $_SESSION["kvitteringInfo"];
-        $kvittering = ["Handling" => "Lagde ny bruker", "InfoListe" => $kvitteringInfo];
+        $kvittering = ["Handling" => $kvitteringInfo["Handling"] , "InfoListe" => ""];
+        unset($kvitteringInfo["Handling"]);
+        $kvittering["InfoListe"] = $kvitteringInfo;
         echo "Du " . $kvittering["Handling"] . "<br />";
     
         echo "Informasjon angående din handling <br />";

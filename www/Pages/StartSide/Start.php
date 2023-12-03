@@ -38,7 +38,6 @@ session_start();
         <div id="innhold">
             <ul>
                 <?php
-                unset($infoList["Passord"]);
                 foreach($infoList as $x => $y){
                     echo "<li>$x: $y</li>";
                 }

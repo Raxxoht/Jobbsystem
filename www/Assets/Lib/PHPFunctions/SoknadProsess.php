@@ -36,12 +36,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($SpesAnnonse["KravCV"] == 1 && $ArbeidsInfo["CV"] !== NULL) {
         QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID);
         CloseDBConnection($conn);
-        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php");
+        $kvitteringInfo = ["Handling" => "Sendte inn en søknad","StillingNavn" => $SpesAnnonse["Tittel"], "StillingBeskrivelse" => $SpesAnnonse["Beskrivelse"], "Tittel" => $Tittel, "Soknadtekst" => $Soknadtekst];
+        $_SESSION["kvitteringInfo"] = $kvitteringInfo;
+        header("Location: http://localhost/Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
         exit();
     } elseif ($SpesAnnonse["KravCV"] == 0) {
         QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID);
         CloseDBConnection($conn);
-        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php");
+        $kvitteringInfo = ["Handling" => "Sendte inn en søknad","StillingNavn" => $SpesAnnonse["Tittel"], "StillingBeskrivelse" => $SpesAnnonse["Beskrivelse"], "Tittel" => $Tittel, "Soknadtekst" => $Soknadtekst];
+        $_SESSION["kvitteringInfo"] = $kvitteringInfo;
+        header("Location: http://localhost/Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
         exit();
     } else {
         echo "Mangler CV for å Søke på denne stilling";
