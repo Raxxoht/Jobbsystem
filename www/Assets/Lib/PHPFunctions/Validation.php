@@ -82,25 +82,25 @@
         }
     }
     
-function KravVal($Krav){
-    session_start(); // Start the session
+    function KravVal($Krav){
+        session_start(); // Start the session
 
-    if ($Krav !== "1" && $Krav !== "0") {
-        $errorMessage = "Feil Verdi KravVal: $Krav";
+        if ($Krav !== "1" && $Krav !== "0") {
+            $errorMessage = "Feil Verdi KravVal: $Krav";
 
-        if (isset($_SESSION['error_message'])) {
-            $_SESSION['error_message'] .= ", " . $errorMessage;
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+
+            return false; // Return a boolean indicating validation failure
         } else {
-            $_SESSION['error_message'] = $errorMessage;
+            return true; // Return a boolean indicating validation success
         }
-
-        return false; // Return a boolean indicating validation failure
-    } else {
-        return true; // Return a boolean indicating validation success
     }
-}
 
-function TekstVal($Tekst){
+    function TekstVal($Tekst){
     session_start(); // Start the session
     $object = unserialize($_SESSION["Bruker"]);
     $Brukernavn = $object->Brukernavn;
@@ -122,5 +122,50 @@ function TekstVal($Tekst){
         return true;
     }
 
-}
+    }
+
+    //Noe som ikke funker helt her 
+    function IDval($ID){
+        if (empty($ID) || !is_numeric($ID)){
+            $errorMessage = "Feil med IDval: $ID";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /* WIP function TidsfristVal($Tidsfrist){
+        if ("TBD"){
+            $errorMessage = "";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false;
+        } else {
+            return true;
+        }
+    } */
+
+    function Statusval($Status){
+        session_start(); // Start the session
+
+        if ($Status !== "Avventer" && $Status !== "Godkjent" && $Status !== "Avvist" ) {
+            $errorMessage = "Feil Verdi Status: $Status";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; // Return a boolean indicating validation failure
+        } else {
+            return true; // Return a boolean indicating validation success
+        }
+    }
 ?>  

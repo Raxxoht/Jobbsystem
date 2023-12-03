@@ -1,15 +1,18 @@
 <?php 
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/Validation.php";
+
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidstaker.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidsgiver.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $soknadID = $_POST['soknadID'];
     $kommentar = $_POST['kommentar'];
     $status = $_POST['status'];
 
-    //Validering 
-    //Validering av $soknadID
-    //Validering av $Kommentar
-    //Validering av $status
+    IDval($soknadID);
+    TekstVal($kommentar);
+    Statusval($status);
 
 if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         $conn = OpenDBConnection();

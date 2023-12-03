@@ -1,8 +1,8 @@
 <?php 
 session_start();
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/login-sjekk.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/Validation.php";
 
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidstaker.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidsgiver.php";
@@ -20,12 +20,12 @@ if (isset($_GET['AgID'])) {
 }
 
     //Validering 
-    //Validering av $Tittel
-    //Validering av $Beskrivelse
-    //Validering av $KravCV
-    //Validering av $KravTekst
+    TekstVal($Tittel);
+    TekstVal($Beskrivelse);
+    KravVal($KravCV);
+    KravVal($KravTekst);
     //Validering av $Tidsfrist
-    //Validering av $AgID
+    IDval($AgID);
 
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering 
         $conn = OpenDBConnection();
