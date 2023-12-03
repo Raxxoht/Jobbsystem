@@ -84,7 +84,7 @@
         }
     }
 
-    function KravVal($Krav){ //Sjekker om Verdien i boolean er True eller False
+    function KravVal($Krav){ //Sjekker om Verdien i boolean er 1 eller 0
         session_start(); // Start the session
     
         if ($Krav !== "1" && $Krav !== "0") {
@@ -126,7 +126,7 @@
 
     }
 
-    function IDval($ID){
+    function IDval($ID){ //Sjekker om ID er Tom eller ikke numeric
         if (empty($ID) or !is_numeric($ID)){
             $errorMessage = "Feil med IDval: $ID";
             if (isset($_SESSION['error_message'])) {

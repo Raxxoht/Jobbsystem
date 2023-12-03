@@ -10,16 +10,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     //Validering
-    //Validering av SoknadID?
-    //Validering av Kommentar?
+    IDval($soknadID);
+    TekstVal($kommentar);
     //Validering av Status?
 
-$conn = OpenDBConnection();
-QueryUpdateSoknad($conn, $soknadID, $status, $kommentar);
-CloseDBConnection($conn);
+    if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
+        $conn = OpenDBConnection();
+        QueryUpdateSoknad($conn, $soknadID, $status, $kommentar);
+        CloseDBConnection($conn);
 
-header("Location: http://localhost/Jobbsystem/www/Pages/Soknadside/Soknad.php");
-exit();
+        header("Location: http://localhost/Jobbsystem/www/Pages/Soknadside/Soknad.php");
+        exit();
+    } else {
+        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
+        exit(); 
+    }
 }
  else {
 // If the form is not submitted, handle accordingly

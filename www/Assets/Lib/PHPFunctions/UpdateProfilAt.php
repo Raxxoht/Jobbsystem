@@ -58,12 +58,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Validering av FilesAvatar?
     //Validering av FilesCV?
 
-    $conn = OpenDBConnection();
-    UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, $Tlf, $CVContent, $AvatarContent);
-    CloseDBConnection($conn);
-
-    header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAt.php");
-    exit();
+    if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
+        $conn = OpenDBConnection();
+        UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, $Tlf, $CVContent, $AvatarContent);
+        CloseDBConnection($conn);
+        header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAt.php");
+        exit();
+    } else {
+        header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAt.php");
+        exit();
+    }
 } else {
     // If the form is not submitted, handle accordingly
     echo "Form not submitted";
