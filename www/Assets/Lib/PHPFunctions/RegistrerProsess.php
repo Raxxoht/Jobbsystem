@@ -37,13 +37,13 @@ if(isset($_GET["Type"]) && isset($_POST["regBNavn"]) && isset($_POST["regPass"])
     
         if($_GET["Type"]=="Arbeidstaker"){
             QueryInsertArbeidstaker($conn, $brukerId, $_POST["regFNavn"] . " " . $_POST["regENavn"], $_POST["regEpost"], $_POST["regFDato"], $_POST["regTlf"]);
-            $infoList = ["Brukernavn" => $_POST["regBNavn"],"Fornavn" => $_POST["regFNavn"], "Etternavn" => $_POST["regENavn"], "Epost" => $_POST["regEpost"], "Fødselsdato" => $_POST["regFDato"], "Telefonnummer" => $_POST["regTlf"]];
+            $infoList = ["Handling" => "Lagde ny bruker","Brukernavn" => $_POST["regBNavn"],"Fornavn" => $_POST["regFNavn"], "Etternavn" => $_POST["regENavn"], "Epost" => $_POST["regEpost"], "Fødselsdato" => $_POST["regFDato"], "Telefonnummer" => $_POST["regTlf"]];
             $_SESSION["kvitteringInfo"] = $infoList;
             header("Location: /Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
     
         } elseif($_GET["Type"]=="Arbeidsgiver"){
             QueryInsertArbeidsgiver($conn, $brukerId, $_POST["regFirmaNavn"], $_POST["regLederNavn"], $_POST["regEpost"], $_POST["regTlf"]);
-            $infoList = ["Brukernavn" => $_POST["regBNavn"], "FirmaNavn" => $_POST["regFirmaNavn"], "LederNavn" => $_POST["regLederNavn"], "Epost" => $_POST["regEpost"], "Telefonnummer" => $_POST["regTlf"]];
+            $infoList = ["Handling" => "Lagde ny bruker","Brukernavn" => $_POST["regBNavn"], "FirmaNavn" => $_POST["regFirmaNavn"], "LederNavn" => $_POST["regLederNavn"], "Epost" => $_POST["regEpost"], "Telefonnummer" => $_POST["regTlf"]];
             $_SESSION["kvitteringInfo"] = $infoList;
              header("Location: /Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
         } else {
