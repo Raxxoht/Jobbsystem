@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     KravVal($Sokbar);
     TekstVal($Beskrivelse);
     //Validering av $KontaktPerson
-    //Validering av $Epost
+    EpostVal($Epost);
     //Validering av $Tlf
     //Validering av $Avatar
     //Validering av $BrukerID

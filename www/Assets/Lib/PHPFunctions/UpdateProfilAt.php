@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Validering av $Navn
     KravVal($Sokbar);
     TekstVal($Beskrivelse);
-    //Validering av $Epost
+    EpostVal($Epost);
     //Validering av $Tlf
     //Validering av $Avatar
     //Validering av $CV

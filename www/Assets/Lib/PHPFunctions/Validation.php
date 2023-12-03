@@ -168,4 +168,20 @@
             return true; // Return a boolean indicating validation success
         }
     }
+
+    function EpostVal($Epost) {
+        session_start();
+
+        if (!filter_var($Epost, FILTER_VALIDATE_EMAIL)) {
+            $errorMessage = "Ugyldig epost: $Epost";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; // Return a boolean indicating validation failure
+        } else {
+            return true; // Return a boolean indicating validation success
+        }
+    }
 ?>  
