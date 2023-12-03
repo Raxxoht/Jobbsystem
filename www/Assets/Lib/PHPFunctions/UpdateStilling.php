@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $JobbannonseID = $_GET['JobbannonseID'];
     }
     
+    $KravCV="123";
     //Validering 
     TekstVal($Tittel);
     TekstVal($Beskrivelse);
@@ -38,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
         exit();
     } else {
-        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
+        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger-edit.php?JobbannonseID=$JobbannonseID&BrukerID=$BrukerID"); 
         exit();
     }
 }

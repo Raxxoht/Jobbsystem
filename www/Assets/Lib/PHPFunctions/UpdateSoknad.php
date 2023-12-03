@@ -10,9 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kommentar = $_POST['kommentar'];
     $status = $_POST['status'];
 
+    if (isset($_GET['SoknadID'])) {
+        $SoknadID = $_GET['SoknadID'];
+    }
+
     IDval($soknadID);
     TekstVal($kommentar);
     Statusval($status);
+    IDval($SoknadID);
 
 if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         $conn = OpenDBConnection();
@@ -21,7 +26,7 @@ if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmeldi
         header("Location: http://localhost/Jobbsystem/www/Pages/Soknadside/Soknad.php");
         exit();
         } else {
-        header("Location: http://localhost/Jobbsystem/www/Pages/Soknadside/Soknad.php");
+        header("Location: http://localhost/Jobbsystem/www/Pages/Soknadside/SpesifikkSoknad.php?SoknadID=$SoknadID");
         exit();
     }
 } else {

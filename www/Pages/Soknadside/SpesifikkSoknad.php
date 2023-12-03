@@ -36,7 +36,7 @@ if (isset($_GET['SoknadID'])) {
     CloseDBConnection($conn); 
 
         ?>
-<form action="Assets\Lib\PHPFunctions\UpdateSoknad.php" method="post">
+<form action="Assets\Lib\PHPFunctions\UpdateSoknad.php?SoknadID=<?=$SoknadID?>" method="post">
     <table border="1">
         <thead>
             <tr>

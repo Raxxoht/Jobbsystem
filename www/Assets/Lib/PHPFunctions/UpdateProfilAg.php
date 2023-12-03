@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     EpostVal($Epost);
     //Validering av $Tlf
     //Validering av $Avatar
-    //Validering av $BrukerID
+    IDval($BrukerID);
 
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         $conn = OpenDBConnection();
