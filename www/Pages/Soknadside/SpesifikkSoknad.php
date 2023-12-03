@@ -26,6 +26,8 @@ if(isset($_SESSION["Bruker"])){
     }
 }
 
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/error-sjekk.php";
+
 if (isset($_GET['SoknadID'])) {
     $SoknadID = $_GET['SoknadID'];
 }
@@ -34,7 +36,7 @@ if (isset($_GET['SoknadID'])) {
     CloseDBConnection($conn); 
 
         ?>
-<form action="Assets\Lib\PHPFunctions\UpdateSoknad.php" method="post">
+<form action="Assets\Lib\PHPFunctions\UpdateSoknad.php?SoknadID=<?=$SoknadID?>" method="post">
     <table border="1">
         <thead>
             <tr>

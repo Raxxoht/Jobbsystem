@@ -27,6 +27,8 @@ if(isset($_SESSION["Bruker"])){
         include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Html/navbarAt.php";
     }
 
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/error-sjekk.php";
+
     $BnavnAG = $object->Brukernavn; //Henter BrukerNavn fra SESSION
     $conn=OpenDBConnection(); //Åpner DBConnection
     $assocs = QuerySelectProfilforAT($conn, $BnavnAG); //Henter Info fra Tabellen AT og Profil

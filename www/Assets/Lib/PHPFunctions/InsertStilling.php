@@ -1,8 +1,8 @@
 <?php 
 session_start();
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/login-sjekk.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/Validation.php";
 
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidstaker.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidsgiver.php";
@@ -19,12 +19,25 @@ if (isset($_GET['AgID'])) {
     $AgID = $_GET['AgID'];
 }
 
-$conn = OpenDBConnection();
-QueryInsertAnnonse($conn, $Tittel, $Beskrivelse, $KravCV, $KravTekst, $Tidsfrist, $AgID);
-CloseDBConnection($conn);
+    //Validering 
+    TekstVal($Tittel);
+    TekstVal($Beskrivelse);
+    KravVal($KravCV);
+    KravVal($KravTekst);
+    //Validering av $Tidsfrist
+    IDval($AgID);
 
-header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
-exit();
+    if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering 
+        $conn = OpenDBConnection();
+        QueryInsertAnnonse($conn, $Tittel, $Beskrivelse, $KravCV, $KravTekst, $Tidsfrist, $AgID);
+        CloseDBConnection($conn);
+
+        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
+        exit();
+    } else {
+        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/LagStilling.php?AgID=$AgID");
+        exit(); 
+    }
 } else {
 // If the form is not submitted, handle accordingly
 echo "Form not submitted";

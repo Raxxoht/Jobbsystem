@@ -7,8 +7,7 @@
         } else {
             return "Ikke tatt";
         }
-    }
-    
+    } 
     
     function passordVal($Pass){
         $returnMelding = []; //Definerer en liste for å inneholde alle returnermeldingene
@@ -82,4 +81,107 @@
             return "Bra";
         }
     }
-?>
+    
+    function KravVal($Krav){
+        session_start(); // Start the session
+
+        if ($Krav !== "1" && $Krav !== "0") {
+            $errorMessage = "Feil Verdi KravVal: $Krav";
+
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+
+            return false; // Return a boolean indicating validation failure
+        } else {
+            return true; // Return a boolean indicating validation success
+        }
+    }
+
+    function TekstVal($Tekst){
+    session_start(); // Start the session
+    $object = unserialize($_SESSION["Bruker"]);
+    $Brukernavn = $object->Brukernavn;
+
+    $conn= OpenDBConnection();
+    $Passord=QuerySelectBrukerPassord($conn, $Brukernavn);
+    $Passord=implode($Passord);
+    CloseDBConnection($conn);
+
+    if (strpos($Tekst, $Passord) !== false) {
+        $errorMessage = "Ikke skriv passordet: $Passord ditt i Teksten";
+        if (isset($_SESSION['error_message'])) {
+            $_SESSION['error_message'] .= ", " . $errorMessage;
+        } else {
+            $_SESSION['error_message'] = $errorMessage;
+        }
+        return false; // or handle the error in a way appropriate for your application
+    } else {
+        return true;
+    }
+
+    }
+
+    //Noe som ikke funker helt her 
+    function IDval($ID){
+        if (empty($ID) || !is_numeric($ID)){
+            $errorMessage = "Feil med IDval: $ID";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /* WIP function TidsfristVal($Tidsfrist){
+        if ("TBD"){
+            $errorMessage = "";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false;
+        } else {
+            return true;
+        }
+    } */
+
+    function Statusval($Status){
+        session_start(); // Start the session
+
+        if ($Status !== "Avventer" && $Status !== "Godkjent" && $Status !== "Avvist" ) {
+            $errorMessage = "Feil Verdi Status: $Status";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; // Return a boolean indicating validation failure
+        } else {
+            return true; // Return a boolean indicating validation success
+        }
+    }
+
+    function EpostVal($Epost) {
+        session_start();
+
+        if (!filter_var($Epost, FILTER_VALIDATE_EMAIL)) {
+            $errorMessage = "Ugyldig epost: $Epost";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; // Return a boolean indicating validation failure
+        } else {
+            return true; // Return a boolean indicating validation success
+        }
+    }
+?>  

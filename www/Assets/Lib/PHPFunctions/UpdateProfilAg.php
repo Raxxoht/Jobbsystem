@@ -1,8 +1,8 @@
 <?php 
 session_start();
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/login-sjekk.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/Validation.php";
 
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidstaker.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidsgiver.php";
@@ -39,12 +39,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $BrukerID = $_GET['BrukerID'];
     }
 
-    $conn = OpenDBConnection();
-    UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $KontaktPerson, $Epost, $Tlf, $AvatarContent);
-    CloseDBConnection($conn);
+    //Validering 
+    //Validering av $Firmanavn
+    KravVal($Sokbar);
+    TekstVal($Beskrivelse);
+    //Validering av $KontaktPerson
+    EpostVal($Epost);
+    //Validering av $Tlf
+    //Validering av $Avatar
+    IDval($BrukerID);
 
-    header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAg.php");
-    exit();
+    if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
+        $conn = OpenDBConnection();
+        UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $KontaktPerson, $Epost, $Tlf, $AvatarContent);
+        CloseDBConnection($conn);
+        header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAg.php");
+        exit();
+    } else {
+        header("Location: http://localhost/Jobbsystem/www/Pages/Profilside/ProfilAg-edit.php");
+        exit();        
+    }
 } else {
     // If the form is not submitted, handle accordingly
     echo "Form not submitted";

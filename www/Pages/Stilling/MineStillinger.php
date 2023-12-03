@@ -26,6 +26,8 @@ if(isset($_SESSION["Bruker"])){
     }
 }
 
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/error-sjekk.php";
+
 $BnavnAG = $object->Brukernavn;
 $conn=OpenDBConnection();
 $assocs = QuerySelectProfilforAG($conn, $BnavnAG);
