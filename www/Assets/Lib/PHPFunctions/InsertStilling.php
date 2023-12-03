@@ -19,14 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_GET['AgID'])) {
     $AgID = $_GET['AgID'];
 }
-
     //Validering
-    //Validering av Tittel?
-    //Validering av Beskrivelse?
-    //Validering av KravCV?
-    //Validering av KravTekst?
+    TekstVal($Tittel);
+    TekstVal($Beskrivelse);
+    KravVal($KravCV);
+    KravVal($KravTekst);
     //Validering av Tidsfrist?
-        //Validering av AgID? 
     IDval($AgID);
 
 $conn = OpenDBConnection();

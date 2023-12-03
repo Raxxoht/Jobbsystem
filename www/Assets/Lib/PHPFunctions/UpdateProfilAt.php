@@ -49,11 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //Validering
     //Validering av Navn?
-    //Validering av Sokbar?
-    //Validering av Beskrivelse?
+    KravVal($Sokbar);
+    TekstVal($Beskrivelse);
     //Validering av Epost?
     //Validering av Tlf?
-    //Validering av BrukerID?
+    IDval($BrukerID);
 
     //Validering av FilesAvatar?
     //Validering av FilesCV?

@@ -26,6 +26,7 @@ if(isset($_SESSION["Bruker"])){
     } elseif ($object->rolle=="Arbeidstaker") {
         include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Html/navbarAt.php";
     }
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/error-sjekk.php";
 
     $BnavnAG = $object->Brukernavn;
     $conn=OpenDBConnection();

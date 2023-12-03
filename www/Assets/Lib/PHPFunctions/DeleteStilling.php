@@ -6,6 +6,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunction
     if (isset($_GET['JobbannonseID'])) {
         $JobbannonseID = $_GET['JobbannonseID'];
 
+    //Validering
+    IDval($JobbannonseID);
+
 if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering 
     $conn = OpenDBConnection();
     QueryDeleteSpesStilling($conn, $JobbannonseID);

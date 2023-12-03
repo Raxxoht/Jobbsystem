@@ -26,6 +26,7 @@ if(isset($_SESSION["Bruker"])){
     } elseif ($object->rolle=="Arbeidstaker") {
         include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Html/navbarAt.php";
     }
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/error-sjekk.php";
 
     $BnavnAG = $object->Brukernavn; //Henter BrukerNavn fra SESSION
     $conn=OpenDBConnection(); //Åpner DBConnection
@@ -36,7 +37,7 @@ if(isset($_SESSION["Bruker"])){
 
     CloseDBConnection($conn); //Lukker DB Connection
 
-    $avatarData = $Profil['Avatar']; 
+    $avatarData = $Profil['Avatar'];
 
 // Check if avatar data is available
 if (!empty($avatarData)) {

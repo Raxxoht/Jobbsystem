@@ -35,24 +35,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $SpesAnnonse = QuerySelectSpesAnnonse($conn, $JobbannonseID);
 
     //Validering
-    //Validering av SoknadTekst?
-    //Validering av Tittel?
-    //Validering av BrukerID?
-    //Validering av JobbannonseID?
+    TekstVal($Soknadtekst);
+    TekstVal($Tittel);
+    IDval($BrukerID);
+    IDval($JobbannonseID);
     //Validering av Datetime
     
-    if ($SpesAnnonse["KravCV"] == 1 && $ArbeidsInfo["CV"] !== NULL) {
-        QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID);
-        CloseDBConnection($conn);
-        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php");
-        exit();
-    } elseif ($SpesAnnonse["KravCV"] == 0) {
-        QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID);
-        CloseDBConnection($conn);
-        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php");
-        exit();
+    if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering 
+        if ($SpesAnnonse["KravCV"] == 1 && $ArbeidsInfo["CV"] !== NULL) {
+            QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID);
+            CloseDBConnection($conn);
+            header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php");
+            exit();
+        } elseif ($SpesAnnonse["KravCV"] == 0) {
+            QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID);
+            CloseDBConnection($conn);
+            header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php");
+            exit();
+        } else {
+            echo "Mangler CV for å Søke på denne stilling";
+        }
     } else {
-        echo "Mangler CV for å Søke på denne stilling";
+        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/Stilling.php");
+        exit();
     }
 } else {
     // If the form is not submitted, handle accordingly
