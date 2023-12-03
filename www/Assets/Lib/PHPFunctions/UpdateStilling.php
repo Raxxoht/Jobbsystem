@@ -18,6 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $JobbannonseID = $_GET['JobbannonseID'];
     }
 
+    //Validering 
+    //Validering av $Tittel
+    //Validering av $Beskrivelse
+    //Validering av $KravCV
+    //Validering av $KravDoc
+    //Validering av $KravTekst
+    //Validering av $Tidsfrist
+    //Validering av $BrukerID
+    //Validering av $JobbannonseID
+    
+    
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         $conn = OpenDBConnection();
         QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $KravTekst, $Tidsfrist, $JobbannonseID);

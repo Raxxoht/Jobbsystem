@@ -6,6 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kommentar = $_POST['kommentar'];
     $status = $_POST['status'];
 
+    //Validering 
+    //Validering av $soknadID
+    //Validering av $Kommentar
+    //Validering av $status
+
 if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         $conn = OpenDBConnection();
         QueryUpdateSoknad($conn, $soknadID, $status, $kommentar);

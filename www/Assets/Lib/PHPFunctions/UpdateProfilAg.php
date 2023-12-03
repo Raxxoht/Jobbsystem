@@ -39,6 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $BrukerID = $_GET['BrukerID'];
     }
 
+    //Validering 
+    //Validering av $Firmanavn
+    //Validering av $Sokbar
+    //Validering av $Beskrivelse
+    //Validering av $KontaktPerson
+    //Validering av $Epost
+    //Validering av $Tlf
+    //Validering av $Avatar
+    //Validering av $BrukerID
+
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         $conn = OpenDBConnection();
         UpdateProfilAg($conn, $BrukerID, $Firmanavn, $Sokbar, $Beskrivelse, $KontaktPerson, $Epost, $Tlf, $AvatarContent);

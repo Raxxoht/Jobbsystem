@@ -46,6 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $BrukerID = $_GET['BrukerID'];
     }
 
+    //Validering 
+    //Validering av $Navn
+    //Validering av $Sokbar
+    //Validering av $Beskrivelse
+    //Validering av $Epost
+    //Validering av $Tlf
+    //Validering av $Avatar
+    //Validering av $CV
+    //Validering av $BrukerID
+
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         $conn = OpenDBConnection();
         UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, $Tlf, $CVContent, $AvatarContent);

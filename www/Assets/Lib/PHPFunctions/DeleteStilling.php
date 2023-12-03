@@ -4,6 +4,8 @@ include "db.php";
     if (isset($_GET['JobbannonseID'])) {
         $JobbannonseID = $_GET['JobbannonseID'];
     
+    //Validering 
+    //Validering av $JobbannonseID
 
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         $conn = OpenDBConnection();
