@@ -85,7 +85,7 @@
         }
     }
 
-    function KravVal($Krav){
+    function KravVal($Krav){ //Sjekker om Verdien i boolean er True eller False
         session_start(); // Start the session
     
         if ($Krav !== true && $Krav !== false) {
@@ -103,7 +103,7 @@
         }
     }
 
-    function TekstVal($Tekst){
+    function TekstVal($Tekst){ // Sjekker om Teksten innholder brukerens Passord
         session_start(); // Start the session
         $object = unserialize($_SESSION["Bruker"]);
         $Brukernavn = $object->Brukernavn;
