@@ -7,8 +7,7 @@
         } else {
             return "Ikke tatt";
         }
-    }
-    
+    } 
     
     function passordVal($Pass){
         $returnMelding = []; //Definerer en liste for å inneholde alle returnermeldingene
@@ -82,4 +81,46 @@
             return "Bra";
         }
     }
-?>
+    
+function KravVal($Krav){
+    session_start(); // Start the session
+
+    if ($Krav !== true && $Krav !== false) {
+        $errorMessage = "Feil Verdi KravVal: $Krav";
+
+        if (isset($_SESSION['error_message'])) {
+            $_SESSION['error_message'] .= ", " . $errorMessage;
+        } else {
+            $_SESSION['error_message'] = $errorMessage;
+        }
+
+        return false; // Return a boolean indicating validation failure
+    } else {
+        return true; // Return a boolean indicating validation success
+    }
+}
+
+function TekstVal($Tekst){
+    session_start(); // Start the session
+    $object = unserialize($_SESSION["Bruker"]);
+    $Brukernavn = $object->Brukernavn;
+
+    $conn= OpenDBConnection();
+    $Passord=QuerySelectBrukerPassord($conn, $Brukernavn);
+    $Passord=implode($Passord);
+    CloseDBConnection($conn);
+
+    if (strpos($Tekst, $Passord) !== false) {
+        $errorMessage = "Ikke skriv passordet: $Passord ditt i Teksten";
+        if (isset($_SESSION['error_message'])) {
+            $_SESSION['error_message'] .= ", " . $errorMessage;
+        } else {
+            $_SESSION['error_message'] = $errorMessage;
+        }
+        return false; // or handle the error in a way appropriate for your application
+    } else {
+        return true;
+    }
+
+}
+?>  

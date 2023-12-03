@@ -19,12 +19,17 @@ if (isset($_GET['AgID'])) {
     $AgID = $_GET['AgID'];
 }
 
-$conn = OpenDBConnection();
-QueryInsertAnnonse($conn, $Tittel, $Beskrivelse, $KravCV, $KravTekst, $Tidsfrist, $AgID);
-CloseDBConnection($conn);
+    if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering 
+        $conn = OpenDBConnection();
+        QueryInsertAnnonse($conn, $Tittel, $Beskrivelse, $KravCV, $KravTekst, $Tidsfrist, $AgID);
+        CloseDBConnection($conn);
 
-header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
-exit();
+        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
+        exit();
+    } else {
+        header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
+        exit(); 
+    }
 } else {
 // If the form is not submitted, handle accordingly
 echo "Form not submitted";
