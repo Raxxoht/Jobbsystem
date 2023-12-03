@@ -1,5 +1,7 @@
 <?php
     include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
+    include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidstaker.php";
+    include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/Klasser/arbeidsgiver.php";
     
     function brukernavnVal($conn, $BNavn){
         if(QuerySelectSpesBruker($conn, $_POST["regBNavn"])==1){
@@ -99,5 +101,29 @@
         } else {
             return true; // Return a boolean indicating validation success
         }
+    }
+
+    function TekstVal($Tekst){
+        session_start(); // Start the session
+        $object = unserialize($_SESSION["Bruker"]);
+        $Brukernavn = $object->Brukernavn;
+
+        $conn= OpenDBConnection();
+        $Passord=QuerySelectBrukerPassord($conn, $Brukernavn);
+        $Passord=implode($Passord);
+        CloseDBConnection($conn);
+
+        if (strpos($Tekst, $Passord) !== false) {
+            $errorMessage = "Ikke skriv passordet: $Passord ditt i Teksten";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; // or handle the error in a way appropriate for your application
+        } else {
+            return true;
+        }
+
     }
 ?>

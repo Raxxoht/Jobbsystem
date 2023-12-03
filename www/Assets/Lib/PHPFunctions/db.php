@@ -85,6 +85,14 @@ function QuerySelectBrukerPass($conn, $brukerNavn, $passord){
     unset($result);
 }
 
+function QuerySelectBrukerPassord($conn, $Brukernavn){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT Passord FROM Bruker WHERE Brukernavn = '$Brukernavn'";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_assoc();
+    return $assoc;
+}
+
 function QuerySelectAllBrukerInfo($conn, $brukernavn, $passord){
     $conn->select_db("jobbsystem");
     $sql = "Select * from bruker where brukernavn = '$brukernavn' and passord = '$passord'";

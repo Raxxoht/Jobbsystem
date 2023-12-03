@@ -8,9 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $KravCV = $_POST['KravCV'];
     $KravTekst = $_POST['KravTekst'];
 
-    $KravTekst = "123";
-    $KravCV = "ASDASD";
-
     $tidsfrist = date('Y-m-d H:i:s', strtotime($_POST["Tidsfrist"]));
 
     if (isset($_GET['BrukerID'])) {
@@ -21,10 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $JobbannonseID = $_GET['JobbannonseID'];
     }
 
+    //Validering
+    TekstVal($Tittel); 
+    TekstVal($Beskrivelse); 
     KravVal($KravCV);
     KravVal($KravTekst);
     
-    if (empty($_SESSION['error_message'])) {
+    if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         // Validation passed, perform further actions
         $conn = OpenDBConnection();
         QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $KravTekst, $Tidsfrist, $JobbannonseID);
