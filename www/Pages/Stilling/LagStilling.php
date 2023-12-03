@@ -28,6 +28,8 @@ if(isset($_SESSION["Bruker"])){
     }
 }
 
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/error-sjekk.php";
+
     if (isset($_GET['AgID'])) {
         $AgID = $_GET['AgID'];
     }
