@@ -11,7 +11,6 @@
         }
     }
     
-    
     function passordVal($Pass){
         $returnMelding = []; //Definerer en liste for å inneholde alle returnermeldingene
         $noCap = "Passordet må inneholde 1 stor bokstav";  //Spesifike strenger for hver eneste konflikt
@@ -88,7 +87,7 @@
     function KravVal($Krav){ //Sjekker om Verdien i boolean er True eller False
         session_start(); // Start the session
     
-        if ($Krav !== "true" && $Krav !== "false") {
+        if ($Krav !== "1" && $Krav !== "0") {
             $errorMessage = "Feil Verdi KravVal: $Krav";
     
             if (isset($_SESSION['error_message'])) {
@@ -125,5 +124,33 @@
             return true;
         }
 
+    }
+
+    function IDval($ID){
+        if (empty($ID) or !is_numeric($ID)){
+            $errorMessage = "Feil med IDval: $ID";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function TidsfristVal($Tidsfrist){
+        if ("TBD"){
+            $errorMessage = "";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false;
+        } else {
+            return true;
+        }
     }
 ?>

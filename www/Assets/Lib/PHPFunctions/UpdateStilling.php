@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $KravCV = $_POST['KravCV'];
     $KravTekst = $_POST['KravTekst'];
 
-    $tidsfrist = date('Y-m-d H:i:s', strtotime($_POST["Tidsfrist"]));
+    $tidsfrist = new DateTime($_POST["Tidsfrist"]);
+    $formattedTidsfrist = $tidsfrist->format('Y-m-d H:i:s');
 
     if (isset($_GET['BrukerID'])) {
         $BrukerID = $_GET['BrukerID'];
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         // Validation passed, perform further actions
         $conn = OpenDBConnection();
-        QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $KravTekst, $Tidsfrist, $JobbannonseID);
+        QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $KravTekst, $formattedTidsfrist, $JobbannonseID);
         CloseDBConnection($conn);
     
         header("Location: http://localhost/Jobbsystem/www/Pages/Stilling/MineStillinger.php");
