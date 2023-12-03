@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $KravTekst = $_POST['KravTekst'];
 
     $tidsfrist = new DateTime($_POST["Tidsfrist"]);
-    $formattedTidsfrist = $tidsfrist->format('Y-m-d H:i:s');
 
     if (isset($_GET['BrukerID'])) {
         $BrukerID = $_GET['BrukerID'];
@@ -20,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //Validering
-    //Validering av Tidsfrist?
-    //Validering av BrukerID?
-    //Validering av JobbannonseID?
+    //TidsfristVal($tidsfrist); WIP
+    IDval($BrukerID);
+    IDval($JobbannonseID);
     TekstVal($Tittel); 
     TekstVal($Beskrivelse); 
     KravVal($KravCV);
@@ -30,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering
         // Validation passed, perform further actions
+        $formattedTidsfrist = $tidsfrist->format('Y-m-d H:i:s');
         $conn = OpenDBConnection();
         QueryUpdateStilling($conn, $Tittel, $Beskrivelse, $KravCV, $KravDoc, $KravTekst, $formattedTidsfrist, $JobbannonseID);
         CloseDBConnection($conn);

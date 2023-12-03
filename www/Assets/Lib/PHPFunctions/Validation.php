@@ -141,16 +141,6 @@
     }
 
     function TidsfristVal($Tidsfrist){
-        if ("TBD"){
-            $errorMessage = "";
-            if (isset($_SESSION['error_message'])) {
-                $_SESSION['error_message'] .= ", " . $errorMessage;
-            } else {
-                $_SESSION['error_message'] = $errorMessage;
-            }
-            return false;
-        } else {
-            return true;
-        }
+        //WIP
     }
 ?>
