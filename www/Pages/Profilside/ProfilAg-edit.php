@@ -62,10 +62,10 @@ if (!empty($avatarData)) {
         <input type="file" name="Avatar" accept="image/*"><br>
 
         <strong>Søkbar:</strong><br>
-        <input type="radio" id="Sokbar1" name="Sokbar" value="true" required />
+        <input type="radio" id="Sokbar1" name="Sokbar" value="1" required />
         <label for="Rolle1">Ja</label> <br>
 
-        <input type="radio" id="Sokbar2" name="Sokbar" value="false" required />
+        <input type="radio" id="Sokbar2" name="Sokbar" value="0" required />
         <label for="Sokbar2">Nei</label> <br>
 
         <label for="Beskrivelse"><strong>Beskrivelse:</strong></label><br>

@@ -85,7 +85,7 @@
 function KravVal($Krav){
     session_start(); // Start the session
 
-    if ($Krav !== true && $Krav !== false) {
+    if ($Krav !== "1" && $Krav !== "0") {
         $errorMessage = "Feil Verdi KravVal: $Krav";
 
         if (isset($_SESSION['error_message'])) {
