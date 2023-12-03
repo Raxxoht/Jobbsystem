@@ -19,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //Validering
+    //Validering av Tidsfrist?
+    //Validering av BrukerID?
+    //Validering av JobbannonseID?
     TekstVal($Tittel); 
     TekstVal($Beskrivelse); 
     KravVal($KravCV);

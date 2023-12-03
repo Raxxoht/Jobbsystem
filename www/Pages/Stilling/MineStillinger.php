@@ -26,10 +26,7 @@ if(isset($_SESSION["Bruker"])){
     }
 }
 
-if(isset($_SESSION["error_message"])){
-    echo "<h3 style='color:red;'>" . $_SESSION["error_message"] . "</h3>";
-    unset($_SESSION["error_message"]);
-}
+include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/error-sjekk.php";
 
 $BnavnAG = $object->Brukernavn;
 $conn=OpenDBConnection();

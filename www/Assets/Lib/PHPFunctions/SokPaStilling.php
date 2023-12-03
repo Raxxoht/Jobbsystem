@@ -33,6 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $SpesAnnonse = QuerySelectSpesAnnonse($conn, $JobbannonseID);
 
+    //Validering
+    //Validering av SoknadTekst?
+    //Validering av Tittel?
+    //Validering av BrukerID?
+    //Validering av JobbannonseID?
+    //Validering av Datetime
+    
     if ($SpesAnnonse["KravCV"] == 1 && $ArbeidsInfo["CV"] !== NULL) {
         QueryInsertSoknad($conn, $Soknadtekst, $Tittel, $DateTime, $BrukerID, $JobbannonseID);
         CloseDBConnection($conn);

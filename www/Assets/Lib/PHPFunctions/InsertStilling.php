@@ -19,6 +19,14 @@ if (isset($_GET['AgID'])) {
     $AgID = $_GET['AgID'];
 }
 
+    //Validering
+    //Validering av Tittel?
+    //Validering av Beskrivelse?
+    //Validering av KravCV?
+    //Validering av KravTekst?
+    //Validering av Tidsfrist?
+    //Validering av AgID?
+
 $conn = OpenDBConnection();
 QueryInsertAnnonse($conn, $Tittel, $Beskrivelse, $KravCV, $KravTekst, $Tidsfrist, $AgID);
 CloseDBConnection($conn);

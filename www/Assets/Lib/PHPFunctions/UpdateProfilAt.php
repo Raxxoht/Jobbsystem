@@ -46,6 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $BrukerID = $_GET['BrukerID'];
     }
 
+    //Validering
+    //Validering av Navn?
+    //Validering av Sokbar?
+    //Validering av Beskrivelse?
+    //Validering av Epost?
+    //Validering av Tlf?
+    //Validering av BrukerID?
+
+    //Validering av FilesAvatar?
+    //Validering av FilesCV?
+
     $conn = OpenDBConnection();
     UpdateProfilAt($conn, $BrukerID, $Navn, $Sokbar, $Beskrivelse, $Epost, $Tlf, $CVContent, $AvatarContent);
     CloseDBConnection($conn);

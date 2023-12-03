@@ -88,7 +88,7 @@
     function KravVal($Krav){ //Sjekker om Verdien i boolean er True eller False
         session_start(); // Start the session
     
-        if ($Krav !== true && $Krav !== false) {
+        if ($Krav !== "true" && $Krav !== "false") {
             $errorMessage = "Feil Verdi KravVal: $Krav";
     
             if (isset($_SESSION['error_message'])) {
