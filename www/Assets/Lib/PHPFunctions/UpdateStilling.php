@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     TekstVal($Beskrivelse);
     KravVal($KravCV);
     KravVal($KravTekst);
-    //Validering av $Tidsfrist
+    TidsfristVal($Tidsfrist);
     IdVal($BrukerID);
     IdVal($JobbannonseID);
     

@@ -24,7 +24,7 @@ if (isset($_GET['AgID'])) {
     TekstVal($Beskrivelse);
     KravVal($KravCV);
     KravVal($KravTekst);
-    //Validering av $Tidsfrist
+    TidsfristVal($Tidsfrist);
     IDval($AgID);
 
     if (empty($_SESSION['error_message'])) { //Kjører Handling hvis ingen feilmelding fra Validering 

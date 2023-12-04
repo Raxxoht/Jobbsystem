@@ -100,7 +100,7 @@
         }
     }
 
-    function TekstVal($Tekst){
+    function TekstVal($Tekst){ //Sjekker om Teksten innholder Passordet til brukeren
         session_start(); // Start the session
         $object = unserialize($_SESSION["Bruker"]);
         $Brukernavn = $object->Brukernavn;
@@ -124,7 +124,7 @@
 
     }
 
-    function IDval($ID){
+    function IDval($ID){ //Sjekker om ID er tall
         session_start(); // Start the session
 
         if (empty($ID) || !is_numeric($ID)){
@@ -140,9 +140,12 @@
         }
     }
 
-    /* WIP function TidsfristVal($Tidsfrist){
-        if ("TBD"){
-            $errorMessage = "";
+    function TidsfristVal($Tidsfrist){ //Sjekker om Verdi er i Fremtiden
+        $Tidsfrist = DateTime::createFromFormat('Y-m-d\TH:i', $Tidsfrist); //'Y-m-d\TH:i' = datetime-local format
+        $Nåtid = new DateTime();
+
+        if ($Tidsfrist < $Nåtid){ 
+            $errorMessage = "Du må Tidsfrist i fremtiden";
             if (isset($_SESSION['error_message'])) {
                 $_SESSION['error_message'] .= ", " . $errorMessage;
             } else {
@@ -152,9 +155,9 @@
         } else {
             return true;
         }
-    } */
+    } 
 
-    function Statusval($Status){
+    function Statusval($Status){ //Sjekker om Verdi er som forventet
         session_start(); // Start the session
 
         if ($Status !== "Avventer" && $Status !== "Godkjent" && $Status !== "Avvist" ) {
