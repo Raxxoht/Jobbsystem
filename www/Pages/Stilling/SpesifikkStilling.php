@@ -70,7 +70,7 @@ if (isset($_GET['JobbannonseID'])) {
                 </div>
                 <div class="annonseknappBoks">
                     <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/Stilling.php"><button class="annonseknapp">Gå tilbake</button></a>
-                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Søk på stilling</button></a>
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SokStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Søk på stilling</button></a>
                 </div>
             </div>
         </div>

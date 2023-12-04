@@ -59,11 +59,12 @@
                         <div style="background-color:<?=sjekkKrav($Annonse["KravDoc"])?>;" class="annonsekravBoks">DOC</div>
                         <div style="background-color:<?=sjekkKrav($Annonse["KravTekst"])?>;" class="annonsekravBoks">TEKST</div>
                     </div>
+                    <a class="aknapp" href="/Jobbsystem/www/Pages/Stilling/SpesifikkStilling.php?JobbannonseID=<?= $Annonse['JobbannonseID'] ?>"><button class="annonseknapp">Gå tilbake</button></a>
                 </div>
                 <form action="/Jobbsystem/www/Assets/Lib/PHPFunctions/SoknadProsess.php?JobbannonseID=<?=$annonseId?>&BrukerID=<?=$brukerId?>" method ="POST">
-                    <h2>HER SØKER DU</h2>
-                    Tittel <input placeholder="Morsom Tittel" type="text" name="Tittel"> <br>
-                    <textarea placeholder="Skriv litt om deg selv og din interesse for jobben..." name="SoknadTekst" cols="30" rows="10"></textarea> Søknadstekst <br>
+                    <h2><u>HER SØKER DU : </u></h2>
+                    Tittel <input required placeholder="Morsom Tittel" type="text" name="Tittel"> <br>
+                    <textarea required placeholder="Skriv litt om deg selv og din interesse for jobben..." name="SoknadTekst" cols="30" rows="10"></textarea> Søknadstekst <br>
                     <button class="annonseknapp" type="submit">Send Søknad</button>
                 </form>
             </div>
