@@ -25,6 +25,8 @@ session_start();
             include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Html/navbarAt.php";
         }
 
+    include $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/error-sjekk.php";
+
         $infoList = $object->printInfo();
     
     } else {
@@ -48,7 +50,57 @@ session_start();
     <div id="Main_Content">
         <h1>Velkommen til Jobbsøkesystemet vårt!</h1>
     </div>
-    <script>
+
+    <form action="Assets\Lib\PHPFunctions\Sok.php" method="post">
+
+        <label for="sok">Søk:</label>
+        <textarea name="sok" id="sok" rows="1" cols="50"> </textarea> <br>
+
+        <input type="submit" value="sok">
+    </form>
+
+    <?php
+    if (isset($_SESSION["sokListe"])) {
+        $sokListe = $_SESSION["sokListe"];
+        if (!empty($sokListe)) {
+    ?>
+        <h2>JobbAnnonser</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Tittel</th>
+                    <th>ArbeidsgiverID</th>   
+                    <th>Beskrivelse</th> 
+                    <th>KravCV</th>   
+                    <th>KravDoc</th>   
+                    <th>KravTekst</th>     
+                    <th>Tidsfrist</th>            
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($sokListe as $sok): ?>
+                    <tr>
+                        <td><?= $sok['Tittel'] ?></td>
+                        <td><?= $sok['ArbeidsgiverID'] ?></td>
+                        <td><?= $sok['Beskrivelse'] ?></td>
+                        <td><?= $sok['KravCV'] ?></td>
+                        <td><?= $sok['KravDoc'] ?></td>
+                        <td><?= $sok['KravTekst'] ?></td>
+                        <td><?= $sok['Tidsfrist'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+<?php
+    } else {
+        echo "<p>Ingen Resultater på JobbAnnonser.</p>";
+    }
+}
+
+unset($_SESSION["sokListe"]);
+?>
+
+    <!-- <script>
         document.addEventListener('click', function(event) { //Legger til javascript, css magic er ikke sterkt nok for dette
             var innhold = document.getElementById('innhold');
             var target = event.target;
