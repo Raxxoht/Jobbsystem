@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,23 +11,9 @@
 </head>
 <body id="startBody">
     <?php
-    if(isset($_GET["BNavn"])){
-    if($_GET["BNavn"]=="Tatt"){
-        echo "<h2 style='color:red;'>Brukernavnet er tatt</h2>";
-     }
-   }
-    if(isset($_GET["passMelding"])){
-        echo "<h3 style='color:red;'>" . $_GET["passMelding"] . "</h3>";
-    }
-    if(isset($_GET["tlfMelding"])){
-        echo "<h3 style='color:red;'>" . $_GET["tlfMelding"] . "</h3>";
-    }
-    if(isset($_GET["navnMelding"])){
-        echo "<h3 style='color:red;'>" . $_GET["navnMelding"] . "</h3>";
-    }
-    if(isset($_GET["datoMelding"])){
-        echo "<h3 style='color:red;'>" . $_GET["datoMelding"] . "</h3>";
-    }
+    if(isset($_SESSION["error_message"]))
+        echo $_SESSION["error_message"];
+        unset($_SESSION["error_message"]);
     ?>
     <div id="regFormBox">
         <form action="/Jobbsystem/www/Assets/Lib/PHPFunctions/RegistrerProsess.php?Type=<?php echo $_GET["Type"]?>" method="POST" id="regForm">

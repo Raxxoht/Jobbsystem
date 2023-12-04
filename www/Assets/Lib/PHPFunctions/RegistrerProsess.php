@@ -6,7 +6,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunction
 
 if(isset($_GET["Type"]) && isset($_POST["regBNavn"]) && isset($_POST["regPass"])){
 
-    $type = $_GET["Type"];
+    $type = $_GET["Type"]; // Legger inn alle variabler fra post og lager connection, samt henter type
     $conn = OpenDBConnection();
     $curDate = date("Y-m-d H:i:s");
     $BrukerNavn = $_POST["regBNavn"];
@@ -19,50 +19,51 @@ if(isset($_GET["Type"]) && isset($_POST["regBNavn"]) && isset($_POST["regPass"])
     $Firmanavn = $_POST["regFirmaNavn"];
     $Ledernavn = $_POST["regLederNavn"];
 
-    
-    if(QuerySelectSpesBruker($conn, $BrukerNavn)==1){
-        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?BNavn=Tatt&Type=$type");
+    brukernavnVal($conn, $BrukerNavn);
+    passordVal($Passord);
+    if($type=="Arbeidsgiver"){
 
-    } elseif(passordVal($Passord)!="Bra"){
-        $passMelding = passordVal($Passord);
-        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&passMelding=$passMelding");
+        Arbeidsgiverval($conn, $Firmanavn, $Ledernavn, $Epost, $Telefon);
 
-    } elseif(tlfVal($Telefon)!="Bra"){
-        $tlfMelding = tlfVal($Telefon);
-        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&tlfMelding=$tlfMelding");
-        
-    } elseif(navnVal($Fornavn)!="Bra" OR navnVal($Etternavn)!="Bra"){
-        if(navnVal($Fornavn)!="Bra"){$navnMelding = navnVal($Etternavn);}
-        elseif(navnVal($Etternavn)!="Bra"){$navnMelding = navnVal($Fornavn);}
-        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&navnMelding=$navnMelding");
+        if(empty($_SESSION["error_message"])){
 
-    } elseif(fDatoVal($Fodselsdato)!="Bra"){
-        $datoMelding = fDatoVal($Fodselsdato);
-        header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&datoMelding=$datoMelding");
-    } else {
+            QueryInsertBruker($conn,$BrukerNavn, $Passord, $type, $curDate);
+            $assoc = QuerySelectAllBrukerInfo($conn, $BrukerNavn, $Passord);
+            $brukerId=$assoc["BrukerID"];
 
-        QueryInsertBruker($conn,$BrukerNavn, $Passord, $_GET["Type"], $curDate);
-
-        $assoc = QuerySelectAllBrukerInfo($conn, $BrukerNavn, $Passord);
-    
-        $brukerId=$assoc["BrukerID"];
-    
-        if($_GET["Type"]=="Arbeidstaker"){
-            QueryInsertArbeidstaker($conn, $brukerId, $Fornavn . " " . $Etternavn, $Etternavn, $Fodselsdato, $Telefon);
-            $infoList = ["Handling" => "Lagde ny bruker","Brukernavn" => $Brukernavn,"Fornavn" => $Fornavn, "Etternavn" => $Etternavn, "Epost" => $Epost, "Fødselsdato" => $Fodselsdato, "Telefonnummer" => $Telefon];
-            $_SESSION["kvitteringInfo"] = $infoList;
-            header("Location: /Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
-    
-        } elseif($_GET["Type"]=="Arbeidsgiver"){
             QueryInsertArbeidsgiver($conn, $brukerId, $Firmanavn, $Ledernavn, $Epost, $Telefon);
-            $infoList = ["Handling" => "Lagde ny bruker","Brukernavn" => $BrukerNavn, "FirmaNavn" => $Firmanavn, "LederNavn" => $Ledernavn, "Epost" => $Epost, "Telefonnummer" => $Telefon];
+
+            $infoList = ["Handling" => "Lagde ny bruker (Arbeidsgiver)","Brukernavn" => $BrukerNavn, "FirmaNavn" => $Firmanavn, "LederNavn" => $Ledernavn, "Epost" => $Epost, "Telefonnummer" => $Telefon];
             $_SESSION["kvitteringInfo"] = $infoList;
-             header("Location: /Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
+
+            header("Location: /Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
+            
         } else {
-            header("Location: /Jobbsystem/www/index.php");
+            header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type");
         }
-        CloseDBConnection($conn);
+
+    } elseif($type=="Arbeidstaker"){
+
+        Arbeidstakerval($conn, $Fornavn, $Etternavn, $Fodselsdato, $Telefon);
+
+        if(empty($_SESSION["error_message"])){
+
+            QueryInsertBruker($conn,$BrukerNavn, $Passord, $type, $curDate);
+            $assoc = QuerySelectAllBrukerInfo($conn, $BrukerNavn, $Passord);
+            $brukerId=$assoc["BrukerID"];
+
+            QueryInsertArbeidstaker($conn, $brukerId, $Fornavn . " " . $Etternavn, $Etternavn, $Fodselsdato, $Telefon);
+
+            $infoList = ["Handling" => "Lagde ny bruker (Arbeidstaker)","Brukernavn" => $BrukerNavn,"Fornavn" => $Fornavn, "Etternavn" => $Etternavn, "Epost" => $Epost, "Fødselsdato" => $Fodselsdato, "Telefonnummer" => $Telefon];
+            $_SESSION["kvitteringInfo"] = $infoList;
+
+            header("Location: /Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
+
+        } else {
+            header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type");
+        }
     }
+
 } else {
     header("Location: /Jobbsystem/www/index.php");
 }

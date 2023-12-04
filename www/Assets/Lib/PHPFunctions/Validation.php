@@ -2,10 +2,13 @@
     include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunctions/db.php";
     
     function brukernavnVal($conn, $BNavn){
+        $errorMessage = "Brukernavnet er tatt";
         if(QuerySelectSpesBruker($conn, $_POST["regBNavn"])==1){
-            return "Tatt";
-        } else {
-            return "Ikke tatt";
+            if(isset($_SESSION["error_message"])){
+                $_SESSION["error_message"] .= $errorMessage;
+            } else {
+                $_SESSION["error_message"] = $errorMessage;
+            }
         }
     } 
     
@@ -32,54 +35,43 @@
             array_push($returnMelding, $noLen); //Push riktig melding inn i returnmelding lista
         }
 
-
-        if(empty($returnMelding)){
-            $melding = "Bra"; //returverdien sier at passordet er good to go
-        } else {
-            $melding = "";
+        if(!empty($returnMelding)){
+            $errorMessage = "";
             for($i=0;$i<count($returnMelding);$i++){ //Loop gjennom alle indexene i returnMelding lista 
-                $melding .= $i == 0 ? $returnMelding[$i] : ($i==count($returnMelding)-1 ? " Og " . $returnMelding[$i] : ", " . $returnMelding[$i]); //Concatenate alle returmeldingene inn i en melding med god formattering.Nested ternerary if elseif else statement, fordi jeg kan gjøre det og det tar lite plass
+                $errorMessage .= $i == 0 ? $returnMelding[$i] : ($i==count($returnMelding)-1 ? " Og " . $returnMelding[$i] : ", " . $returnMelding[$i]); //Concatenate alle returmeldingene inn i en melding med god formattering.Nested ternerary if elseif else statement, fordi jeg kan gjøre det og det tar lite plass
             }
-        }
-        return $melding; // Returnere til slutt meldingen til brukern
-    }
-
-    function tlfVal($tlf){
-        if(strlen((string)$tlf)<8){ // Sjekker om nummeret er for langt eller for kort
-            return "Telefonnummeret er for kort";
-        } elseif (strlen((string)$tlf)>8){
-            return "Telefonnummeret er for langt";
-        } else {
-            return "Bra";
-        }
-    }
-
-    function navnVal($navn){
-        if(preg_match("@[a-zA-Z]@", $navn)==false){
-            return "Du må ha bokstaver i navnet ditt";
-        } elseif(preg_match("@[0-9]@", $navn)==true){
-            return "Du kan ikke ha tall i navnet ditt";
-        } elseif(strlen($navn)<2){
-            return "Navnet ditt må være minst 2 karakterer langt";
-        } else {
-            return "Bra";
-        }
+            if(isset($_SESSION["error_message"])){
+                $_SESSION["error_message"] .= $errorMessage;
+            } else {
+                $_SESSION["error_message"] = $errorMessage;
+            }
+        } 
     }
 
     function fDatoVal($dato){
         $Stempel = strtotime($dato);
+        $errorMessage = "";
 
         if($Stempel===false){
             return "Dette er feil format";
         }
         $sanntid = time();
         if(date("Y", $Stempel) >= date("Y", $sanntid)){
-            return "Du kan ikke være født i år eller etter i år";
+            $errorMessage = "Du kan ikke være født i år eller etter i år";
+            if(isset($_SESSION["error_message"])){
+                $_SESSION["error_message"] .= $errorMessage;
+            } else {
+                $_SESSION["error_message"] = $errorMessage;
+            }
         } elseif(date("Y", $sanntid) - date("Y", $Stempel) >=150){
-            return "Du må være mindre enn 150 for å bruke nettsiden vår";
-        } else {
-            return "Bra";
+            $errorMessage = "Du må være mindre enn 150 for å bruke nettsiden vår";
+            if(isset($_SESSION["error_message"])){
+                $_SESSION["error_message"] .= $errorMessage;
+            } else {
+                $_SESSION["error_message"] = $errorMessage;
+            }
         }
+
     }
     
     function KravVal($Krav){
@@ -141,6 +133,7 @@
     }
 
     function TidsfristVal($Tidsfrist){ //Sjekker om Verdi er i Fremtiden
+        session_start();
         $Tidsfrist = DateTime::createFromFormat('Y-m-d\TH:i', $Tidsfrist); //'Y-m-d\TH:i' = datetime-local format
         $Nåtid = new DateTime();
 
@@ -174,7 +167,6 @@
     }
 
     function EpostVal($Epost) { //Sjekker om Verdi er gydlig Epost
-        session_start();
 
         if (!filter_var($Epost, FILTER_VALIDATE_EMAIL)) {
             $errorMessage = "Ugyldig epost: $Epost";
@@ -190,7 +182,6 @@
     }
 
     function NavnVal1($navn){ //Sjekker om Verdi kun er bokstaver mellomrom og apostrof
-        session_start();
 
         $pattern = '/^[a-zA-Z\' ]+$/'; // Tillat bokstaver, mellomrom og apostrof
         if(!preg_match($pattern, $navn)){
@@ -207,7 +198,6 @@
     }
 
     function FirmaNavnVal($navn){ //Sjekker om Verdi kun er bokstaver mellomrom tall og apostrof
-        session_start();
 
         $pattern = '/^[a-zA-Z0-9\' ]+$/';
         if(!preg_match($pattern, $navn)){
@@ -224,7 +214,6 @@
     }
 
     function tlfnrval($nr){ //Sjekker om Tlf er 0-9 og 8 Sifre Langt
-        session_start();
 
         $pattern = '/^[0-9]{8}$/';
         if (!preg_match($pattern, $nr)) {
@@ -238,5 +227,21 @@
         } else {
             return true; 
         }
+    }
+
+    function Arbeidsgiverval($conn, $Firmanavn, $Ledernavn, $Epost, $Telefon){
+        session_start();
+        FirmaNavnVal($Firmanavn);
+        NavnVal1($Ledernavn);
+        EpostVal($Epost);
+        tlfnrval($Telefon);
+    }
+
+    function Arbeidstakerval($conn, $Fornavn, $Etternavn, $Fodselsdato, $Telefon){
+        session_start();
+        NavnVal1($Fornavn);
+        NavnVal1($Etternavn);
+        fDatoVal($Fodselsdato);
+        tlfnrval($Telefon);
     }
 ?>  
