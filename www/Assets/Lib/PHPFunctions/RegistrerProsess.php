@@ -5,45 +5,57 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/Jobbsystem/www/Assets/Lib/PHPFunction
 
 
 if(isset($_GET["Type"]) && isset($_POST["regBNavn"]) && isset($_POST["regPass"])){
+
     $type = $_GET["Type"];
     $conn = OpenDBConnection();
     $curDate = date("Y-m-d H:i:s");
+    $BrukerNavn = $_POST["regBNavn"];
+    $Passord = $_POST["regPass"];
+    $Telefon = $_POST["regTlf"];
+    $Fornavn = $_POST["regFNavn"];
+    $Etternavn = $_POST["regENavn"];
+    $Fodselsdato = $_POST["regFDato"];
+    $Epost = $_POST["regEpost"];
+    $Firmanavn = $_POST["regFirmaNavn"];
+    $Ledernavn = $_POST["regLederNavn"];
+
     
-    if(QuerySelectSpesBruker($conn, $_POST["regBNavn"])==1){
+    if(QuerySelectSpesBruker($conn, $BrukerNavn)==1){
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?BNavn=Tatt&Type=$type");
 
-    } elseif(passordVal($_POST["regPass"])!="Bra"){
-        $passMelding = passordVal($_POST["regPass"]);
+    } elseif(passordVal($Passord)!="Bra"){
+        $passMelding = passordVal($Passord);
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&passMelding=$passMelding");
 
-    } elseif(tlfVal($_POST["regTlf"])!="Bra"){
-        $tlfMelding = tlfVal($_POST["regTlf"]);
+    } elseif(tlfVal($Telefon)!="Bra"){
+        $tlfMelding = tlfVal($Telefon);
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&tlfMelding=$tlfMelding");
         
-    } elseif(navnVal($_POST["regFNavn"])!="Bra" OR navnVal($_POST["regENavn"])!="Bra"){
-        if(navnVal($_POST["regFNavn"])!="Bra"){$navnMelding = navnVal($_POST["regFNavn"]);}
-        elseif(navnVal($_POST["regENavn"])!="Bra"){$navnMelding = navnVal($_POST["regENavn"]);}
+    } elseif(navnVal($Fornavn)!="Bra" OR navnVal($Etternavn)!="Bra"){
+        if(navnVal($Fornavn)!="Bra"){$navnMelding = navnVal($Etternavn);}
+        elseif(navnVal($Etternavn)!="Bra"){$navnMelding = navnVal($Fornavn);}
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&navnMelding=$navnMelding");
 
-    } elseif(fDatoVal($_POST["regFDato"])!="Bra"){
-        $datoMelding = fDatoVal($_POST["regFDato"]);
+    } elseif(fDatoVal($Fodselsdato)!="Bra"){
+        $datoMelding = fDatoVal($Fodselsdato);
         header("Location: /Jobbsystem/www/Pages/Registrer/Registrer.php?Type=$type&datoMelding=$datoMelding");
     } else {
-        QueryInsertBruker($conn,$_POST["regBNavn"], $_POST["regPass"], $_GET["Type"], $curDate);
 
-        $assoc = QuerySelectAllBrukerInfo($conn, $_POST["regBNavn"], $_POST["regPass"]);
+        QueryInsertBruker($conn,$BrukerNavn, $Passord, $_GET["Type"], $curDate);
+
+        $assoc = QuerySelectAllBrukerInfo($conn, $BrukerNavn, $Passord);
     
         $brukerId=$assoc["BrukerID"];
     
         if($_GET["Type"]=="Arbeidstaker"){
-            QueryInsertArbeidstaker($conn, $brukerId, $_POST["regFNavn"] . " " . $_POST["regENavn"], $_POST["regEpost"], $_POST["regFDato"], $_POST["regTlf"]);
-            $infoList = ["Handling" => "Lagde ny bruker","Brukernavn" => $_POST["regBNavn"],"Fornavn" => $_POST["regFNavn"], "Etternavn" => $_POST["regENavn"], "Epost" => $_POST["regEpost"], "Fødselsdato" => $_POST["regFDato"], "Telefonnummer" => $_POST["regTlf"]];
+            QueryInsertArbeidstaker($conn, $brukerId, $Fornavn . " " . $Etternavn, $Etternavn, $Fodselsdato, $Telefon);
+            $infoList = ["Handling" => "Lagde ny bruker","Brukernavn" => $Brukernavn,"Fornavn" => $Fornavn, "Etternavn" => $Etternavn, "Epost" => $Epost, "Fødselsdato" => $Fodselsdato, "Telefonnummer" => $Telefon];
             $_SESSION["kvitteringInfo"] = $infoList;
             header("Location: /Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
     
         } elseif($_GET["Type"]=="Arbeidsgiver"){
-            QueryInsertArbeidsgiver($conn, $brukerId, $_POST["regFirmaNavn"], $_POST["regLederNavn"], $_POST["regEpost"], $_POST["regTlf"]);
-            $infoList = ["Handling" => "Lagde ny bruker","Brukernavn" => $_POST["regBNavn"], "FirmaNavn" => $_POST["regFirmaNavn"], "LederNavn" => $_POST["regLederNavn"], "Epost" => $_POST["regEpost"], "Telefonnummer" => $_POST["regTlf"]];
+            QueryInsertArbeidsgiver($conn, $brukerId, $Firmanavn, $Ledernavn, $Epost, $Telefon);
+            $infoList = ["Handling" => "Lagde ny bruker","Brukernavn" => $BrukerNavn, "FirmaNavn" => $Firmanavn, "LederNavn" => $Ledernavn, "Epost" => $Epost, "Telefonnummer" => $Telefon];
             $_SESSION["kvitteringInfo"] = $infoList;
              header("Location: /Jobbsystem/www/Assets/Lib/PHPFunctions/Kvittering.php");
         } else {
