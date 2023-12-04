@@ -232,6 +232,14 @@ function QuerySelectProfilforAT($conn, $BnavnAG){
     return [$assoc1, $assoc2];
 }
 
+function QuerySelectForSok($conn, $sok){
+    $conn->select_db("jobbsystem");
+    $sql = "SELECT * FROM Jobbannonse WHERE (Tittel LIKE '%$sok%' OR Beskrivelse LIKE '%$sok%');";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_all(MYSQLI_ASSOC);
+    return $assoc;
+}
+
 function QueryInsertBruker($conn, $Brukernavn, $Passord, $Rolle, $Regdato){ //Insert into tabell Bruker
     // SQL query
     $conn->select_db("jobbsystem");
