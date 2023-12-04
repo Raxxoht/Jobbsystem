@@ -10,8 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Beskrivelse = $_POST['Beskrivelse'];
     $KravCV = $_POST['KravCV'];
     $KravTekst = $_POST['KravTekst'];
-
-    $tidsfrist = date('Y-m-d H:i:s', strtotime($_POST["Tidsfrist"]));
+    $Tidsfrist = $_POST['Tidsfrist'];
 
     if (isset($_GET['BrukerID'])) {
         $BrukerID = $_GET['BrukerID'];
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     TekstVal($Beskrivelse);
     KravVal($KravCV);
     KravVal($KravTekst);
-    //Validering av $Tidsfrist
+    TidsfristVal($Tidsfrist);
     IdVal($BrukerID);
     IdVal($JobbannonseID);
     

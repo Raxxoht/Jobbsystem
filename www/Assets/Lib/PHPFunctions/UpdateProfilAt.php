@@ -47,11 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //Validering 
-    //Validering av $Navn
+    NavnVal1($Navn);
     KravVal($Sokbar);
     TekstVal($Beskrivelse);
     EpostVal($Epost);
-    //Validering av $Tlf
+    tlfnrval($Tlf);
     //Validering av $Avatar
     //Validering av $CV
     IDval($BrukerID);

@@ -100,32 +100,33 @@
         }
     }
 
-    function TekstVal($Tekst){
-    session_start(); // Start the session
-    $object = unserialize($_SESSION["Bruker"]);
-    $Brukernavn = $object->Brukernavn;
+    function TekstVal($Tekst){ //Sjekker om Teksten innholder Passordet til brukeren
+        session_start(); // Start the session
+        $object = unserialize($_SESSION["Bruker"]);
+        $Brukernavn = $object->Brukernavn;
 
-    $conn= OpenDBConnection();
-    $Passord=QuerySelectBrukerPassord($conn, $Brukernavn);
-    $Passord=implode($Passord);
-    CloseDBConnection($conn);
+        $conn= OpenDBConnection();
+        $Passord=QuerySelectBrukerPassord($conn, $Brukernavn);
+        $Passord=implode($Passord);
+        CloseDBConnection($conn);
 
-    if (strpos($Tekst, $Passord) !== false) {
-        $errorMessage = "Ikke skriv passordet: $Passord ditt i Teksten";
-        if (isset($_SESSION['error_message'])) {
-            $_SESSION['error_message'] .= ", " . $errorMessage;
+        if (strpos($Tekst, $Passord) !== false) {
+            $errorMessage = "Ikke skriv passordet: $Passord ditt i Teksten";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; // or handle the error in a way appropriate for your application
         } else {
-            $_SESSION['error_message'] = $errorMessage;
+            return true;
         }
-        return false; // or handle the error in a way appropriate for your application
-    } else {
-        return true;
-    }
 
     }
 
-    //Noe som ikke funker helt her 
-    function IDval($ID){
+    function IDval($ID){ //Sjekker om ID er tall
+        session_start(); // Start the session
+
         if (empty($ID) || !is_numeric($ID)){
             $errorMessage = "Feil med IDval: $ID";
             if (isset($_SESSION['error_message'])) {
@@ -139,9 +140,12 @@
         }
     }
 
-    /* WIP function TidsfristVal($Tidsfrist){
-        if ("TBD"){
-            $errorMessage = "";
+    function TidsfristVal($Tidsfrist){ //Sjekker om Verdi er i Fremtiden
+        $Tidsfrist = DateTime::createFromFormat('Y-m-d\TH:i', $Tidsfrist); //'Y-m-d\TH:i' = datetime-local format
+        $Nåtid = new DateTime();
+
+        if ($Tidsfrist < $Nåtid){ 
+            $errorMessage = "Du må Tidsfrist i fremtiden";
             if (isset($_SESSION['error_message'])) {
                 $_SESSION['error_message'] .= ", " . $errorMessage;
             } else {
@@ -151,9 +155,9 @@
         } else {
             return true;
         }
-    } */
+    } 
 
-    function Statusval($Status){
+    function Statusval($Status){ //Sjekker om Verdi er som forventet
         session_start(); // Start the session
 
         if ($Status !== "Avventer" && $Status !== "Godkjent" && $Status !== "Avvist" ) {
@@ -169,7 +173,7 @@
         }
     }
 
-    function EpostVal($Epost) {
+    function EpostVal($Epost) { //Sjekker om Verdi er gydlig Epost
         session_start();
 
         if (!filter_var($Epost, FILTER_VALIDATE_EMAIL)) {
@@ -179,9 +183,60 @@
             } else {
                 $_SESSION['error_message'] = $errorMessage;
             }
-            return false; // Return a boolean indicating validation failure
+            return false;
         } else {
-            return true; // Return a boolean indicating validation success
+            return true; 
+        }
+    }
+
+    function NavnVal1($navn){ //Sjekker om Verdi kun er bokstaver mellomrom og apostrof
+        session_start();
+
+        $pattern = '/^[a-zA-Z\' ]+$/'; // Tillat bokstaver, mellomrom og apostrof
+        if(!preg_match($pattern, $navn)){
+            $errorMessage = "Det er kun mulig med bokstaver, mellomrom og apostrof: $navn";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; 
+        } else {
+            return true; 
+        }
+    }
+
+    function FirmaNavnVal($navn){ //Sjekker om Verdi kun er bokstaver mellomrom tall og apostrof
+        session_start();
+
+        $pattern = '/^[a-zA-Z0-9\' ]+$/';
+        if(!preg_match($pattern, $navn)){
+            $errorMessage = "Det er kun mulig med bokstaver tall, mellomrom og apostrof i FirmaNavn: $navn";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; 
+        } else {
+            return true; 
+        }
+    }
+
+    function tlfnrval($nr){ //Sjekker om Tlf er 0-9 og 8 Sifre Langt
+        session_start();
+
+        $pattern = '/^[0-9]{8}$/';
+        if (!preg_match($pattern, $nr)) {
+            $errorMessage = "Tlr Nr må være Siffer 0-9 og 8 sifre langt: $nr";
+            if (isset($_SESSION['error_message'])) {
+                $_SESSION['error_message'] .= ", " . $errorMessage;
+            } else {
+                $_SESSION['error_message'] = $errorMessage;
+            }
+            return false; 
+        } else {
+            return true; 
         }
     }
 ?>  
