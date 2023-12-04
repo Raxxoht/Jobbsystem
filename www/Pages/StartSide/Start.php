@@ -44,6 +44,7 @@ session_start();
                     echo "<li>$x: $y</li>";
                 }
                 ?>
+            <a href="#"><button>X</button></a>
         </div>
         </ul>
     </div>
@@ -97,7 +98,6 @@ session_start();
     }
 }
 
-unset($_SESSION["sokListe"]);
 ?>
 
     <!-- <script>
